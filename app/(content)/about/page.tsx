@@ -1,4 +1,4 @@
-import TableOfContents from "components/table-of-contents";
+import TableOfContents from "@/components/table-of-contents";
 
 const AboutPage = () => {
   return (

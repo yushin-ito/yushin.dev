@@ -5,8 +5,8 @@ import { Inter, Noto_Sans_JP } from "next/font/google";
 import { ReactNode } from "react";
 import { ThemeProvider } from "next-themes";
 
-import { cn } from "lib/tools";
-import { site } from "config/site";
+import { cn } from "@/lib/tools";
+import { site } from "@/config/site";
 
 const inter = Inter({
   subsets: ["latin"],

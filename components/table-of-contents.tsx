@@ -2,9 +2,9 @@
 
 import { useEffect, useState } from "react";
 
-import useMounted from "hooks/use-mounted";
-import { cn } from "lib/tools";
-import { env } from "env";
+import useMounted from "@/hooks/use-mounted";
+import { cn } from "@/lib/tools";
+import { env } from "@/env";
 
 interface Item {
   id: string;
