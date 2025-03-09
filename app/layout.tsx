@@ -5,10 +5,8 @@ import { Inter, Noto_Sans_JP } from "next/font/google";
 import { ReactNode } from "react";
 import { ThemeProvider } from "next-themes";
 
-import { cn } from "functions/tools";
-import Header from "components/header";
+import { cn } from "lib/tools";
 import { site } from "config/site";
-import Footer from "components/footer";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -64,11 +62,7 @@ const RootLayout = ({ children }: RootLayoutProps) => (
       )}
     >
       <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-        <div className="relative flex min-h-screen flex-col">
-          <Header />
-          <div className="flex-1">{children}</div>
-          <Footer />
-        </div>
+        {children}
       </ThemeProvider>
     </body>
   </html>

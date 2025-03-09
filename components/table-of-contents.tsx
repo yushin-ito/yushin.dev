@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 
 import useMounted from "hooks/use-mounted";
-import { cn } from "functions/tools";
+import { cn } from "lib/tools";
 import { env } from "env";
 
 interface Item {
