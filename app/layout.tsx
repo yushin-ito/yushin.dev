@@ -5,10 +5,10 @@ import { Inter, Noto_Sans_JP } from "next/font/google";
 import { ReactNode } from "react";
 import { ThemeProvider } from "next-themes";
 
-import { cn } from "@/functions/tools";
-import Header from "@/components/header";
-import { site } from "@/config/site";
-import Footer from "@/components/footer";
+import { cn } from "functions/tools";
+import Header from "components/header";
+import { site } from "config/site";
+import Footer from "components/footer";
 
 const inter = Inter({
   subsets: ["latin"],

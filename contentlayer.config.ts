@@ -4,7 +4,7 @@ import { rehypePrettyCode } from "rehype-pretty-code";
 import rehypeSlug from "rehype-slug";
 import remarkGfm from "remark-gfm";
 
-import type { UnistNode, UnistTree } from "./src/types/unist";
+import type { UnistNode, UnistTree } from "./types/unist";
 
 export const Work = defineDocumentType(() => ({
   name: "Work",

@@ -1,13 +1,13 @@
 import Image from "next/image";
 
-import { Card, CardContent } from "@/ui/card";
+import { Card, CardContent } from "ui/card";
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
-} from "@/ui/carousel";
+} from "ui/carousel";
 
 const WorksPage = () => {
   return (

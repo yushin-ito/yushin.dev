@@ -3,9 +3,9 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-import { nav } from "@/config/nav";
-import { cn } from "@/functions/tools";
-import ThemeToggle from "./theme-toggle";
+import { cn } from "functions/tools";
+import { nav } from "config/nav";
+import ThemeToggle from "components/theme-toggle";
 
 const Header = () => {
   const pathname = usePathname();

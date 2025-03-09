@@ -2,8 +2,8 @@
 
 import { useEffect, useState } from "react";
 
-import useMounted from "@/hooks/use-mounted";
-import { cn } from "@/functions/tools";
+import useMounted from "hooks/use-mounted";
+import { cn } from "functions/tools";
 import { env } from "env";
 
 interface Item {
