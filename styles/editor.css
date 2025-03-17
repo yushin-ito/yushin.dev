@@ -1,0 +1,190 @@
+.dark .ce-block--selected .ce-block__content,
+.dark .ce-inline-toolbar,
+.dark .codex-editor--narrow .ce-toolbox,
+.dark .ce-conversion-toolbar,
+.dark .ce-settings,
+.dark .ce-settings__button,
+.dark .ce-toolbar__settings-btn,
+.dark .cdx-button,
+.dark .ce-popover__container,
+.dark .ce-toolbar__container,
+.dark .tc-popover,
+.dark .ce-toolbar__plus:hover {
+  background: theme("colors.popover.DEFAULT");
+  color: inherit;
+  border-color: theme("colors.border");
+}
+
+.dark .ce-popover-item__title,
+.dark .ce-popover-item__icon {
+  color: theme("colors.popover.foreground");
+}
+
+.dark .tc-popover__item-icon {
+  color: theme("colors.primary.foreground");
+}
+
+.dark .ce-inline-tool,
+.dark .ce-conversion-toolbar__label,
+.dark .ce-toolbox__button,
+.dark .cdx-settings-button,
+.dark .ce-toolbar__plus {
+  color: inherit;
+}
+
+.dark .cdx-search-field,
+.dark .ce-inline-tool-input,
+.dark .ce-rawtool__textarea,
+.dark .ce-code__textarea,
+.dark .cdx-quote__text,
+.dark .cdx-quote__caption,
+.dark .cdx-warning__title,
+.dark .cdx-warning__message,
+.dark .cdx-list-start-with-field {
+  border-color: theme("colors.border");
+  background: theme("colors.input");
+  color: inherit;
+}
+
+.dark ::selection {
+  background: #2383e247;
+}
+
+.dark .cdx-settings-button:hover,
+.dark .ce-settings__button:hover,
+.dark .ce-toolbox__button--active,
+.dark .ce-toolbox__button:hover,
+.dark .cdx-button:hover,
+.dark .ce-inline-toolbar__dropdown:hover,
+.dark .ce-inline-tool--active,
+.dark .ce-inline-tool:hover,
+.dark .ce-popover-item:hover,
+.dark .ce-popover-item--active,
+.dark .ce-conversion-tool:hover,
+.dark .ce-toolbar__settings-btn:hover,
+.dark .tc-popover__item:hover,
+.dark .tc-add-row:hover,
+.dark .tc-add-column:hover,
+.dark .tc-add-row:hover::before,
+.dark .tc-cell--selected,
+.dark .tc-row--selected,
+.dark .tc-row--selected::after {
+  background-color: theme("colors.accent.DEFAULT");
+  color: theme("colors.accent.foreground");
+}
+
+.dark .cdx-marker {
+  color: theme("colors.primary.DEFAULT");
+}
+
+.dark .inline-code {
+  background-color: theme("colors.accent.DEFAULT");
+}
+
+.dark .cdx-notify {
+  background: theme("colors.accent.DEFAULT") !important;
+}
+
+.dark .cdx-notify__cross::before,
+.dark .cdx-notify__cross::after {
+  background: theme("colors.primary.DEFAULT");
+}
+
+.dark .ct::before,
+.dark .ct::after {
+  background-color: theme("colors.accent.DEFAULT");
+}
+
+.dark .cdx-notify__cross::after,
+.dark .cdx-notify__cross::before {
+  width: calc(1px * 1.6) !important;
+  height: calc(6px * 1.6) !important;
+}
+
+.cdx-input {
+  border-radius: 6px;
+}
+
+.cdx-quote {
+  border: none;
+  position: relative;
+  padding-left: 16px;
+}
+
+.cdx-quote::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 6px;
+  bottom: 6px;
+  width: 4px;
+  background-color: theme("colors.primary.DEFAULT");
+  border-radius: 2px;
+}
+
+.cdx-quote__text {
+  min-height: 50px !important;
+}
+
+.cdx-quote__caption {
+  min-height: 80px !important;
+}
+
+.ce-inline-tool,
+.ce-popover-item {
+  margin: 0 2px;
+}
+
+.ce-rawtool__textarea {
+  border-radius: 6px !important;
+}
+
+.link-tool__input {
+  padding: 8px 0 8px 36px !important;
+  background-color: theme("colors.accent.DEFAULT");
+  color: theme("colors.accent.foreground");
+  border: none;
+}
+
+.link-tool__input-holder--error .link-tool__input {
+  background-color: theme("colors.accent.DEFAULT") !important;
+  color: theme("colors.accent.foreground") !important;
+}
+
+.link-tool__progress {
+  background-color: transparent !important;
+}
+
+.cdx-notify {
+  width: auto !important;
+  max-width: 356px;
+  padding: 12px 24px !important;
+  position: fixed !important;
+  right: 24px;
+  bottom: 24px;
+}
+
+@media (max-width: 768px) {
+  .cdx-notify {
+    right: 16px;
+    bottom: 16px;
+  }
+}
+
+.cdx-notify::before {
+  height: calc(100% - 8px) !important;
+  margin: 4px !important;
+}
+
+div .cdx-notify--success::before {
+  background: theme("colors.success") !important;
+}
+
+div .cdx-notify--error::before {
+  background: theme("colors.error") !important;
+}
+
+.cdx-notify__cross {
+  top: 2px !important;
+  right: 12px !important;
+}

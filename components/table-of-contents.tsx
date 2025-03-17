@@ -3,16 +3,10 @@
 import { useEffect, useState } from "react";
 
 import useMounted from "@/hooks/use-mounted";
-import { cn } from "@/lib/tools";
-import { env } from "@/env";
-
-interface Item {
-  id: string;
-  title: string;
-}
+import { cn } from "@/lib/utils";
 
 interface TableOfContentsProps {
-  items: Item[];
+  items: string[];
 }
 
 const TableOfContents = ({ items }: TableOfContentsProps) => {
@@ -28,11 +22,11 @@ const TableOfContents = ({ items }: TableOfContentsProps) => {
           }
         });
       },
-      { rootMargin: `0% 0% -60% 0%` }
+      { rootMargin: `0% 0% -80% 0%` }
     );
 
     items.forEach((item) => {
-      const element = document.getElementById(item.id);
+      const element = document.getElementById(item);
       if (element) {
         observer.observe(element);
       }
@@ -40,7 +34,7 @@ const TableOfContents = ({ items }: TableOfContentsProps) => {
 
     return () => {
       items.forEach((item) => {
-        const element = document.getElementById(item.id);
+        const element = document.getElementById(item);
         if (element) {
           observer.unobserve(element);
         }
@@ -62,16 +56,13 @@ const TableOfContents = ({ items }: TableOfContentsProps) => {
               key={index}
               className={cn(
                 "mt-0 pt-2",
-                item.id === activeId
+                item === activeId
                   ? "font-medium text-primary marker:font-medium marker:text-primary"
                   : "text-muted-foreground marker:text-muted-foreground"
               )}
             >
-              <a
-                href={env.NEXT_PUBLIC_SITE_URL + "#" + item.id}
-                className="inline-block no-underline"
-              >
-                {item.title}
+              <a href={`#${item}`} className="inline-block no-underline">
+                {item}
               </a>
             </li>
           );

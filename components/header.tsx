@@ -2,32 +2,49 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useTranslations } from "next-intl";
 
-import { cn } from "@/lib/tools";
-import { nav } from "@/config/nav";
-import ThemeToggle from "@/components/theme-toggle";
+import { cn } from "@/lib/utils";
+import { navConfig } from "@/config/nav";
+import ModeToggle from "@/components/mode-toggle";
+import { siteConfig } from "@/config/site";
+import { buttonVariants } from "@/components/ui/button";
+import Icons from "@/components/icons";
 
 const Header = () => {
+  const t = useTranslations("contents");
   const pathname = usePathname();
 
   return (
-    <header className="sticky top-0 z-40 w-full bg-background">
-      <div className="flex h-16 w-full items-center px-12 sm:justify-end">
-        <nav className="flex gap-6">
-          {nav.map((item, index) => (
+    <header>
+      <div className="flex h-16 items-center justify-between space-x-6 px-10">
+        <nav className="hidden space-x-6 md:flex">
+          {navConfig.content.map((item, index) => (
             <Link
               key={index}
               href={item.href}
               className={cn(
-                "flex items-center text-sm font-medium",
-                pathname !== item.href && "text-muted-foreground"
+                "flex items-center text-sm font-medium transition-colors hover:text-foreground/80",
+                pathname === item.href
+                  ? "text-foreground"
+                  : "text-foreground/60"
               )}
             >
-              {item.title}
+              {t(`${item.label}.title`)}
             </Link>
           ))}
         </nav>
-        <ThemeToggle />
+        <div className="flex space-x-2">
+          <Link
+            href={siteConfig.links.github}
+            target="_blank"
+            rel="noreferrer"
+            className={cn(buttonVariants({ variant: "ghost" }), "size-8")}
+          >
+            <Icons.github className="size-6 dark:fill-white" />
+          </Link>
+          <ModeToggle />
+        </div>
       </div>
     </header>
   );

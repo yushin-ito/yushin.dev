@@ -1,17 +1,17 @@
-import { site } from "@/config/site";
+import { siteConfig } from "@/config/site";
 
 const Footer = () => {
   return (
-    <footer className="py-2">
+    <footer className="h-6">
       <p className="text-center text-xs text-muted-foreground md:text-sm">
-        &copy;2025{" "}
+        &copy; {new Date().getFullYear()}{" "}
         <a
-          href={site.links.github}
+          href={siteConfig.links.github}
           target="_blank"
           rel="noreferrer"
-          className="underline underline-offset-1"
+          className="underline underline-offset-2"
         >
-          yushin
+          {siteConfig.name}
         </a>{" "}
         All rights reserved.
       </p>

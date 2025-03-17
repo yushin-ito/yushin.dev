@@ -1,0 +1,206 @@
+{
+  "root": {
+    "error": {
+      "title": "予期せぬエラーが発生しました。",
+      "description": "もう一度お試しいただくか、時間をおいてアクセスしてください。",
+      "reload": "再読み込みする"
+    },
+    "not_found": {
+      "title": "ご指定のページが見つかりません。",
+      "description": "URLが変更されたか、削除された可能性があります。",
+      "back": "トップページに戻る"
+    }
+  },
+  "auth": {
+    "email": "メールアドレス",
+    "invalid_email": "無効なメールアドレスです。",
+    "separator": "または",
+    "back": "戻る",
+    "login": {
+      "title": "ログイン",
+      "description": "アカウントにログインしてください",
+      "submit": "ログイン",
+      "login_with_provider": "{provider}でログイン",
+      "do_not_have_account": "アカウントをお持ちでないですか？",
+      "error": {
+        "title": "エラーが発生しました。",
+        "description": "サインインに失敗しました。もう一度お試しください。"
+      },
+      "success": {
+        "title": "メールアドレスの確認が必要です",
+        "description": "確認メールを送信しました。メールに記載されたリンクをクリックしてください。"
+      }
+    },
+    "signup": {
+      "title": "新規登録",
+      "description": "新しいアカウントを作成してください",
+      "submit": "新規登録",
+      "signup_with_provider": "{provider}で新規登録",
+      "already_have_account": "すでにアカウントをお持ちですか？",
+      "error": {
+        "title": "エラーが発生しました。",
+        "description": "サインアップに失敗しました。もう一度お試しください。"
+      },
+      "success": {
+        "title": "メールアドレスの確認が必要です",
+        "description": "確認メールを送信しました。メールに記載されたリンクをクリックしてください。"
+      }
+    },
+    "verify": {
+      "subject": "メールアドレスの認証",
+      "preview": "メールアドレスの認証を完了してください",
+      "title": "メールアドレスの認証",
+      "description": "メールアドレスの認証を受け付けました。🎉\nこの度はご利用いただき、ありがとうございます。\n本サービスをご利用いただくためには、メールアドレスの認証が必要になります。",
+      "instruction": "以下のボタンをクリックすると、メールアドレスの認証が完了します。\n必ず <strong>24時間以内</strong> に認証を完了してください。",
+      "verify": "認証する",
+      "warning": "このメールに心当たりがない場合は、誤って送信された可能性があります。何も操作せずにこのメールを削除してください。\n\n認証リンクの有効期限は24時間です。期限切れの場合は、再度認証リクエストを送信してください。",
+      "support": "お問い合わせは <link>support@{domain}</link> までご連絡ください。",
+      "footer": "© {year} <link>{name}</link>"
+    }
+  },
+  "contents": {
+    "top": {
+      "title": "Top",
+      "description": ""
+    },
+    "about": {
+      "title": "About",
+      "description": ""
+    },
+    "works": {
+      "title": "Works",
+      "description": ""
+    },
+    "blog": {
+      "title": "Blog",
+      "description": ""
+    },
+    "contact": {
+      "title": "Contact",
+      "description": ""
+    }
+  },
+  "dashboard": {
+    "untitled": "無題の記事",
+    "signout": "サインアウト",
+    "error": {
+      "title": "エラーが発生しました。",
+      "description": "記事の作成に失敗しました。もう一度お試しください。"
+    },
+    "posts": {
+      "title": "記事",
+      "description": "自分の記事を管理しましょう。",
+      "empty_placeholder": {
+        "title": "記事がありません。",
+        "description": "下のボタンから新しい記事を作成しましょう。"
+      },
+      "create": "投稿する",
+      "published": "公開中",
+      "draft": "下書き"
+    },
+    "analytics": {
+      "title": "分析",
+      "description": ""
+    },
+    "settings": {
+      "title": "設定",
+      "description": ""
+    }
+  },
+  "editor": {
+    "title": "エディター",
+    "description": "新しい記事を作成してください",
+    "title_placeholder": "無題の記事",
+    "content_placeholder": "ここに入力してください...",
+    "draft": "下書き",
+    "publish": "公開する",
+    "save": "保存する",
+    "back": "戻る",
+    "editorjs": {
+      "click_to_tune": "クリックして設定を調整",
+      "or_drag_to_move": "またはドラッグして移動",
+      "convert_to": "変換する",
+      "add": "追加",
+      "filter": "検索",
+      "nothing_found": "見つかりませんでした。",
+      "attachment": "添付ファイル",
+      "text": "テキスト",
+      "heading": "見出し",
+      "warning": "警告",
+      "ordered": "番号付き",
+      "unordered": "箇条書き",
+      "ordered_list": "番号付きリスト",
+      "unordered_list": "箇条書きリスト",
+      "checklist": "チェックリスト",
+      "quote": "引用",
+      "code": "コード",
+      "delimiter": "区切り",
+      "raw_html": "HTML",
+      "table": "表",
+      "link": "リンク",
+      "marker": "マーカー",
+      "underline": "下線",
+      "bold": "太字",
+      "italic": "斜体",
+      "inline_code": "インラインコード",
+      "image": "画像",
+      "title": "タイトル",
+      "message": "メッセージ",
+      "select_file_to_upload": "ファイルを選択",
+      "file_upload_failed": "ファイルのアップロードに失敗しました。",
+      "file_title": "ファイル名",
+      "heading_1": "見出し1",
+      "heading_2": "見出し2",
+      "heading_3": "見出し3",
+      "heading_4": "見出し4",
+      "heading_5": "見出し5",
+      "heading_6": "見出し6",
+      "add_a_link": "リンクを追加",
+      "couldnt_fetch_the_link_data": "リンクデータを取得できませんでした。",
+      "couldnt_get_this_link_data_try_the_other_one": "このリンクデータを取得できませんでした。他のリンクをお試しください。",
+      "wrong_response_format_from_the_server": "サーバーからのレスポンス形式が正しくありません。",
+      "the_block_can_not_be_displayed_correctly": "このブロックは正しく表示できません。",
+      "caption": "キャプション",
+      "select_an_image": "画像を選択",
+      "with_border": "枠線あり",
+      "stretch_image": "拡大表示",
+      "couldnt_upload_image_please_try_another": "画像をアップロードできませんでした。他の画像をお試しください。",
+      "start_with": "開始位置",
+      "counter_type": "カウント",
+      "numeric": "数字",
+      "lower_roman": "ローマ字（小文字）",
+      "upper_roman": "ローマ字（大文字）",
+      "lower_alpha": "英字（小文字）",
+      "upper_alpha": "英字（大文字）",
+      "with_background": "背景付き",
+      "with_headings": "見出しあり",
+      "without_headings": "見出しなし",
+      "stretch": "引き伸ばす",
+      "collapse": "折りたたむ",
+      "add_column_to_left": "左に列を追加",
+      "add_column_to_right": "右に列を追加",
+      "delete_column": "列を削除",
+      "add_row_above": "上に行を追加",
+      "add_row_below": "下に行を追加",
+      "delete_row": "行を削除",
+      "enter_html_code": "HTMLコードを入力",
+      "enter_a_code": "コードを入力",
+      "align_left": "左揃え",
+      "align_center": "中央揃え",
+      "enter_a_quote": "引用を入力",
+      "enter_a_caption": "キャプションを入力",
+      "delete": "削除",
+      "click_to_delete": "クリックして削除",
+      "move_up": "上に移動",
+      "move_down": "下に移動"
+    },
+    "success": {
+      "title": "記事を保存しました。",
+      "description": "変更した内容が正常に保存されました。"
+    },
+    "error": {
+      "title": "エラーが発生しました。",
+      "description": "記事の作成に失敗しました。もう一度お試しください。"
+    }
+  }
+}

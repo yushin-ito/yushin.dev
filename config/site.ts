@@ -1,11 +1,14 @@
-import { env } from "@/env";
+import env from "@/env";
+import { SiteConfig } from "@/types";
 
-export const site = {
-  name: "Portfolio",
+export const siteConfig: SiteConfig = {
+  name: env.NEXT_PUBLIC_APP_NAME,
   description: "Yushin's Portfolio",
-  url: env.NEXT_PUBLIC_SITE_URL,
+  domain: env.NEXT_PUBLIC_APP_DOMAIN,
+  url: env.NEXT_PUBLIC_APP_URL,
   links: {
     github: "https://github.com/yushin-ito",
-    twitter: "https://twitter.com/yushin_ito",
+    x: "https://x.com/yushin_ito",
+    discord: "https://discord.gg",
   },
 };

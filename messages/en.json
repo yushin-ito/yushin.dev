@@ -1,0 +1,206 @@
+{
+  "root": {
+    "error": {
+      "title": "Something went wrong!",
+      "description": "Please try again or access the page after some time.",
+      "reload": "Reload"
+    },
+    "not_found": {
+      "title": "404 Not Found",
+      "description": "The URL may have been changed or the page may have been deleted.",
+      "back": "Go back to Top"
+    }
+  },
+  "auth": {
+    "email": "Email",
+    "invalid_email": "Invalid email address.",
+    "separator": "or",
+    "back": "Back",
+    "login": {
+      "title": "Log In",
+      "description": "Sign in to your account",
+      "submit": "Log in",
+      "login_with_provider": "Sign in with {provider}",
+      "do_not_have_account": "Don't have an account?",
+      "error": {
+        "title": "Something went wrong.",
+        "description": "Your sign in request failed. Please try again."
+      },
+      "success": {
+        "title": "Verify your email",
+        "description": "We sent you a login link. Be sure to check your spam too."
+      }
+    },
+    "signup": {
+      "title": "Sign Up",
+      "description": "Create a new account",
+      "submit": "Sign up",
+      "signup_with_provider": "Sign up with {provider}",
+      "already_have_account": "Already have an account?",
+      "success": {
+        "title": "Verify your email.",
+        "description": "We sent you a sign up link. Be sure to check your spam too."
+      },
+      "error": {
+        "title": "Something went wrong.",
+        "description": "Your sign up request failed. Please try again."
+      }
+    },
+    "verify": {
+      "subject": "Email Verification",
+      "preview": "Please complete your email verification",
+      "title": "Email Verification",
+      "description": "Your email verification has been received. 🎉\nThank you for using our service.\nTo access our services, you need to verify your email address.",
+      "instruction": "Click the button below to complete your email verification.\nPlease make sure to verify within <strong>24 hours</strong>.",
+      "verify": "Verify",
+      "warning": "If you did not request this email, it may have been sent by mistake. Please ignore and delete this email.\n\nThe verification link is valid for 24 hours. If it expires, please request verification again.",
+      "support": "For support, please contact us at <link>support@{domain}</link>.",
+      "footer": "© {year} <link>{name}</link>"
+    }
+  },
+  "contents": {
+    "top": {
+      "title": "Top",
+      "description": ""
+    },
+    "about": {
+      "title": "About",
+      "description": ""
+    },
+    "works": {
+      "title": "Works",
+      "description": ""
+    },
+    "blog": {
+      "title": "Blog",
+      "description": ""
+    },
+    "contact": {
+      "title": "Contact",
+      "description": ""
+    }
+  },
+  "dashboard": {
+    "untitled": "Untitled",
+    "signout": "Sign Out",
+    "error": {
+      "title": "Something went wrong.",
+      "description": "Your post was not created. Please try again."
+    },
+    "posts": {
+      "title": "Posts",
+      "description": "Create and manage posts.",
+      "empty_placeholder": {
+        "title": "No posts created.",
+        "description": "You don't have any posts yet. Start creating content."
+      },
+      "create": "New Post",
+      "published": "Published",
+      "draft": "Draft"
+    },
+    "analytics": {
+      "title": "Analytics",
+      "description": ""
+    },
+    "settings": {
+      "title": "Settings",
+      "description": ""
+    }
+  },
+  "editor": {
+    "title": "Editor",
+    "description": "Create a new post.",
+    "title_placeholder": "Untitled",
+    "content_placeholder": "Type here to write your post...",
+    "draft": "Draft",
+    "publish": "Publish",
+    "save": "Save",
+    "back": "Back",
+    "editorjs": {
+      "click_to_tune": "Click to adjust settings",
+      "or_drag_to_move": "or drag to move",
+      "convert_to": "Convert to",
+      "add": "Add",
+      "filter": "Filter",
+      "nothing_found": "Nothing found.",
+      "attachment": "Attachment",
+      "text": "Text",
+      "heading": "Heading",
+      "warning": "Warning",
+      "ordered": "Ordered",
+      "unordered": "Unordered",
+      "ordered_list": "Ordered List",
+      "unordered_list": "Unordered List",
+      "checklist": "Checklist",
+      "quote": "Quote",
+      "code": "Code",
+      "delimiter": "Delimiter",
+      "raw_html": "Raw HTML",
+      "table": "Table",
+      "link": "Link",
+      "marker": "Marker",
+      "underline": "Underline",
+      "bold": "Bold",
+      "italic": "Italic",
+      "inline_code": "Inline Code",
+      "image": "Image",
+      "title": "Title",
+      "message": "Message",
+      "select_file_to_upload": "Select a file to upload",
+      "file_upload_failed": "File upload failed.",
+      "file_title": "File Title",
+      "heading_1": "Heading 1",
+      "heading_2": "Heading 2",
+      "heading_3": "Heading 3",
+      "heading_4": "Heading 4",
+      "heading_5": "Heading 5",
+      "heading_6": "Heading 6",
+      "add_a_link": "Add a link",
+      "couldnt_fetch_the_link_data": "Could not fetch the link data.",
+      "couldnt_get_this_link_data_try_the_other_one": "Could not get this link data. Try the other one.",
+      "wrong_response_format_from_the_server": "Wrong response format from the server.",
+      "the_block_can_not_be_displayed_correctly": "The block can not be displayed correctly.",
+      "caption": "Caption",
+      "select_an_image": "Select an image",
+      "with_border": "With border",
+      "stretch_image": "Stretch image",
+      "with_background": "With background",
+      "couldnt_upload_image_please_try_another": "Could not upload image. Please try another.",
+      "start_with": "Start with",
+      "counter_type": "Counter type",
+      "numeric": "Numeric",
+      "lower_roman": "Lower Roman",
+      "upper_roman": "Upper Roman",
+      "lower_alpha": "Lower Alpha",
+      "upper_alpha": "Upper Alpha",
+      "with_headings": "With headings",
+      "without_headings": "Without headings",
+      "stretch": "Stretch",
+      "collapse": "Collapse",
+      "add_column_to_left": "Add column to left",
+      "add_column_to_right": "Add column to right",
+      "delete_column": "Delete column",
+      "add_row_above": "Add row above",
+      "add_row_below": "Add row below",
+      "delete_row": "Delete row",
+      "enter_html_code": "Enter HTML code",
+      "enter_a_code": "Enter a code",
+      "align_left": "Align Left",
+      "align_center": "Align Center",
+      "enter_a_quote": "Enter a quote",
+      "enter_a_caption": "Enter a caption",
+      "delete": "Delete",
+      "click_to_delete": "Click to delete",
+      "move_up": "Move up",
+      "move_down": "Move down"
+    },
+    "success": {
+      "title": "Your post has been saved.",
+      "description": "Your post has been created successfully."
+    },
+    "error": {
+      "title": "Something went wrong.",
+      "description": "Your post was not saved. Please try again."
+    }
+  }
+}

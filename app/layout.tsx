@@ -4,9 +4,12 @@ import type { Metadata, Viewport } from "next";
 import { Inter, Noto_Sans_JP } from "next/font/google";
 import { ReactNode } from "react";
 import { ThemeProvider } from "next-themes";
+import { getLocale } from "next-intl/server";
+import { NextIntlClientProvider } from "next-intl";
 
-import { cn } from "@/lib/tools";
-import { site } from "@/config/site";
+import { siteConfig } from "@/config/site";
+import { Toaster } from "@/components/ui/sonner";
+import { cn } from "@/lib/utils";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -29,16 +32,16 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   title: {
-    default: site.name,
-    template: `%s - ${site.name}`,
+    default: siteConfig.name,
+    template: `%s - ${siteConfig.name}`,
   },
-  description: site.description,
-  applicationName: site.name,
+  description: siteConfig.description,
+  applicationName: siteConfig.name,
   keywords: ["Portfolio", "Yushin's Portfolio"],
   authors: [
     {
       name: "Yushin Ito",
-      url: site.url,
+      url: siteConfig.url,
     },
   ],
   icons: {
@@ -46,26 +49,31 @@ export const metadata: Metadata = {
     shortcut: "/favicon-16x16.png",
     apple: "/apple-touch-icon.png",
   },
-  manifest: `${site.url}/site.webmanifest`,
+  manifest: `${siteConfig.url}/site.webmanifest`,
 };
 interface RootLayoutProps {
   children: ReactNode;
 }
 
-const RootLayout = ({ children }: RootLayoutProps) => (
-  <html lang="ja" suppressHydrationWarning>
-    <head />
-    <body
-      className={cn(
-        "min-h-screen bg-background font-sans",
-        `${inter.variable} ${noto_sans_jp.variable} antialiased`
-      )}
-    >
-      <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-        {children}
-      </ThemeProvider>
-    </body>
-  </html>
-);
+const RootLayout = async ({ children }: RootLayoutProps) => {
+  const locale = await getLocale();
+
+  return (
+    <html lang={locale} suppressHydrationWarning>
+      <head />
+      <body
+        className={cn(
+          "min-h-screen bg-background font-sans",
+          `${inter.variable} ${noto_sans_jp.variable} antialiased`
+        )}
+      >
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          <NextIntlClientProvider>{children}</NextIntlClientProvider>
+        </ThemeProvider>
+        <Toaster />
+      </body>
+    </html>
+  );
+};
 
 export default RootLayout;

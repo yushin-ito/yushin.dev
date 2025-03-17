@@ -1,10 +1,32 @@
-import { defineDocumentType, makeSource } from "contentlayer2/source-files";
+import {
+  defineDocumentType,
+  defineNestedType,
+  makeSource,
+} from "contentlayer2/source-files";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import { rehypePrettyCode } from "rehype-pretty-code";
 import rehypeSlug from "rehype-slug";
 import remarkGfm from "remark-gfm";
 
-import type { UnistNode, UnistTree } from "./types/unist";
+import type { UnistNode, UnistTree } from "@/types/unist";
+
+export const Deck = defineNestedType(() => ({
+  name: "Deck",
+  fields: {
+    title: {
+      type: "string",
+      required: true,
+    },
+    directory: {
+      type: "string",
+      required: true,
+    },
+    length: {
+      type: "number",
+      required: true,
+    },
+  },
+}));
 
 export const Work = defineDocumentType(() => ({
   name: "Work",
@@ -17,6 +39,15 @@ export const Work = defineDocumentType(() => ({
     },
     description: {
       type: "string",
+      required: true,
+    },
+    thumbnail: {
+      type: "string",
+      required: true,
+    },
+    deck: {
+      type: "nested",
+      of: Deck,
     },
     published: {
       type: "boolean",
@@ -34,7 +65,11 @@ export const Work = defineDocumentType(() => ({
   computedFields: {
     slug: {
       type: "string",
-      resolve: (doc) => doc._raw.sourceFileName.replace(/\.mdx$/, ""),
+      resolve: (doc) => `/${doc._raw.flattenedPath}`,
+    },
+    slugAsParams: {
+      type: "string",
+      resolve: (doc) => doc._raw.flattenedPath.split("/").slice(1).join("/"),
     },
   },
 }));
