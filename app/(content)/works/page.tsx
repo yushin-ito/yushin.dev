@@ -27,7 +27,7 @@ const WorksPage = async () => {
           {works.map((work, index) => (
             <article
               key={work._id}
-              className="relative flex flex-col space-y-2"
+              className="group relative flex flex-col space-y-2"
             >
               <Image
                 src={work.thumbnail}

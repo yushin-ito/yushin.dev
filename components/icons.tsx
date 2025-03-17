@@ -13,14 +13,20 @@ import {
   Clock,
   Heart,
   Pencil,
+  ChevronRight,
+  Maximize,
+  Minimize,
 } from "lucide-react";
 
 const Icons = {
+  maximize: Maximize,
+  minimize: Minimize,
   arrowRight: ArrowRight,
   arrowLeft: ArrowLeft,
   clock: Clock,
   heart: Heart,
   pencil: Pencil,
+  chevronRight: ChevronRight,
   chevronLeft: ChevronLeft,
   spinner: Loader2,
   moon: Moon,

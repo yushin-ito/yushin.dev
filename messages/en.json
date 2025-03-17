@@ -58,7 +58,8 @@
     },
     "works": {
       "title": "Works",
-      "description": "Welecom to my works page. Please feel free to check out my works."
+      "description": "Welecom to my works page. Please feel free to check out my works.",
+      "back": "Back"
     },
     "blog": {
       "title": "Blog",

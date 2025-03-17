@@ -3,6 +3,7 @@ import "@/styles/mdx.css";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
+import { getTranslations } from "next-intl/server";
 
 import { allWorks } from "contentlayer/generated";
 import Mdx from "@/components/mdx";
@@ -77,6 +78,7 @@ export const generateStaticParams = async () => {
 };
 
 const WorkPage = async ({ params }: WorkPageProps) => {
+  const t = await getTranslations("contents.works");
   const work = await getWorkFromParams(params);
 
   if (!work) {
@@ -102,7 +104,7 @@ const WorkPage = async ({ params }: WorkPageProps) => {
             {work.deck ? (
               <SlideShow deck={work.deck} />
             ) : (
-              <div className="relative aspect-[16/9] w-full overflow-hidden rounded-xl bg-muted transition-colors">
+              <div className="relative aspect-[16/9] overflow-hidden rounded-xl border bg-muted transition-colors">
                 <Image src={work.thumbnail} alt={work.title} fill priority />
               </div>
             )}
@@ -110,11 +112,14 @@ const WorkPage = async ({ params }: WorkPageProps) => {
             <hr className="mt-12" />
             <div className="flex justify-center py-6 lg:py-10">
               <Link
-                href="/blog"
-                className={cn(buttonVariants({ variant: "ghost" }))}
+                href="/works"
+                className={cn(
+                  buttonVariants({ variant: "ghost" }),
+                  "pl-2 flex items-center"
+                )}
               >
-                <Icons.chevronLeft className="mr-2 size-4" />
-                戻る
+                <Icons.chevronLeft className="size-8" />
+                <span className="text-sm">{t("back")}</span>
               </Link>
             </div>
           </div>

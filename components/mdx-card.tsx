@@ -17,7 +17,7 @@ const MdxCard = ({
   return (
     <div
       className={cn(
-        "relative rounded-lg border p-6 shadow-md transition-shadow hover:shadow-lg",
+        "group relative rounded-lg border p-6 shadow-md transition-shadow hover:shadow-lg",
         disabled && "cursor-not-allowed opacity-60",
         className
       )}
