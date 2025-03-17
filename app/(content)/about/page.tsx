@@ -1,14 +1,18 @@
+import { getTranslations } from "next-intl/server";
+
 import Icons from "@/components/icons";
 import TableOfContents from "@/components/table-of-contents";
 
-const AboutPage = () => {
+const AboutPage = async () => {
+  const t = await getTranslations("contents.about");
+
   return (
     <section className="container max-w-5xl py-6 md:py-8 lg:py-10">
-      <div className="space-y-1">
-        <h1 className="text-xl font-bold sm:text-2xl md:text-3xl">About</h1>
-        <p className="text-sm text-muted-foreground">
-          私のポートフォリオへようこそ。このページでは私の自己紹介を載せています。
-        </p>
+      <div className="space-y-2">
+        <h1 className="text-xl font-bold sm:text-2xl md:text-3xl">
+          {t("title")}
+        </h1>
+        <p className="text-sm text-muted-foreground">{t("description")}</p>
       </div>
       <hr className="mb-8 mt-4 w-full" />
       <div className="relative px-1 lg:grid lg:grid-cols-[1fr_120px] lg:gap-12 xl:gap-20">

@@ -8,7 +8,7 @@ import SignupForm from "@/components/signup-form";
 
 interface SignupPageProps {
   params: {
-    locale: string;
+    locale: "en" | "ja";
   };
 }
 

@@ -7,7 +7,7 @@ import { render } from "@react-email/render";
 import { db } from "@/lib/db";
 import authConfig from "@/auth.config";
 import env from "@/env";
-import VerifyEmail from "@/components/verify-email";
+import VerifyEmail from "@/emails/verify-email";
 
 export const { auth, handlers, signIn, signOut } = NextAuth({
   ...authConfig,
@@ -22,7 +22,7 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
       apiKey: env.AUTH_RESEND_KEY,
       from: env.EMAIL_FROM,
       sendVerificationRequest: async ({ identifier, url, provider }) => {
-        const t = await getTranslations("auth.verify");
+        const t = await getTranslations("email.verify");
         const element = await VerifyEmail({ url });
 
         const response = await fetch("https://api.resend.com/emails", {

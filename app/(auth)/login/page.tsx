@@ -8,7 +8,7 @@ import Icons from "@/components/icons";
 
 interface LoginPageProps {
   params: {
-    locale: string;
+    locale: "en" | "ja";
   };
 }
 

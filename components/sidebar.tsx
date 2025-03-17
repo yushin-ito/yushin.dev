@@ -17,7 +17,7 @@ const Sidebar = () => {
   const [isPending, startTransition] = useTransition();
 
   return (
-    <div className="flex h-full flex-col justify-between border-r px-6 py-8">
+    <div className="fixed z-40 flex h-screen flex-col justify-between border-r px-6 py-8">
       <nav className="space-y-6">
         {navConfig.dashboard.map((item, index) => {
           const Icon = Icons[item.icon || "arrowRight"];
@@ -37,7 +37,11 @@ const Sidebar = () => {
               rel={item.external ? "noreferrer" : ""}
             >
               <Icon className="absolute left-4 size-6" />
-              {t(`${item.label}.title`)}
+              {
+                // todo: fix this type error.
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                t(`${item.label}.title` as any)
+              }
             </Link>
           );
         })}

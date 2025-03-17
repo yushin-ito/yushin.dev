@@ -89,7 +89,7 @@ const WorkPage = async ({ params }: WorkPageProps) => {
     <article className="py-6 md:py-8 lg:py-12">
       <div className="container max-w-5xl">
         <div className="flex items-center justify-between">
-          <div className="space-y-1">
+          <div className="space-y-2">
             <h1 className="text-xl font-bold sm:text-2xl md:text-3xl">
               {work.title}
             </h1>

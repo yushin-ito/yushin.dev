@@ -17,19 +17,24 @@ import { getTranslations } from "next-intl/server";
 
 import { siteConfig } from "@/config/site";
 
-interface VerifyEmailProps {
-  url: string;
+interface ContactEmailProps {
+  from: {
+    name: string;
+    email: string;
+  };
+  subject: string;
+  message: string;
 }
 
-const VerifyEmail = async ({ url }: VerifyEmailProps) => {
-  const t = await getTranslations("auth.verify");
+const ContactEmail = async ({ subject, message, from }: ContactEmailProps) => {
+  const t = await getTranslations("email");
 
   return (
     <Html>
       <Head />
       <Tailwind>
         <Body>
-          <Preview>{t("preview")}</Preview>
+          <Preview>{t("contact.preview")}</Preview>
           <Container className="mx-auto my-8 max-w-md rounded-xl border border-solid border-zinc-200 bg-white px-12 pb-2 pt-8 text-center shadow">
             <Section>
               <Img
@@ -42,24 +47,45 @@ const VerifyEmail = async ({ url }: VerifyEmailProps) => {
             </Section>
             <Section>
               <Heading className="mb-6 mt-4 text-xl font-bold">
-                {t("title")}
+                {t("contact.title")}
               </Heading>
               <Text className="whitespace-pre-line text-left">
-                {t("description")}
+                {t("contact.description", { name: from.name })}
+              </Text>
+              <Text className="text-left">
+                {t.rich("contact.body.from", {
+                  email: from.email,
+                  strong: (chunks) => <strong>{chunks}</strong>,
+                  span: (chunks) => (
+                    <span className="text-sm text-zinc-500">{chunks}</span>
+                  ),
+                })}
+              </Text>
+              <Text className="text-left">
+                {t.rich("contact.body.subject", {
+                  subject,
+                  strong: (chunks) => <strong>{chunks}</strong>,
+                  span: (chunks) => (
+                    <span className="text-sm text-zinc-500">{chunks}</span>
+                  ),
+                })}
               </Text>
               <Text className="whitespace-pre-line text-left">
-                {t.rich("instruction", {
-                  strong: (chunks) => <strong>{chunks}</strong>,
+                {t.rich("contact.body.message", {
+                  message,
+                  span: (chunks) => (
+                    <span className="text-sm text-zinc-500">{chunks}</span>
+                  ),
                 })}
               </Text>
               <Button
-                href={url}
+                href={`mailto:${from}`}
                 className="mb-4 mt-8 w-4/5 rounded-md bg-zinc-900 py-3 text-sm font-medium text-zinc-50 shadow"
               >
-                {t("verify")}
+                {t("contact.reply")}
               </Button>
               <Text className="whitespace-pre-line text-left text-xs text-zinc-500">
-                {t("warning")}
+                {t("contact.warning")}
               </Text>
               <Text className="mt-2 text-left text-xs text-zinc-500">
                 {t.rich("support", {
@@ -147,4 +173,4 @@ const VerifyEmail = async ({ url }: VerifyEmailProps) => {
   );
 };
 
-export default VerifyEmail;
+export default ContactEmail;

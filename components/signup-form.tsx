@@ -64,16 +64,17 @@ const SignupForm = () => {
               />
               {errors.email && (
                 <p className="px-1 text-xs text-red-600">
-                  {t(errors.email.message || "")}
+                  {t(errors.email.message as "invalid_email")}
                 </p>
               )}
             </div>
           </div>
           <Button className="w-full" disabled={isPendingSignInWithEmail}>
-            {isPendingSignInWithEmail && (
-              <Icons.spinner className="mr-2 size-4 animate-spin" />
+            {isPendingSignInWithEmail ? (
+              <Icons.spinner className="size-4 animate-spin" />
+            ) : (
+              t("signup.submit")
             )}
-            {t("signup.submit")}
           </Button>
         </div>
       </form>
@@ -98,13 +99,15 @@ const SignupForm = () => {
         disabled={isPendingSignInWithGoogle}
       >
         {isPendingSignInWithGoogle ? (
-          <Icons.spinner className="mr-2 size-4 animate-spin" />
+          <Icons.spinner className="size-4 animate-spin" />
         ) : (
-          <Icons.google className="mr-0.5 size-4" />
+          <>
+            <Icons.google className="mr-0.5 size-4" />
+            {t.rich("signup.signup_with_provider", {
+              provider: "Google",
+            })}
+          </>
         )}
-        {t.rich("signup.signup_with_provider", {
-          provider: "Google",
-        })}
       </Button>
     </div>
   );

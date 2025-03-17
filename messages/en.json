@@ -22,13 +22,13 @@
       "submit": "Log in",
       "login_with_provider": "Sign in with {provider}",
       "do_not_have_account": "Don't have an account?",
+      "success": {
+        "title": "Verify your email.",
+        "description": "We sent you a login link. Be sure to check your spam too."
+      },
       "error": {
         "title": "Something went wrong.",
         "description": "Your sign in request failed. Please try again."
-      },
-      "success": {
-        "title": "Verify your email",
-        "description": "We sent you a login link. Be sure to check your spam too."
       }
     },
     "signup": {
@@ -45,17 +45,6 @@
         "title": "Something went wrong.",
         "description": "Your sign up request failed. Please try again."
       }
-    },
-    "verify": {
-      "subject": "Email Verification",
-      "preview": "Please complete your email verification",
-      "title": "Email Verification",
-      "description": "Your email verification has been received. 🎉\nThank you for using our service.\nTo access our services, you need to verify your email address.",
-      "instruction": "Click the button below to complete your email verification.\nPlease make sure to verify within <strong>24 hours</strong>.",
-      "verify": "Verify",
-      "warning": "If you did not request this email, it may have been sent by mistake. Please ignore and delete this email.\n\nThe verification link is valid for 24 hours. If it expires, please request verification again.",
-      "support": "For support, please contact us at <link>support@{domain}</link>.",
-      "footer": "© {year} <link>{name}</link>"
     }
   },
   "contents": {
@@ -65,19 +54,42 @@
     },
     "about": {
       "title": "About",
-      "description": ""
+      "description": "Welecome to my about page. Please feel free to read about me."
     },
     "works": {
       "title": "Works",
-      "description": ""
+      "description": "Welecom to my works page. Please feel free to check out my works."
     },
     "blog": {
       "title": "Blog",
-      "description": ""
+      "description": "Welcome to my blog page. Please feel free to read my posts."
     },
     "contact": {
       "title": "Contact",
-      "description": ""
+      "description": "Welecome to my contact page. Please feel free to contact us.",
+      "name": "Name",
+      "name_placeholder": "John Doe",
+      "too_short_name": "Name must be at least 3 characters.",
+      "too_long_name": "Name must be at most 128 characters.",
+      "email": "Email",
+      "invalid_email": "Invalid email address.",
+      "subject": "Subject",
+      "subject_placeholder": "Subject",
+      "too_short_subject": "Subject must be at least 3 characters.",
+      "too_long_subject": "Subject must be at most 128 characters.",
+      "message": "Message",
+      "message_placeholder": "Type your message here...",
+      "too_short_message": "Message must be at least 3 characters.",
+      "too_long_message": "Message must be at most 2048 characters.",
+      "submit": "Submit",
+      "success": {
+        "title": "Thank you for your message.",
+        "description": "Your message has been sent successfully."
+      },
+      "error": {
+        "title": "Something went wrong.",
+        "description": "Your message was not sent. Please try again."
+      }
     }
   },
   "dashboard": {
@@ -201,6 +213,36 @@
     "error": {
       "title": "Something went wrong.",
       "description": "Your post was not saved. Please try again."
+    }
+  },
+  "email": {
+    "from": "From",
+    "to": "To",
+    "subject": "Subject",
+    "message": "Message",
+    "support": "For support, please contact us at <link>support@{domain}</link>.",
+    "footer": "© {year} <link>{name}</link>",
+    "contact": {
+      "subject": "Contact Notification",
+      "preview": "You have a new message.",
+      "title": "Contact Notification",
+      "description": "You have received a new message. 🎉\n\n{name}has sent you a message. Please review the following and respond promptly.",
+      "body": {
+        "from": "<span>From/span>: {email}",
+        "subject": "<span>Subject</span>: {subject}",
+        "message": "<span>Message</span>\n{message}"
+      },
+      "reply": "Reply",
+      "warning": "If you did not request this email, it may have been sent by mistake. Please ignore and delete this email.\n\nThis email may contain important information. Please do not forward it to others."
+    },
+    "verify": {
+      "subject": "Email Verification",
+      "preview": "Please complete your email verification",
+      "title": "Email Verification",
+      "description": "Your email verification has been received. 🎉\nThank you for using our service.\nTo access our services, you need to verify your email address.",
+      "instruction": "Click the button below to complete your email verification.\nPlease make sure to verify within <strong>24 hours</strong>.",
+      "verify": "Verify",
+      "warning": "If you did not request this email, it may have been sent by mistake. Please ignore and delete this email.\n\nThe verification link is valid for 24 hours. If it expires, please request verification again."
     }
   }
 }

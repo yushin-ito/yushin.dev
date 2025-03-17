@@ -3,11 +3,12 @@ import { z } from "zod";
 import { render } from "@react-email/render";
 
 import { auth } from "@/auth";
-import VerifyEmail from "@/components/verify-email";
 import { siteConfig } from "@/config/site";
+import VerifyEmail from "@/emails/verify-email";
+import ContactEmail from "@/emails/contact-email";
 
 export const searchParamsSchema = z.object({
-  type: z.enum(["verify"]).optional(),
+  type: z.enum(["contact", "verify"]).optional(),
 });
 
 export const GET = async (req: Request) => {
@@ -21,6 +22,22 @@ export const GET = async (req: Request) => {
     const { searchParams } = new URL(req.url);
 
     const { type } = searchParamsSchema.parse(Object.fromEntries(searchParams));
+
+    if (type === "contact") {
+      const element = await ContactEmail({
+        from: {
+          name: "john doe",
+          email: "johndoe@example.com",
+        },
+        subject: "Test",
+        message: "This is test.",
+      });
+      const html = await render(element);
+
+      return new NextResponse(html, {
+        headers: { "Content-Type": "text/html" },
+      });
+    }
 
     if (type === "verify") {
       const element = await VerifyEmail({ url: siteConfig.url });
