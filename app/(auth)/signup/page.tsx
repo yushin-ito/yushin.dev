@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { getTranslations } from "next-intl/server";
+import { Suspense } from "react";
 
 import { cn } from "@/lib/utils";
 import { buttonVariants } from "@/components/ui/button";
@@ -7,13 +8,13 @@ import Icons from "@/components/icons";
 import SignupForm from "@/components/signup-form";
 
 interface SignupPageProps {
-  params: {
+  params: Promise<{
     locale: "en" | "ja";
-  };
+  }>;
 }
 
 export const generateMetadata = async ({ params }: SignupPageProps) => {
-  const { locale } = params;
+  const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "auth" });
 
   return {
@@ -44,7 +45,9 @@ const SignupPage = async () => {
             {t("signup.description")}
           </p>
         </div>
-        <SignupForm />
+        <Suspense>
+          <SignupForm />
+        </Suspense>
         <p className="text-center text-sm text-muted-foreground">
           {t("signup.already_have_account")}{" "}
           <Link href="/login" className="underline underline-offset-4">

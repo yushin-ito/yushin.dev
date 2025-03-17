@@ -15,14 +15,14 @@ import Icons from "@/components/icons";
 import { siteConfig } from "@/config/site";
 
 interface WorkPageProps {
-  params: {
+  params: Promise<{
     slug: string[];
-  };
+  }>;
 }
 
-const getWorkFromParams = (params: WorkPageProps["params"]) => {
-  const slug = params.slug.join("/");
-  const work = allWorks.find((work) => work.slugAsParams === slug);
+const getWorkFromParams = async (params: WorkPageProps["params"]) => {
+  const { slug } = await params;
+  const work = allWorks.find((work) => work.slugAsParams === slug.join("/"));
 
   if (!work) {
     return null;
@@ -32,7 +32,7 @@ const getWorkFromParams = (params: WorkPageProps["params"]) => {
 };
 
 export const generateMetadata = async ({ params }: WorkPageProps) => {
-  const work = getWorkFromParams(params);
+  const work = await getWorkFromParams(params);
 
   if (!work) {
     return {};
@@ -77,7 +77,7 @@ export const generateStaticParams = async () => {
 };
 
 const WorkPage = async ({ params }: WorkPageProps) => {
-  const work = getWorkFromParams(params);
+  const work = await getWorkFromParams(params);
 
   if (!work) {
     notFound();

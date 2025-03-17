@@ -20,6 +20,5 @@ export interface NavConfig {
 export interface NavItem {
   label: string;
   href: string;
-  external?: boolean;
   icon?: keyof typeof Icons;
 }

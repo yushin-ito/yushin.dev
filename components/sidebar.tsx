@@ -33,14 +33,11 @@ const Sidebar = () => {
                   : "hover:bg-transparent hover:underline",
                 "w-full relative"
               )}
-              target={item.external ? "_blank" : ""}
-              rel={item.external ? "noreferrer" : ""}
             >
               <Icon className="absolute left-4 size-6" />
               {
-                // todo: fix this type error.
-                // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                t(`${item.label}.title` as any)
+                // todo: fix this type
+                t(`${item.label as "posts" | "analytics" | "settings"}.title`)
               }
             </Link>
           );

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { getTranslations } from "next-intl/server";
+import { Suspense } from "react";
 
 import { cn } from "@/lib/utils";
 import { buttonVariants } from "@/components/ui/button";
@@ -7,13 +8,13 @@ import LoginForm from "@/components/login-form";
 import Icons from "@/components/icons";
 
 interface LoginPageProps {
-  params: {
+  params: Promise<{
     locale: "en" | "ja";
-  };
+  }>;
 }
 
 export const generateMetadata = async ({ params }: LoginPageProps) => {
-  const { locale } = params;
+  const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "auth" });
 
   return {
@@ -44,7 +45,9 @@ const LoginPage = async () => {
             {t("login.description")}
           </p>
         </div>
-        <LoginForm />
+        <Suspense>
+          <LoginForm />
+        </Suspense>
         <p className="text-center text-sm text-muted-foreground">
           {t("login.do_not_have_account")}{" "}
           <Link href="/signup" className="underline underline-offset-4">

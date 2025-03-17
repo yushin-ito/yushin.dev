@@ -7,7 +7,7 @@ import { siteConfig } from "@/config/site";
 import VerifyEmail from "@/emails/verify-email";
 import ContactEmail from "@/emails/contact-email";
 
-export const searchParamsSchema = z.object({
+const searchParamsSchema = z.object({
   type: z.enum(["contact", "verify"]).optional(),
 });
 

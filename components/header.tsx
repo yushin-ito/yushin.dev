@@ -30,7 +30,12 @@ const Header = () => {
                   : "text-foreground/60"
               )}
             >
-              {t(`${item.label}.title`)}
+              {
+                // todo: fix this type
+                t(
+                  `${item.label as "top" | "about" | "works" | "blog" | "contact"}.title`
+                )
+              }
             </Link>
           ))}
         </nav>

@@ -1,7 +1,7 @@
 import env from "@/env";
 import { SiteConfig } from "@/types";
 
-export const siteConfig: SiteConfig = {
+export const siteConfig = {
   name: env.NEXT_PUBLIC_APP_NAME,
   description: "Yushin's Portfolio",
   domain: env.NEXT_PUBLIC_APP_DOMAIN,
@@ -11,4 +11,4 @@ export const siteConfig: SiteConfig = {
     x: "https://x.com/yushin_ito",
     discord: "https://discord.gg",
   },
-};
+} satisfies SiteConfig;

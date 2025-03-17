@@ -1,6 +1,6 @@
 import { NavConfig } from "@/types";
 
-export const navConfig: NavConfig = {
+export const navConfig = {
   content: [
     {
       label: "top",
@@ -40,4 +40,4 @@ export const navConfig: NavConfig = {
       icon: "settings",
     },
   ],
-};
+} satisfies NavConfig;
