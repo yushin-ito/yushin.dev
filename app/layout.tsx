@@ -6,6 +6,8 @@ import { ReactNode } from "react";
 import { ThemeProvider } from "next-themes";
 import { getLocale } from "next-intl/server";
 import { NextIntlClientProvider } from "next-intl";
+import { SpeedInsights } from "@vercel/speed-insights/next";
+import { Analytics } from "@vercel/analytics/react";
 
 import { siteConfig } from "@/config/site";
 import { Toaster } from "@/components/ui/sonner";
@@ -71,6 +73,8 @@ const RootLayout = async ({ children }: RootLayoutProps) => {
           <NextIntlClientProvider>{children}</NextIntlClientProvider>
         </ThemeProvider>
         <Toaster />
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
