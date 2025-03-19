@@ -48,6 +48,7 @@
     }
   },
   "contents": {
+    "nav": "ナビゲーション",
     "top": {
       "title": "Top",
       "description": ""
@@ -94,6 +95,7 @@
     }
   },
   "dashboard": {
+    "nav": "ナビゲーション",
     "untitled": "無題の記事",
     "signout": "サインアウト",
     "error": {

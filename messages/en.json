@@ -48,6 +48,7 @@
     }
   },
   "contents": {
+    "nav": "Navigation",
     "top": {
       "title": "Top",
       "description": ""
@@ -94,6 +95,7 @@
     }
   },
   "dashboard": {
+    "nav": "Navigation",
     "untitled": "Untitled",
     "signout": "Sign Out",
     "error": {

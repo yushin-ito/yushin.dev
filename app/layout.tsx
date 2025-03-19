@@ -12,6 +12,7 @@ import { Analytics } from "@vercel/analytics/react";
 import { siteConfig } from "@/config/site";
 import { Toaster } from "@/components/ui/sonner";
 import { cn } from "@/lib/utils";
+import TailwindIndicator from "@/components/tailwind-indicator";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -75,6 +76,7 @@ const RootLayout = async ({ children }: RootLayoutProps) => {
         <Toaster />
         <Analytics />
         <SpeedInsights />
+        <TailwindIndicator />
       </body>
     </html>
   );

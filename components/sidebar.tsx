@@ -9,7 +9,7 @@ import { navConfig } from "@/config/nav";
 import { cn } from "@/lib/utils";
 import { Button, buttonVariants } from "./ui/button";
 import { signOut } from "@/actions/auth";
-import Icons from "./icons";
+import Icons from "@/components/icons";
 
 const Sidebar = () => {
   const t = useTranslations("dashboard");
@@ -20,7 +20,7 @@ const Sidebar = () => {
     <div className="fixed z-40 flex h-screen flex-col justify-between border-r px-6 py-8">
       <nav className="space-y-6">
         {navConfig.dashboard.map((item, index) => {
-          const Icon = Icons[item.icon || "arrowRight"];
+          const Icon = Icons[item.icon];
 
           return (
             <Link

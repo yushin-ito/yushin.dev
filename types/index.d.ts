@@ -13,12 +13,13 @@ export interface SiteConfig {
 }
 
 export interface NavConfig {
-  content: NavItem[];
+  contents: NavItem[];
   dashboard: NavItem[];
 }
 
 export interface NavItem {
   label: string;
   href: string;
+  external?: boolean;
   icon?: keyof typeof Icons;
 }

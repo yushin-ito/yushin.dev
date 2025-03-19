@@ -10,7 +10,7 @@ import {
   CarouselItem,
 } from "@/components/ui/carousel";
 import { Button } from "./ui/button";
-import Icons from "./icons";
+import Icons from "@/components/icons";
 
 interface SlideShowProps {
   deck: {
@@ -58,11 +58,11 @@ const SlideShow = ({ deck }: SlideShowProps) => {
         setApi={setApi}
       >
         {api && (
-          <div className="absolute inset-x-0 bottom-0 z-10 flex h-[42px] items-center justify-center transition-colors duration-200 group-hover:bg-black/70">
+          <div className="absolute inset-x-0 bottom-0 z-10 flex h-8 items-center justify-center transition-colors duration-200 group-hover:bg-black/70 md:h-10">
             <div className="absolute left-2.5 flex items-center space-x-1">
               <Button
                 variant="unstyled"
-                className="size-8 p-0 text-white hover:bg-black/50 [&_svg]:size-6"
+                className="size-6 p-0 text-white hover:bg-black/50 md:size-8 [&_svg]:size-4 md:[&_svg]:size-6"
                 onClick={() => api.scrollPrev()}
                 disabled={!api.canScrollPrev()}
               >
@@ -70,7 +70,7 @@ const SlideShow = ({ deck }: SlideShowProps) => {
               </Button>
               <Button
                 variant="unstyled"
-                className="size-8 p-0 text-white hover:bg-black/50 [&_svg]:size-6"
+                className="size-6 p-0 text-white hover:bg-black/50 md:size-8 [&_svg]:size-4 md:[&_svg]:size-6"
                 onClick={() => api.scrollNext()}
                 disabled={!api.canScrollNext()}
               >
@@ -82,7 +82,7 @@ const SlideShow = ({ deck }: SlideShowProps) => {
             </div>
             <Button
               variant="unstyled"
-              className="absolute right-2.5 size-8 p-0 text-white hover:bg-black/50 [&_svg]:size-5"
+              className="absolute right-2.5 size-6 p-0 text-white hover:bg-black/50 md:size-8 [&_svg]:size-3 md:[&_svg]:size-5"
               onClick={onFullScreen}
             >
               {isFullScreen ? <Icons.minimize /> : <Icons.maximize />}

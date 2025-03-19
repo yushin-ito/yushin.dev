@@ -10,7 +10,9 @@ interface ContentLayoutProps {
 const ContentLayout = ({ children }: ContentLayoutProps) => {
   return (
     <div className="relative flex min-h-screen flex-col">
-      <Header />
+      <header>
+        <Header />
+      </header>
       <main className="flex-1">{children}</main>
       <Footer />
     </div>

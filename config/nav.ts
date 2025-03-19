@@ -1,7 +1,7 @@
 import { NavConfig } from "@/types";
 
 export const navConfig = {
-  content: [
+  contents: [
     {
       label: "top",
       href: "/",
