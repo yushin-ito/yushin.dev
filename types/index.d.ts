@@ -8,7 +8,7 @@ export interface SiteConfig {
   links: {
     x: string;
     github: string;
-    discord: string;
+    instagram: string;
   };
 }
 

@@ -108,13 +108,13 @@ const VerifyEmail = async ({ url }: VerifyEmailProps) => {
                 </Column>
                 <Column align="right">
                   <Link
-                    href={siteConfig.links.discord}
+                    href={siteConfig.links.instagram}
                     target="_blank"
                     rel="noreferrer"
                   >
                     <Img
-                      src={`${siteConfig.url}/images/discord.png`}
-                      alt="discord"
+                      src={`${siteConfig.url}/images/instagram.png`}
+                      alt="instagram"
                       width="18"
                       height="18"
                     />

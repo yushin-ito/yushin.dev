@@ -9,6 +9,6 @@ export const siteConfig = {
   links: {
     github: "https://github.com/yushin-ito",
     x: "https://x.com/yushin_ito",
-    discord: "https://discord.gg",
+    instagram: "https://instagram.com/yushin_505",
   },
 } satisfies SiteConfig;
