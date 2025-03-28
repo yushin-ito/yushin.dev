@@ -24,13 +24,13 @@ const reducer = (state: State, action: Action) => {
   }
 };
 
-interface UseTypewriterProps {
-  text: string;
+interface TypewriterOptions {
   cursor?: string;
   speed?: number;
 }
 
-const useTypewriter = ({ text, cursor, speed = 100 }: UseTypewriterProps) => {
+const useTypewriter = (text: string, options: TypewriterOptions) => {
+  const { cursor = "", speed = 100 } = options;
   const [state, dispatch] = useReducer(reducer, { text: "", count: 0 });
   const [isDone, setIsDone] = useState(false);
 

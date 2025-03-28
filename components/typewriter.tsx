@@ -15,8 +15,7 @@ const Typewriter = ({
   speed,
   className,
 }: TypewriterProps) => {
-  const { text: _text, cursor: _cursor } = useTypewriter({
-    text: children,
+  const { text: _text, cursor: _cursor } = useTypewriter(children, {
     cursor,
     speed,
   });

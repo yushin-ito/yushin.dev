@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/carousel";
 import { Button } from "./ui/button";
 import Icons from "@/components/icons";
+import useFullscreen from "@/hooks/use-fullscreen";
 
 interface SlideShowProps {
   deck: {
@@ -20,11 +21,11 @@ interface SlideShowProps {
 }
 
 const SlideShow = ({ deck }: SlideShowProps) => {
-  const slideShowRef = useRef<HTMLDivElement>(null);
+  const ref = useRef<HTMLDivElement>(null);
   const [api, setApi] = useState<CarouselApi | null>(null);
   const [current, setCurrent] = useState(0);
   const [count, setCount] = useState(0);
-  const [isFullScreen, setIsFullScreen] = useState(false);
+  const { isFullscreen, enter, exit } = useFullscreen(ref);
 
   useEffect(() => {
     if (!api) return;
@@ -37,22 +38,8 @@ const SlideShow = ({ deck }: SlideShowProps) => {
     });
   }, [api]);
 
-  const onFullScreen = () => {
-    if (!slideShowRef.current) return;
-
-    if (!document.fullscreenElement) {
-      slideShowRef.current.requestFullscreen().then(() => {
-        setIsFullScreen(true);
-      });
-    } else {
-      document.exitFullscreen().then(() => {
-        setIsFullScreen(false);
-      });
-    }
-  };
-
   return (
-    <div ref={slideShowRef} className="relative">
+    <div ref={ref} className="relative">
       <Carousel
         className="group relative aspect-[16/9] w-full overflow-hidden rounded-xl border transition-colors"
         setApi={setApi}
@@ -83,9 +70,9 @@ const SlideShow = ({ deck }: SlideShowProps) => {
             <Button
               variant="unstyled"
               className="absolute right-2.5 size-6 p-0 text-white hover:bg-black/50 md:size-8 [&_svg]:size-3 md:[&_svg]:size-5"
-              onClick={onFullScreen}
+              onClick={!isFullscreen ? enter : exit}
             >
-              {isFullScreen ? <Icons.minimize /> : <Icons.maximize />}
+              {isFullscreen ? <Icons.minimize /> : <Icons.maximize />}
             </Button>
           </div>
         )}

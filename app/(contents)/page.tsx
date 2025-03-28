@@ -40,7 +40,7 @@ const TopPage = () => {
         <Typewriter
           cursor="|"
           speed={100}
-          className="whitespace-pre-line text-4xl font-bold"
+          className="text-4xl font-bold"
         >
           Hi, I&apos;m Yushin Ito
         </Typewriter>
