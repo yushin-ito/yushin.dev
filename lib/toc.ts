@@ -1,13 +1,19 @@
 import { toc } from "mdast-util-toc";
 import { remark } from "remark";
-import { Link, List, Paragraph, Root } from "mdast";
+import { Link, List, Paragraph, Root, Text } from "mdast";
 import { VFile } from "vfile";
 
 const getItems = (list: List) => {
-  return list.children.map(
-    (item) =>
-      ((item.children[0] as Paragraph).children[0] as Link).url.split("#")[1]
-  );
+  return list.children.map((item) => {
+    const paragraph = item.children[0] as Paragraph;
+    const link = paragraph.children[0] as Link;
+    const text = link.children[0] as Text;
+
+    return {
+      id: link.url.split("#")[1],
+      title: text.value,
+    };
+  });
 };
 
 const remarkToc = () => (node: Root, file: VFile) => {
@@ -21,5 +27,8 @@ const remarkToc = () => (node: Root, file: VFile) => {
 export const getTableOfContents = async (content: string) => {
   const result = await remark().use(remarkToc).process(content);
 
-  return result.data.toc as string[];
+  return result.data.toc as {
+    id: string;
+    title: string;
+  }[];
 };

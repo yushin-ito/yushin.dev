@@ -10,7 +10,7 @@ import Mdx from "@/components/mdx";
 import { buttonVariants } from "@/components/ui/button";
 import TableOfContents from "@/components/table-of-contents";
 import { getTableOfContents } from "@/lib/toc";
-import SlideShow from "@/components/slide-show";
+import Slideshow from "@/components/slideshow";
 import { cn } from "@/lib/utils";
 import Icons from "@/components/icons";
 import { siteConfig } from "@/config/site";
@@ -102,7 +102,7 @@ const WorkPage = async ({ params }: WorkPageProps) => {
         <div className="relative px-1 lg:grid lg:grid-cols-[1fr_120px] lg:gap-12 xl:gap-20">
           <div className="space-y-8">
             {work.deck ? (
-              <SlideShow deck={work.deck} />
+              <Slideshow deck={work.deck} />
             ) : (
               <div className="relative aspect-[16/9] overflow-hidden rounded-xl border bg-muted transition-colors">
                 <Image src={work.thumbnail} alt={work.title} fill priority />

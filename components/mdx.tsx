@@ -1,15 +1,17 @@
-import Image from "next/image";
-import { useMDXComponent } from "next-contentlayer2/hooks";
-import {
+import React, {
   AnchorHTMLAttributes,
   HTMLAttributes,
   ImgHTMLAttributes,
   BlockquoteHTMLAttributes,
 } from "react";
+import Image from "next/image";
+import { useMDXComponent } from "next-contentlayer2/hooks";
+import { type LucideProps } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 import MdxCard from "@/components/mdx-card";
 import MdxCallout from "@/components/mdx-callout";
+import Icons from "./icons";
 
 const components = {
   h1: ({ className, ...props }: HTMLAttributes<HTMLHeadingElement>) => (
@@ -153,6 +155,15 @@ const components = {
       {...props}
     />
   ),
+  Icon: ({ name, ...props }: LucideProps) => {
+    const Icon = Icons[name as keyof typeof Icons];
+
+    if (!Icon) {
+      return;
+    }
+
+    return <Icon {...props} />;
+  },
   Image,
   Callout: MdxCallout,
   Card: MdxCard,

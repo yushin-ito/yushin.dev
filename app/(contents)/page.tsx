@@ -37,11 +37,7 @@ const TopPage = () => {
         </p>
       </div>
       <div className="space-y-2 text-center md:hidden">
-        <Typewriter
-          cursor="|"
-          speed={100}
-          className="text-4xl font-bold"
-        >
+        <Typewriter cursor="|" speed={100} className="text-4xl font-bold">
           Hi, I&apos;m Yushin Ito
         </Typewriter>
         <p className="text-lg text-muted-foreground">

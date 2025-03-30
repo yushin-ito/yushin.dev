@@ -6,6 +6,7 @@ const withNextIntl = createNextIntlPlugin();
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
+  transpilePackages: ["contentlayer2"],
 };
 
 export default withContentlayer(withNextIntl(nextConfig));

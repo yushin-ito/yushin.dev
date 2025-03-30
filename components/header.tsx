@@ -4,12 +4,13 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
+import { useState } from "react";
 
 import { cn } from "@/lib/utils";
 import { navConfig } from "@/config/nav";
 import ModeToggle from "@/components/mode-toggle";
 import { siteConfig } from "@/config/site";
-import { Button, buttonVariants } from "@/components/ui/button";
+import { buttonVariants } from "@/components/ui/button";
 import Icons from "@/components/icons";
 import {
   Sheet,
@@ -23,51 +24,37 @@ import {
 const Header = () => {
   const t = useTranslations("contents");
   const pathname = usePathname();
+  const [showMobileMenu, setShowMobileMenu] = useState(false);
 
   return (
-    <>
-      <div className="hidden h-16 items-center justify-between space-x-6 px-10 md:flex">
-        <nav className="flex space-x-6">
-          {navConfig.contents.map((item, index) => (
-            <Link
-              key={index}
-              href={item.href}
-              className={cn(
-                "flex items-center text-sm font-medium transition-colors hover:text-foreground/80",
-                pathname === item.href
-                  ? "text-foreground"
-                  : "text-foreground/60"
-              )}
-            >
-              {
-                // todo: fix this type
-                t(
-                  `${item.label as "top" | "about" | "works" | "blog" | "contact"}.title`
-                )
-              }
-            </Link>
-          ))}
-        </nav>
-
-        <div className="flex space-x-2">
+    <div className="flex h-12 items-center justify-between px-4 md:h-16 md:px-10">
+      <nav className="hidden space-x-6 md:flex">
+        {navConfig.contents.map((item, index) => (
           <Link
-            href={siteConfig.links.github}
-            target="_blank"
-            rel="noreferrer"
-            className={cn(buttonVariants({ variant: "ghost" }), "size-8")}
+            key={index}
+            href={item.href}
+            className={cn(
+              "flex items-center text-sm font-medium transition-colors hover:text-foreground/80",
+              pathname === item.href ? "text-foreground" : "text-foreground/60"
+            )}
           >
-            <Icons.github className="size-6 dark:fill-white" />
+            {
+              // todo: fix this type
+              t(
+                `${item.label as "top" | "about" | "works" | "blog" | "contact"}.title`
+              )
+            }
           </Link>
-          <ModeToggle />
-        </div>
-      </div>
+        ))}
+      </nav>
       <Sheet>
-        <SheetTrigger asChild>
-          <Button className="md:hidden" variant="ghost">
-            <Icons.menu className="size-6" />
-          </Button>
+        <SheetTrigger
+          className="flex md:hidden"
+          onClick={() => setShowMobileMenu(!showMobileMenu)}
+        >
+          <Icons.menu className="size-6" />
         </SheetTrigger>
-        <SheetContent className="md:hidden" side="left">
+        <SheetContent side="left">
           <SheetHeader>
             <VisuallyHidden>
               <SheetTitle>{t("nav")}</SheetTitle>
@@ -98,7 +85,18 @@ const Header = () => {
           </nav>
         </SheetContent>
       </Sheet>
-    </>
+      <div className="flex space-x-2">
+        <Link
+          href={siteConfig.links.github}
+          target="_blank"
+          rel="noreferrer"
+          className={cn(buttonVariants({ variant: "ghost" }), "size-8")}
+        >
+          <Icons.github className="size-6 dark:fill-white" />
+        </Link>
+        <ModeToggle />
+      </div>
+    </div>
   );
 };
 

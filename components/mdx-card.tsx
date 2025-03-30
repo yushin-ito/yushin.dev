@@ -1,8 +1,9 @@
 import Link from "next/link";
+import { HTMLAttributes } from "react";
 
 import { cn } from "@/lib/utils";
 
-interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
+interface CardProps extends HTMLAttributes<HTMLDivElement> {
   href?: string;
   disabled?: boolean;
 }

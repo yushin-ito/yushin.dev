@@ -6,7 +6,10 @@ import useMounted from "@/hooks/use-mounted";
 import { cn } from "@/lib/utils";
 
 interface TableOfContentsProps {
-  items: string[];
+  items: {
+    id: string;
+    title: string;
+  }[];
 }
 
 const TableOfContents = ({ items }: TableOfContentsProps) => {
@@ -26,7 +29,7 @@ const TableOfContents = ({ items }: TableOfContentsProps) => {
     );
 
     items.forEach((item) => {
-      const element = document.getElementById(item);
+      const element = document.getElementById(item.id);
       if (element) {
         observer.observe(element);
       }
@@ -34,7 +37,7 @@ const TableOfContents = ({ items }: TableOfContentsProps) => {
 
     return () => {
       items.forEach((item) => {
-        const element = document.getElementById(item);
+        const element = document.getElementById(item.id);
         if (element) {
           observer.unobserve(element);
         }
@@ -56,13 +59,13 @@ const TableOfContents = ({ items }: TableOfContentsProps) => {
               key={index}
               className={cn(
                 "mt-0 pt-2",
-                item === activeId
+                item.id === activeId
                   ? "font-medium text-primary marker:font-medium marker:text-primary"
                   : "text-muted-foreground marker:text-muted-foreground"
               )}
             >
-              <a href={`#${item}`} className="inline-block no-underline">
-                {item}
+              <a href={`#${item.id}`} className="inline-block no-underline">
+                {item.title}
               </a>
             </li>
           );

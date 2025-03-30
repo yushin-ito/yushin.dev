@@ -18,7 +18,7 @@ const AboutPage = async () => {
       <div className="relative px-1 lg:grid lg:grid-cols-[1fr_120px] lg:gap-12 xl:gap-20">
         <div className="space-y-12">
           <div className="space-y-4">
-            <h2 id="自己紹介" className="font-bold sm:text-lg md:text-xl">
+            <h2 id="introduction" className="font-bold sm:text-lg md:text-xl">
               自己紹介
             </h2>
             <p>
@@ -54,36 +54,55 @@ const AboutPage = async () => {
           </div>
           <div className="space-y-8">
             <div className="space-y-0.5">
-              <h2 id="スキル" className="font-bold sm:text-lg md:text-xl">
+              <h2 id="skills" className="font-bold sm:text-lg md:text-xl">
                 スキル
               </h2>
               <p className="text-muted-foreground">
                 私が普段使っているスキルです。
               </p>
             </div>
-            <div className="mx-auto grid justify-center gap-12 px-4 sm:grid-cols-2 md:max-w-5xl md:grid-cols-8">
-              <Icons.python className="size-13 dark:fill-white" />
-              <Icons.cplusplus className="size-13 dark:fill-white" />
-              <Icons.html5 className="size-13 dark:fill-white" />
-              <Icons.css3 className="size-13 dark:fill-white" />
-              <Icons.javascript className="size-13 dark:fill-white" />
-              <Icons.typescript className="size-13 dark:fill-white" />
-              <Icons.ruby className="size-13 dark:fill-white" />
-              <Icons.go className="size-13 dark:fill-white" />
-              <Icons.react className="size-13 dark:fill-white" />
-              <Icons.nextdotjs className="size-13 dark:fill-white" />
-              <Icons.tailwindcss className="size-13 dark:fill-white" />
-              <Icons.expo className="size-13 dark:fill-white" />
-              <Icons.supabase className="size-13 dark:fill-white" />
-              <Icons.prisma className="size-13 dark:fill-white" />
-              <Icons.github className="size-13 dark:fill-white" />
-              <Icons.figma className="size-13 dark:fill-white" />
+            <div className="mx-auto grid grid-cols-2 justify-center gap-12 px-4 md:max-w-5xl md:grid-cols-8">
+              <Icons.python className="dark:fill-white" />
+              <Icons.cplusplus className="dark:fill-white" />
+              <Icons.html5 className="dark:fill-white" />
+              <Icons.css3 className="dark:fill-white" />
+              <Icons.javascript className="dark:fill-white" />
+              <Icons.typescript className="dark:fill-white" />
+              <Icons.ruby className="dark:fill-white" />
+              <Icons.go className="dark:fill-white" />
+              <Icons.react className="dark:fill-white" />
+              <Icons.nextdotjs className="dark:fill-white" />
+              <Icons.tailwindcss className="dark:fill-white" />
+              <Icons.expo className="dark:fill-white" />
+              <Icons.supabase className="dark:fill-white" />
+              <Icons.prisma className="dark:fill-white" />
+              <Icons.github className="dark:fill-white" />
+              <Icons.figma className="dark:fill-white" />
             </div>
           </div>
         </div>
         <div className="hidden text-sm xl:block">
           <div className="sticky top-16 mt-4 overflow-y-auto pt-6">
-            <TableOfContents items={["自己紹介", "スキル", "経歴"]} />
+            <TableOfContents
+              items={[
+                {
+                  id: "introduction",
+                  title: "自己紹介",
+                },
+                {
+                  id: "skills",
+                  title: "スキル",
+                },
+                {
+                  id: "career",
+                  title: "略歴",
+                },
+                {
+                  id: "hobby",
+                  title: "趣味",
+                },
+              ]}
+            />
           </div>
         </div>
       </div>

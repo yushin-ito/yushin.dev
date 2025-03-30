@@ -5,10 +5,10 @@ import typography from "@tailwindcss/typography";
 export default {
   darkMode: ["class"],
   content: [
-    "./pages/**/*.{js,ts,jsx,tsx,mdx}",
-    "./components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./app/**/*.{js,ts,jsx,tsx,mdx}",
-    "./ui/**/*.{js,ts,jsx,tsx,mdx}",
+    "./app/**/*.{ts,tsx}",
+    "./components/**/*.{ts,tsx}",
+    "./ui/**/*.{ts,tsx}",
+    "./content/**/*.{md,mdx}",
   ],
   theme: {
     container: {
@@ -65,6 +65,7 @@ export default {
         },
         success: "hsl(var(--success))",
         error: "hsl(var(--error))",
+        frame: "hsl(var(--frame))",
       },
       borderRadius: {
         lg: "var(--radius)",
