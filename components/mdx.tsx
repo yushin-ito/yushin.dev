@@ -11,7 +11,8 @@ import { type LucideProps } from "lucide-react";
 import { cn } from "@/lib/utils";
 import MdxCard from "@/components/mdx-card";
 import MdxCallout from "@/components/mdx-callout";
-import Icons from "./icons";
+import Icons from "@/components/icons";
+import Mockup from "@/components/mockup";
 
 const components = {
   h1: ({ className, ...props }: HTMLAttributes<HTMLHeadingElement>) => (
@@ -167,6 +168,7 @@ const components = {
   Image,
   Callout: MdxCallout,
   Card: MdxCard,
+  Mockup,
 };
 
 interface MdxProps {

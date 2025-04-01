@@ -40,7 +40,7 @@ const Slideshow = ({ deck }: SlideshowProps) => {
   }, [api]);
 
   return (
-    <div ref={ref} className="relative">
+    <div ref={ref}>
       <Carousel
         className="group relative aspect-[16/9] w-full overflow-hidden rounded-xl border transition-colors"
         setApi={setApi}
@@ -55,7 +55,7 @@ const Slideshow = ({ deck }: SlideshowProps) => {
             <div className="absolute left-2.5 flex items-center space-x-1">
               <Button
                 variant="unstyled"
-                className="size-6 p-0 text-white hover:bg-black/50 md:size-8 [&_svg]:size-4 md:[&_svg]:size-6"
+                className="size-6 p-0 text-white hover:bg-black/50 sm:size-8 [&_svg]:size-4 sm:[&_svg]:size-6"
                 onClick={() => api.scrollPrev()}
                 disabled={!api.canScrollPrev()}
               >
@@ -63,19 +63,19 @@ const Slideshow = ({ deck }: SlideshowProps) => {
               </Button>
               <Button
                 variant="unstyled"
-                className="size-6 p-0 text-white hover:bg-black/50 md:size-8 [&_svg]:size-4 md:[&_svg]:size-6"
+                className="size-6 p-0 text-white hover:bg-black/50 sm:size-8 [&_svg]:size-4 sm:[&_svg]:size-6"
                 onClick={() => api.scrollNext()}
                 disabled={!api.canScrollNext()}
               >
                 <Icons.chevronRight />
               </Button>
             </div>
-            <div className="text-sm font-semibold text-white">
+            <div className="text-xs font-semibold text-white sm:text-sm">
               {current} / {count}
             </div>
             <Button
               variant="unstyled"
-              className="absolute right-2.5 size-6 p-0 text-white hover:bg-black/50 md:size-8 [&_svg]:size-3 md:[&_svg]:size-5"
+              className="absolute right-2.5 size-6 p-0 text-white hover:bg-black/50 sm:size-8 [&_svg]:size-3 sm:[&_svg]:size-5"
               onClick={!isFullscreen ? enter : exit}
             >
               {isFullscreen ? <Icons.minimize /> : <Icons.maximize />}

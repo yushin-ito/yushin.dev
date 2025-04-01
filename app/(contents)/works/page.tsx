@@ -1,12 +1,13 @@
-import { compareDesc, formatDate } from "date-fns";
+import { compareDesc } from "date-fns";
 import Image from "next/image";
 import Link from "next/link";
-import { getTranslations } from "next-intl/server";
+import { getFormatter, getTranslations } from "next-intl/server";
 
 import { allWorks } from "contentlayer/generated";
 
 const WorksPage = async () => {
   const t = await getTranslations("contents.works");
+  const format = await getFormatter();
   const works = allWorks
     .filter((work) => work.published)
     .sort((a, b) => {
@@ -27,21 +28,27 @@ const WorksPage = async () => {
           {works.map((work, index) => (
             <article
               key={work._id}
-              className="group relative flex flex-col space-y-2"
+              className="group relative flex flex-col space-y-2.5"
             >
               <Image
                 src={work.thumbnail}
                 alt={work.title}
                 width={540}
                 height={450}
-                className="rounded-md border bg-muted transition-colors"
+                className="rounded-lg border bg-muted transition-colors"
                 priority={index <= 1}
               />
-              <h2 className="text-2xl font-extrabold">{work.title}</h2>
-              <p className="text-muted-foreground">{work.description}</p>
-              <p className="text-sm text-muted-foreground">
-                {formatDate(work.updatedAt, "yyyy/MM/dd")}
-              </p>
+              <div className="space-y-0.5 px-2">
+                <div className="flex items-center justify-between">
+                  <h2 className="text-2xl font-bold">{work.title}</h2>
+                  <p className="text-sm text-muted-foreground">
+                    {format.relativeTime(new Date(work.updatedAt), new Date())}
+                  </p>
+                </div>
+                <p className="text-sm text-muted-foreground">
+                  {work.description}
+                </p>
+              </div>
               <Link href={work.slug} className="absolute inset-0">
                 <span className="sr-only">作品を見る</span>
               </Link>
