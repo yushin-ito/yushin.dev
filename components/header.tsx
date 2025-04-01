@@ -57,7 +57,7 @@ const Header = () => {
         <SheetContent className="w-3/5" side="left">
           <SheetHeader>
             <VisuallyHidden>
-              <SheetTitle>{t("nav")}</SheetTitle>
+              <SheetTitle>{t("navigation")}</SheetTitle>
               <SheetDescription />
             </VisuallyHidden>
           </SheetHeader>

@@ -14,7 +14,7 @@ const NotFound = async () => {
         <p className="text-sm text-muted-foreground">{t("description")}</p>
       </div>
       <Link href="/" className={cn(buttonVariants(), "px-8 py-6 rounded-full")}>
-        {t("back")}
+        {t("back_to_top")}
       </Link>
     </div>
   );

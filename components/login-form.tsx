@@ -84,7 +84,7 @@ const LoginForm = () => {
         </div>
         <div className="relative flex justify-center text-xs uppercase">
           <span className="bg-background px-2 text-muted-foreground">
-            {t("separator")}
+            {t("or")}
           </span>
         </div>
       </div>

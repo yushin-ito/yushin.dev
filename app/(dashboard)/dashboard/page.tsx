@@ -48,7 +48,7 @@ const DashboardPage = async () => {
           <h1 className="text-lg font-bold md:text-xl">{t("title")}</h1>
           <p className="text-sm text-muted-foreground">{t("description")}</p>
         </div>
-        <CreatePostButton>{t("create")}</CreatePostButton>
+        <CreatePostButton>{t("new_post")}</CreatePostButton>
       </div>
       <div className="mt-8">
         {posts.length ? (
@@ -98,7 +98,7 @@ const DashboardPage = async () => {
               {t("empty_placeholder.description")}
             </EmptyPlaceholderDescription>
             <CreatePostButton className="rounded-full px-10 py-5">
-              {t("create")}
+              {t("new_post")}
             </CreatePostButton>
           </EmptyPlaceholder>
         )}

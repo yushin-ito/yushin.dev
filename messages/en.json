@@ -8,20 +8,20 @@
     "not_found": {
       "title": "404 Not Found",
       "description": "The URL may have been changed or the page may have been deleted.",
-      "back": "Go back to Top"
+      "back_to_top": "Back to Top"
     }
   },
   "auth": {
     "email": "Email",
     "invalid_email": "Invalid email address.",
-    "separator": "or",
+    "or": "or",
     "back": "Back",
     "login": {
       "title": "Log In",
-      "description": "Sign in to your account",
+      "description": "Log in to your account",
       "submit": "Log in",
-      "login_with_provider": "Sign in with {provider}",
-      "do_not_have_account": "Don't have an account?",
+      "login_with_provider": "Log in with {provider}",
+      "do_not_have_an_account": "Don't have an account?",
       "success": {
         "title": "Verify your email.",
         "description": "We sent you a login link. Be sure to check your spam too."
@@ -36,7 +36,7 @@
       "description": "Create a new account",
       "submit": "Sign up",
       "signup_with_provider": "Sign up with {provider}",
-      "already_have_account": "Already have an account?",
+      "already_have_an_account": "Already have an account?",
       "success": {
         "title": "Verify your email.",
         "description": "We sent you a sign up link. Be sure to check your spam too."
@@ -48,7 +48,7 @@
     }
   },
   "contents": {
-    "nav": "Navigation",
+    "navigation": "Navigation",
     "top": {
       "title": "Top",
       "description": ""
@@ -95,7 +95,7 @@
     }
   },
   "dashboard": {
-    "nav": "Navigation",
+    "navigation": "Navigation",
     "untitled": "Untitled",
     "signout": "Sign Out",
     "error": {
@@ -109,7 +109,7 @@
         "title": "No posts created.",
         "description": "You don't have any posts yet. Start creating content."
       },
-      "create": "New Post",
+      "new_post": "New Post",
       "published": "Published",
       "draft": "Draft"
     },

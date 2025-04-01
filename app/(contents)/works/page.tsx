@@ -25,7 +25,7 @@ const WorksPage = async () => {
       <hr className="mb-8 mt-4 w-full" />
       {works.length ? (
         <div className="grid gap-10 px-2 sm:grid-cols-2">
-          {works.map((work, index) => (
+          {works.map((work) => (
             <article
               key={work._id}
               className="group relative flex flex-col space-y-2.5"
@@ -36,7 +36,7 @@ const WorksPage = async () => {
                 width={540}
                 height={450}
                 className="rounded-lg border bg-muted shadow-sm transition-colors"
-                priority={index <= 1}
+                priority
               />
               <div className="space-y-0.5 px-2">
                 <div className="flex items-center justify-between">

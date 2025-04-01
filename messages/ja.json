@@ -8,20 +8,20 @@
     "not_found": {
       "title": "ご指定のページが見つかりません。",
       "description": "URLが変更されたか、削除された可能性があります。",
-      "back": "トップページに戻る"
+      "back_to_top": "トップページに戻る"
     }
   },
   "auth": {
     "email": "メールアドレス",
     "invalid_email": "無効なメールアドレスです。",
-    "separator": "または",
+    "or": "または",
     "back": "戻る",
     "login": {
       "title": "ログイン",
       "description": "アカウントにログインしてください",
       "submit": "ログイン",
       "login_with_provider": "{provider}でログイン",
-      "do_not_have_account": "アカウントをお持ちでないですか？",
+      "do_not_have_an_account": "アカウントをお持ちでないですか？",
       "success": {
         "title": "メールアドレスの確認が必要です。",
         "description": "確認メールを送信しました。メールに記載されたリンクをクリックしてください。"
@@ -36,7 +36,7 @@
       "description": "新しいアカウントを作成してください",
       "submit": "新規登録",
       "signup_with_provider": "{provider}で新規登録",
-      "already_have_account": "すでにアカウントをお持ちですか？",
+      "already_have_an_account": "すでにアカウントをお持ちですか？",
       "success": {
         "title": "メールアドレスの確認が必要です。",
         "description": "確認メールを送信しました。メールに記載されたリンクをクリックしてください。"
@@ -48,7 +48,7 @@
     }
   },
   "contents": {
-    "nav": "ナビゲーション",
+    "navigation": "ナビゲーション",
     "top": {
       "title": "Top",
       "description": ""
@@ -95,7 +95,7 @@
     }
   },
   "dashboard": {
-    "nav": "ナビゲーション",
+    "navigation": "ナビゲーション",
     "untitled": "無題の記事",
     "signout": "サインアウト",
     "error": {
@@ -109,7 +109,7 @@
         "title": "記事がありません。",
         "description": "下のボタンから新しい記事を作成しましょう。"
       },
-      "create": "投稿する",
+      "new_post": "投稿する",
       "published": "公開中",
       "draft": "下書き"
     },

@@ -49,7 +49,7 @@ const SignupPage = async () => {
           <SignupForm />
         </Suspense>
         <p className="text-center text-sm text-muted-foreground">
-          {t("signup.already_have_account")}{" "}
+          {t("signup.already_have_an_account")}{" "}
           <Link href="/login" className="underline underline-offset-4">
             {t("login.title")}
           </Link>
