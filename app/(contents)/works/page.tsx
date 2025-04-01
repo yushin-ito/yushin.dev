@@ -35,7 +35,7 @@ const WorksPage = async () => {
                 alt={work.title}
                 width={540}
                 height={450}
-                className="rounded-lg border bg-muted transition-colors"
+                className="rounded-lg border bg-muted shadow-sm transition-colors"
                 priority={index <= 1}
               />
               <div className="space-y-0.5 px-2">
