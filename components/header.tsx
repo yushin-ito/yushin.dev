@@ -54,14 +54,14 @@ const Header = () => {
         >
           <Icons.menu className="size-6" />
         </SheetTrigger>
-        <SheetContent side="left">
+        <SheetContent className="w-3/5" side="left">
           <SheetHeader>
             <VisuallyHidden>
               <SheetTitle>{t("nav")}</SheetTitle>
               <SheetDescription />
             </VisuallyHidden>
           </SheetHeader>
-          <nav className="space-4 py-4">
+          <nav className="space-y-4 py-8">
             {navConfig.contents.map((item, index) => (
               <Link
                 key={index}

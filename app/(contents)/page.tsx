@@ -4,7 +4,7 @@ import Typewriter from "@/components/typewriter";
 
 const TopPage = () => {
   return (
-    <section className="container flex max-w-5xl flex-col items-center justify-center space-y-12 py-16 md:h-[calc(100vh-6rem)] md:flex-row md:space-x-12">
+    <section className="container flex max-w-5xl flex-col items-center justify-center space-y-8 py-16 md:h-[calc(100vh-6rem)] md:flex-row md:space-x-12">
       <Image
         src="/images/icon.png"
         alt="Profile Image"
@@ -37,12 +37,10 @@ const TopPage = () => {
         </p>
       </div>
       <div className="space-y-2 text-center md:hidden">
-        <Typewriter cursor="|" speed={100} className="text-4xl font-bold">
+        <Typewriter cursor="|" speed={100} className="text-3xl font-bold">
           Hi, I&apos;m Yushin Ito
         </Typewriter>
-        <p className="text-lg text-muted-foreground">
-          Web Developer & Web Designer
-        </p>
+        <p className="text-muted-foreground">Web Developer & Web Designer</p>
       </div>
     </section>
   );
