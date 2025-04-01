@@ -4,6 +4,12 @@ import Link from "next/link";
 import { getFormatter, getTranslations } from "next-intl/server";
 
 import { allWorks } from "contentlayer/generated";
+import {
+  EmptyPlaceholder,
+  EmptyPlaceholderIcon,
+  EmptyPlaceholderTitle,
+  EmptyPlaceholderDescription,
+} from "@/components/empty-placeholder";
 
 const WorksPage = async () => {
   const t = await getTranslations("contents.works");
@@ -50,13 +56,21 @@ const WorksPage = async () => {
                 </p>
               </div>
               <Link href={work.slug} className="absolute inset-0">
-                <span className="sr-only">作品を見る</span>
+                <span className="sr-only">{t("view_work")}</span>
               </Link>
             </article>
           ))}
         </div>
       ) : (
-        <p>作品がありません</p>
+        <EmptyPlaceholder className="min-h-[360px] border-none">
+          <EmptyPlaceholderIcon name="book" />
+          <EmptyPlaceholderTitle>
+            {t("empty_placeholder.title")}
+          </EmptyPlaceholderTitle>
+          <EmptyPlaceholderDescription>
+            {t("empty_placeholder.description")}
+          </EmptyPlaceholderDescription>
+        </EmptyPlaceholder>
       )}
     </section>
   );

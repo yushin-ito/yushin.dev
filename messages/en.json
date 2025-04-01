@@ -60,11 +60,22 @@
     "works": {
       "title": "Works",
       "description": "Welecom to my works page. Please feel free to check out my works.",
-      "back": "Back"
+      "view_work": "View Work",
+      "back": "Back",
+      "empty_placeholder": {
+        "title": "No works published",
+        "description": "Coming soon. Thank you for your patience."
+      }
     },
     "blog": {
       "title": "Blog",
-      "description": "Welcome to my blog page. Please feel free to read my posts."
+      "description": "Welcome to my blog page. Please feel free to read my posts.",
+      "view_post": "View Post",
+      "back": "Back",
+      "empty_placeholder": {
+        "title": "No posts published",
+        "description": "Coming soon. Thank you for your patience."
+      }
     },
     "contact": {
       "title": "Contact",

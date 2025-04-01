@@ -60,11 +60,22 @@
     "works": {
       "title": "Works",
       "description": "私のポートフォリオへようこそ。このページでは私の作品を紹介しています。",
-      "back": "戻る"
+      "view_work": "作品を見る",
+      "back": "戻る",
+      "empty_placeholder": {
+        "title": "作品がありません",
+        "description": "現在準備中です。もうしばらくお待ちください。"
+      }
     },
     "blog": {
       "title": "Blog",
-      "description": "私のポートフォリオへようこそ。このページでは私のブログを投稿しています。"
+      "description": "私のポートフォリオへようこそ。このページでは私のブログを投稿しています。",
+      "view_post": "記事を見る",
+      "back": "戻る",
+      "empty_placeholder": {
+        "title": "記事がありません",
+        "description": "現在準備中です。もうしばらくお待ちください。"
+      }
     },
     "contact": {
       "title": "Contact",

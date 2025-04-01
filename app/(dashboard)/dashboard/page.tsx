@@ -72,7 +72,7 @@ const DashboardPage = async () => {
                 <div className="flex items-center space-x-4 text-muted-foreground">
                   <div className="flex items-center space-x-0.5">
                     <Icons.pencil className="size-4" />
-                    <span className="text-sm">{post?.length}</span>
+                    <span className="text-sm">{post.length}</span>
                   </div>
                   <div className="flex items-center space-x-0.5">
                     <Icons.heart className="size-4" />

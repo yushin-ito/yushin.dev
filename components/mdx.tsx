@@ -160,7 +160,7 @@ const components = {
     const Icon = Icons[name as keyof typeof Icons];
 
     if (!Icon) {
-      return;
+      return null;
     }
 
     return <Icon {...props} />;

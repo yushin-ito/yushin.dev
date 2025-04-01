@@ -52,7 +52,7 @@ const EmptyPlaceholderTitle = ({
   ...props
 }: EmptyPlacholderTitleProps) => {
   return (
-    <h2 className={cn("mt-6 text-xl font-semibold", className)} {...props} />
+    <h2 className={cn("mt-5 text-xl font-semibold", className)} {...props} />
   );
 };
 

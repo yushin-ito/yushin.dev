@@ -1,6 +1,7 @@
 import {
   ArrowLeft,
   ArrowRight,
+  Book,
   ChartLine,
   ChevronDown,
   ChevronLeft,
@@ -8,6 +9,7 @@ import {
   Clock,
   FileText,
   Heart,
+  House,
   Loader2,
   LogOut,
   Maximize,
@@ -17,18 +19,21 @@ import {
   Pencil,
   Settings,
   Sun,
+  User,
   type LucideProps,
 } from "lucide-react";
 
 const Icons = {
   arrowLeft: ArrowLeft,
   arrowRight: ArrowRight,
+  book: Book,
   chart: ChartLine,
   chevronDown: ChevronDown,
   chevronLeft: ChevronLeft,
   chevronRight: ChevronRight,
   clock: Clock,
   heart: Heart,
+  house: House,
   maximize: Maximize,
   menu: Menu,
   minimize: Minimize,
@@ -39,6 +44,7 @@ const Icons = {
   signOut: LogOut,
   spinner: Loader2,
   sun: Sun,
+  user: User,
   chakraui: (props: LucideProps) => (
     <svg viewBox="0 0 24 24" {...props}>
       {/* #319795 */}
