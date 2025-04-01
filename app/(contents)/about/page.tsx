@@ -61,7 +61,7 @@ const AboutPage = async () => {
                 私が普段使っているスキルです。
               </p>
             </div>
-            <div className="mx-auto grid grid-cols-2 justify-center gap-12 px-4 md:max-w-5xl md:grid-cols-8">
+            <div className="mx-auto grid grid-cols-4 justify-center gap-10 px-4 sm:grid-cols-8 sm:gap-12">
               <Icons.python className="dark:fill-white" />
               <Icons.cplusplus className="dark:fill-white" />
               <Icons.html5 className="dark:fill-white" />
