@@ -10,7 +10,7 @@ import {
   CarouselContent,
   CarouselItem,
 } from "@/components/ui/carousel";
-import { Button } from "./ui/button";
+import { Button } from "@/components/ui/button";
 import Icons from "@/components/icons";
 import useFullscreen from "@/hooks/use-fullscreen";
 

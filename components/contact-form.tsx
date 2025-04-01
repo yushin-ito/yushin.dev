@@ -12,7 +12,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { contactSchema } from "@/schemas/contact";
 import Icons from "@/components/icons";
-import { Textarea } from "./ui/textarea";
+import { Textarea } from "@/components/ui/textarea";
 
 type FormData = z.infer<typeof contactSchema>;
 

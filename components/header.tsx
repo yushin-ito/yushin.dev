@@ -19,7 +19,7 @@ import {
   SheetHeader,
   SheetTitle,
   SheetTrigger,
-} from "./ui/sheet";
+} from "@/components/ui/sheet";
 
 const Header = () => {
   const t = useTranslations("contents");

@@ -7,7 +7,7 @@ import { useTranslations } from "next-intl";
 
 import { navConfig } from "@/config/nav";
 import { cn } from "@/lib/utils";
-import { Button, buttonVariants } from "./ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
 import { signOut } from "@/actions/auth";
 import Icons from "@/components/icons";
 
