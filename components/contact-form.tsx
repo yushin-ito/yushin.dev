@@ -119,10 +119,14 @@ const ContactForm = () => {
             )}
           </div>
         </div>
-        <Button className="w-full" disabled={isPending}>
-          {isPending && <Icons.spinner className="mr-2 size-4 animate-spin" />}
-          {t("submit")}
-        </Button>
+        <div className="flex w-full items-center justify-center pt-4">
+          <Button className="w-4/5" disabled={isPending}>
+            {isPending && (
+              <Icons.spinner className="mr-2 size-4 animate-spin" />
+            )}
+            {t("submit")}
+          </Button>
+        </div>
       </div>
     </form>
   );
