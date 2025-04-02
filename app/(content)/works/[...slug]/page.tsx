@@ -78,7 +78,7 @@ export const generateStaticParams = async () => {
 };
 
 const WorkPage = async ({ params }: WorkPageProps) => {
-  const t = await getTranslations("contents.works");
+  const t = await getTranslations("content.works");
   const work = await getWorkFromParams(params);
 
   if (!work) {

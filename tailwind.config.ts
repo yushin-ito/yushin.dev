@@ -65,7 +65,6 @@ export default {
         },
         success: "hsl(var(--success))",
         error: "hsl(var(--error))",
-        frame: "hsl(var(--frame))",
       },
       borderRadius: {
         lg: "var(--radius)",

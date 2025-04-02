@@ -3,7 +3,7 @@
 import "@/styles/editor.css";
 
 import { useRouter } from "next/navigation";
-import EditorJS from "@editorjs/editorjs";
+import EditorJS, { BlockMutationEvent } from "@editorjs/editorjs";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Post } from "@prisma/client";
 import { useForm } from "react-hook-form";
@@ -15,23 +15,25 @@ import { useTranslations } from "next-intl";
 import Link from "next/link";
 
 import { Button, buttonVariants } from "@/components/ui/button";
-import { postSchema } from "@/schemas/post";
+import { editorSchema } from "@/schemas/post";
 import Icons from "@/components/icons";
 import { cn } from "@/lib/utils";
+import { getTextFromBlocks } from "@/lib/editor";
 
 interface EditorProps {
   post: Pick<Post, "id" | "title" | "content" | "published">;
 }
 
-type FormData = z.infer<typeof postSchema>;
+type FormData = z.infer<typeof editorSchema>;
 
 const Editor = ({ post }: EditorProps) => {
   const t = useTranslations("editor");
   const { register, handleSubmit } = useForm<FormData>({
-    resolver: zodResolver(postSchema),
+    resolver: zodResolver(editorSchema),
   });
   const ref = useRef<EditorJS | null>(null);
   const router = useRouter();
+  const [count, setCount] = useState<number>(0);
   const [isMounted, setIsMounted] = useState<boolean>(false);
   const [isPending, startTransition] = useTransition();
 
@@ -76,13 +78,23 @@ const Editor = ({ post }: EditorProps) => {
     // @ts-expect-error
     const AttachesTool = (await import("@editorjs/attaches")).default;
 
-    const body = postSchema.parse(post);
+    const body = editorSchema.parse(post);
 
     if (!ref.current) {
       const editor = new EditorJS({
         holder: "editor",
         onReady() {
           ref.current = editor;
+        },
+        onChange: async (api, event: BlockMutationEvent) => {
+          if (event.type !== "block-changed") {
+            return;
+          }
+
+          const content = await api.saver.save();
+          const text = getTextFromBlocks(content.blocks);
+
+          setCount(text.length);
         },
         placeholder: t("content_placeholder"),
         inlineToolbar: true,
@@ -279,7 +291,17 @@ const Editor = ({ post }: EditorProps) => {
 
   const onSubmit = (data: FormData) => {
     startTransition(async () => {
-      const blocks = await ref.current?.save();
+      const content = await ref.current?.save();
+
+      if (!content) {
+        toast.error(t("error.title"), {
+          description: t("error.description"),
+        });
+
+        return;
+      }
+
+      const text = getTextFromBlocks(content.blocks);
 
       const response = await fetch(`/api/posts/${post.id}`, {
         method: "PATCH",
@@ -288,7 +310,8 @@ const Editor = ({ post }: EditorProps) => {
         },
         body: JSON.stringify({
           title: data.title,
-          content: blocks,
+          content,
+          preview: text.slice(0, 100),
         }),
       });
 
@@ -317,7 +340,7 @@ const Editor = ({ post }: EditorProps) => {
       <div className="space-y-8">
         <div className="flex items-center justify-between">
           <Link
-            href="/"
+            href="/dashboard"
             className={cn(
               buttonVariants({ variant: "ghost" }),
               "pl-2 flex items-center"
@@ -326,17 +349,22 @@ const Editor = ({ post }: EditorProps) => {
             <Icons.chevronLeft className="size-8" />
             <span className="text-sm">{t("back")}</span>
           </Link>
-          <Button
-            type="submit"
-            className={cn({ "cursor-not-allowed opacity-60": isPending })}
-            disabled={isPending}
-          >
-            {isPending ? (
-              <Icons.spinner className="size-4 animate-spin" />
-            ) : (
-              <span>{t("save")}</span>
-            )}
-          </Button>
+          <div className="flex items-center space-x-6">
+            <span className="text-sm text-muted-foreground">
+              {t("char", { count })}
+            </span>
+            <Button
+              type="submit"
+              className={cn({ "cursor-not-allowed opacity-60": isPending })}
+              disabled={isPending}
+            >
+              {isPending ? (
+                <Icons.spinner className="size-4 animate-spin" />
+              ) : (
+                <span>{t("save")}</span>
+              )}
+            </Button>
+          </div>
         </div>
         <div className="prose prose-stone mx-auto w-[800px] dark:prose-invert">
           <TextareaAutosize

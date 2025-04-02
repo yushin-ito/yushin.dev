@@ -1,6 +1,5 @@
 import { getTranslations } from "next-intl/server";
 import { redirect } from "next/navigation";
-import { format } from "date-fns";
 
 import { auth } from "@/auth";
 import { db } from "@/lib/db";
@@ -11,11 +10,11 @@ import {
   EmptyPlaceholderTitle,
 } from "@/components/empty-placeholder";
 import CreatePostButton from "@/components/create-post-button";
-import { cn } from "@/lib/utils";
-import Icons from "@/components/icons";
+import DataTable from "@/components/data-table";
+import { columns } from "@/components/columns";
 
-const DashboardPage = async () => {
-  const t = await getTranslations("dashboard.posts");
+const PostPage = async () => {
+  const t = await getTranslations("dashboard.post");
   const session = await auth();
 
   if (!session?.user) {
@@ -29,11 +28,13 @@ const DashboardPage = async () => {
     select: {
       id: true,
       title: true,
-      length: true,
+      preview: true,
       published: true,
+      authorId: true,
+      createdAt: true,
       updatedAt: true,
       _count: {
-        select: { like: true },
+        select: { views: true, likes: true },
       },
     },
     orderBy: {
@@ -45,49 +46,18 @@ const DashboardPage = async () => {
     <section className="container max-w-6xl py-4 md:py-6 lg:py-8">
       <div className="flex items-center justify-between">
         <div className="space-y-1">
-          <h1 className="text-lg font-bold md:text-xl">{t("title")}</h1>
-          <p className="text-sm text-muted-foreground">{t("description")}</p>
+          <h1 className="text-lg font-bold md:text-xl">
+            {t("metadata.title")}
+          </h1>
+          <p className="text-sm text-muted-foreground">
+            {t("metadata.description")}
+          </p>
         </div>
         <CreatePostButton>{t("new_post")}</CreatePostButton>
       </div>
       <div className="mt-8">
         {posts.length ? (
-          <div className="mx-auto max-w-4xl divide-y divide-border">
-            {posts.map((post) => (
-              <div key={post.id} className="space-y-2 py-4">
-                <div className="flex items-center space-x-4">
-                  <h2 className="text-lg font-bold">{post.title}</h2>
-                  <div
-                    className={cn(
-                      "px-1 text-center py-0.5 rounded-sm text-xs border",
-                      {
-                        "bg-muted-background text-muted-foreground":
-                          !post.published,
-                      }
-                    )}
-                  >
-                    <p>{post.published ? t("published") : t("draft")}</p>
-                  </div>
-                </div>
-                <div className="flex items-center space-x-4 text-muted-foreground">
-                  <div className="flex items-center space-x-0.5">
-                    <Icons.pencil className="size-4" />
-                    <span className="text-sm">{post.length}</span>
-                  </div>
-                  <div className="flex items-center space-x-0.5">
-                    <Icons.heart className="size-4" />
-                    <span className="text-sm">{post._count.like}</span>
-                  </div>
-                  <div className="flex items-center space-x-0.5">
-                    <Icons.clock className="size-4" />
-                    <span className="text-sm">
-                      {format(new Date(post.updatedAt), "yyyy/MM/dd")}
-                    </span>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
+          <DataTable data={posts} columns={columns} />
         ) : (
           <EmptyPlaceholder>
             <EmptyPlaceholderIcon name="post" />
@@ -106,4 +76,4 @@ const DashboardPage = async () => {
     </section>
   );
 };
-export default DashboardPage;
+export default PostPage;

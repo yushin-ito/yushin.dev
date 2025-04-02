@@ -17,7 +17,7 @@ import { Textarea } from "@/components/ui/textarea";
 type FormData = z.infer<typeof contactSchema>;
 
 const ContactForm = () => {
-  const t = useTranslations("contents.contact");
+  const t = useTranslations("content.contact");
   const {
     register,
     handleSubmit,
@@ -53,7 +53,7 @@ const ContactForm = () => {
               {...register("name")}
             />
             {errors.name && (
-              <p className="px-1 text-xs text-red-600">
+              <p className="px-1 text-xs text-error">
                 {t(errors.name.message as "too_short_name" | "too_long_name")}
               </p>
             )}
@@ -73,7 +73,7 @@ const ContactForm = () => {
               {...register("email")}
             />
             {errors.email && (
-              <p className="px-1 text-xs text-red-600">
+              <p className="px-1 text-xs text-error">
                 {t(errors.email.message as "invalid_email")}
               </p>
             )}
@@ -89,7 +89,7 @@ const ContactForm = () => {
               {...register("subject")}
             />
             {errors.subject && (
-              <p className="px-1 text-xs text-red-600">
+              <p className="px-1 text-xs text-error">
                 {t(
                   errors.subject.message as
                     | "too_short_subject"
@@ -110,7 +110,7 @@ const ContactForm = () => {
               {...register("message")}
             />
             {errors.message && (
-              <p className="px-1 text-xs text-red-600">
+              <p className="px-1 text-xs text-error">
                 {t(
                   (errors.message.message as "too_short_message") ||
                     "too_long_message"

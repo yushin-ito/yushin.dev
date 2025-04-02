@@ -9,9 +9,13 @@ export default auth((req) => {
   const isAuth = !!req.auth?.user;
   const isAuthPage =
     req.nextUrl.pathname.startsWith("/login") ||
-    req.nextUrl.pathname.startsWith("/register");
+    req.nextUrl.pathname.startsWith("/signup");
 
   if (isAuthPage) {
+    if (isAuth) {
+      return NextResponse.redirect(new URL("/dashboard", req.url));
+    }
+
     return NextResponse.next();
   }
 
@@ -28,5 +32,5 @@ export default auth((req) => {
 });
 
 export const config = {
-  matcher: ["/editor/:path*", "/dashboard/:path*", "/login", "/register"],
+  matcher: ["/editor/:path*", "/dashboard/:path*", "/login", "/signup"],
 };

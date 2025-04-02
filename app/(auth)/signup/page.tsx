@@ -15,11 +15,11 @@ interface SignupPageProps {
 
 export const generateMetadata = async ({ params }: SignupPageProps) => {
   const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: "auth" });
+  const t = await getTranslations({ locale, namespace: "auth.signup.metadata" });
 
   return {
-    title: t("signup.title"),
-    description: t("signup.description"),
+    title: t("title"),
+    description: t("description"),
   };
 };
 
@@ -40,9 +40,9 @@ const SignupPage = async () => {
       </Link>
       <div className="space-y-6 sm:w-[320px]">
         <div className="space-y-2 text-center">
-          <h1 className="text-2xl font-bold">{t("signup.title")}</h1>
+          <h1 className="text-2xl font-bold">{t("signup.metadata.title")}</h1>
           <p className="text-sm text-muted-foreground">
-            {t("signup.description")}
+            {t("signup.metadata.description")}
           </p>
         </div>
         <Suspense>
@@ -51,7 +51,7 @@ const SignupPage = async () => {
         <p className="text-center text-sm text-muted-foreground">
           {t("signup.already_have_an_account")}{" "}
           <Link href="/login" className="underline underline-offset-4">
-            {t("login.title")}
+            {t("login.metadata.title")}
           </Link>
         </p>
       </div>

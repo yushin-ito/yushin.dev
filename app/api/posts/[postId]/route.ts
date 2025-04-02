@@ -15,6 +15,7 @@ const contextSchema = z.object({
 const bodySchema = z.object({
   title: z.string().min(3).max(128).optional(),
   content: z.any().optional(),
+  preview: z.string().optional(),
 });
 
 export const DELETE = async (
@@ -71,6 +72,7 @@ export const PATCH = async (
       data: {
         title: body.title,
         content: body.content,
+        preview: body.preview,
       },
     });
 

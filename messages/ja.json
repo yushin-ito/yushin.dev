@@ -1,13 +1,17 @@
 {
   "root": {
     "error": {
-      "title": "予期せぬエラーが発生しました。",
-      "description": "もう一度お試しいただくか、時間をおいてアクセスしてください。",
+      "metadata": {
+        "title": "予期せぬエラーが発生しました。",
+        "description": "もう一度お試しいただくか、時間をおいてアクセスしてください。"
+      },
       "reload": "再読み込みする"
     },
     "not_found": {
-      "title": "ご指定のページが見つかりません。",
-      "description": "URLが変更されたか、削除された可能性があります。",
+      "metadata": {
+        "title": "ご指定のページが見つかりません。",
+        "description": "URLが変更されたか、削除された可能性があります。"
+      },
       "back_to_top": "トップページに戻る"
     }
   },
@@ -17,8 +21,10 @@
     "or": "または",
     "back": "戻る",
     "login": {
-      "title": "ログイン",
-      "description": "アカウントにログインしてください",
+      "metadata": {
+        "title": "ログイン",
+        "description": "アカウントにログインしてください"
+      },
       "submit": "ログイン",
       "login_with_provider": "{provider}でログイン",
       "do_not_have_an_account": "アカウントをお持ちでないですか？",
@@ -32,8 +38,10 @@
       }
     },
     "signup": {
-      "title": "新規登録",
-      "description": "新しいアカウントを作成してください",
+      "metadata": {
+        "title": "新規登録",
+        "description": "新しいアカウントを作成してください"
+      },
       "submit": "新規登録",
       "signup_with_provider": "{provider}で新規登録",
       "already_have_an_account": "すでにアカウントをお持ちですか？",
@@ -47,19 +55,25 @@
       }
     }
   },
-  "contents": {
+  "content": {
     "navigation": "ナビゲーション",
     "top": {
-      "title": "Top",
-      "description": ""
+      "metadata": {
+        "title": "Top",
+        "description": ""
+      }
     },
     "about": {
-      "title": "About",
-      "description": "私のポートフォリオへようこそ。このページでは私の自己紹介を載せています。"
+      "metadata": {
+        "title": "About",
+        "description": "私のポートフォリオへようこそ。このページでは私の自己紹介を載せています。"
+      }
     },
     "works": {
-      "title": "Works",
-      "description": "私のポートフォリオへようこそ。このページでは私の作品を紹介しています。",
+      "metadata": {
+        "title": "Works",
+        "description": "私のポートフォリオへようこそ。このページでは私の作品を紹介しています。"
+      },
       "view_work": "作品を見る",
       "back": "戻る",
       "empty_placeholder": {
@@ -68,8 +82,10 @@
       }
     },
     "blog": {
-      "title": "Blog",
-      "description": "私のポートフォリオへようこそ。このページでは私のブログを投稿しています。",
+      "metadata": {
+        "title": "Blog",
+        "description": "私のポートフォリオへようこそ。このページでは私のブログを投稿しています。"
+      },
       "view_post": "記事を見る",
       "back": "戻る",
       "empty_placeholder": {
@@ -78,8 +94,10 @@
       }
     },
     "contact": {
-      "title": "Contact",
-      "description": "私のポートフォリオへようこそ。ご用の方はお気軽にお問い合わせください。",
+      "metadata": {
+        "title": "Contact",
+        "description": "私のポートフォリオへようこそ。ご用の方はお気軽にお問い合わせください。"
+      },
       "name": "お名前",
       "name_placeholder": "山田 太郎",
       "too_short_name": "お名前は3文字以上で入力してください。",
@@ -113,33 +131,70 @@
       "title": "エラーが発生しました。",
       "description": "記事の作成に失敗しました。もう一度お試しください。"
     },
-    "posts": {
-      "title": "記事",
-      "description": "自分の記事を管理しましょう。",
+    "post": {
+      "metadata": {
+        "title": "記事",
+        "description": "自分の記事を管理しましょう。"
+      },
+      "status": "状態",
+      "published": "公開中",
+      "draft": "下書き",
+      "title": "タイトル",
+      "content": "内容",
+      "updated_at": "更新日",
+      "view": "閲覧数",
+      "like": "いいね数",
+      "select_all": "すべて選択",
+      "select_row": "行を選択",
+      "asc": "昇順",
+      "desc": "降順",
+      "hide": "非表示",
+      "field": "項目",
+      "search": "検索する",
+      "open_menu": "メニューを開く",
+      "edit": "編集",
+      "duplicate": "複製",
+      "delete": "削除",
+      "cancel": "キャンセル",
+      "continue": "続ける",
+      "delete_dialog": {
+        "title": "削除してよろしいですか？",
+        "description": "この操作は元に戻せません。"
+      },
+      "selected": "{count}個を選択中",
+      "page": "{index}ページ目",
+      "go_to_prev_page": "前のページに戻る",
+      "go_to_next_page": "次のページに進む",
+      "no_results": "記事が見つかりせんでした。",
       "empty_placeholder": {
         "title": "記事がありません。",
         "description": "下のボタンから新しい記事を作成しましょう。"
       },
-      "new_post": "投稿する",
-      "published": "公開中",
-      "draft": "下書き"
+      "new_post": "投稿する"
     },
     "analytics": {
-      "title": "分析",
-      "description": ""
+      "metadata": {
+        "title": "分析",
+        "description": ""
+      }
     },
     "settings": {
-      "title": "設定",
-      "description": ""
+      "metadata": {
+        "title": "設定",
+        "description": ""
+      }
     }
   },
   "editor": {
-    "title": "エディター",
-    "description": "新しい記事を作成してください",
+    "metadata": {
+      "title": "エディター",
+      "description": "新しい記事を作成してください"
+    },
     "title_placeholder": "無題の記事",
     "content_placeholder": "ここに入力してください...",
     "draft": "下書き",
     "publish": "公開する",
+    "char": "{count}文字",
     "save": "保存する",
     "back": "戻る",
     "editorjs": {

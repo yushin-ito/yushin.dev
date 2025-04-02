@@ -3,16 +3,34 @@ import { getTranslations } from "next-intl/server";
 import Icons from "@/components/icons";
 import TableOfContents from "@/components/table-of-contents";
 
+interface AboutPageProps {
+  params: Promise<{
+    locale: "en" | "ja";
+  }>;
+}
+
+export const generateMetadata = async ({ params }: AboutPageProps) => {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "content.about.metadata" });
+
+  return {
+    title: t("title"),
+    description: t("description"),
+  };
+};
+
 const AboutPage = async () => {
-  const t = await getTranslations("contents.about");
+  const t = await getTranslations("content.about");
 
   return (
     <section className="container max-w-5xl py-6 md:py-8 lg:py-10">
       <div className="space-y-2">
         <h1 className="text-xl font-bold sm:text-2xl md:text-3xl">
-          {t("title")}
+          {t("metadata.title")}
         </h1>
-        <p className="text-sm text-muted-foreground">{t("description")}</p>
+        <p className="text-sm text-muted-foreground">
+          {t("metadata.description")}
+        </p>
       </div>
       <hr className="mb-8 mt-4 w-full" />
       <div className="relative px-1 lg:grid lg:grid-cols-[1fr_120px] lg:gap-20">

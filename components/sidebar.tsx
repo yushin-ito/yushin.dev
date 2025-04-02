@@ -35,10 +35,9 @@ const Sidebar = () => {
               )}
             >
               <Icon className="absolute left-4 size-6" />
-              {
-                // todo: fix this type
-                t(`${item.label as "posts" | "analytics" | "settings"}.title`)
-              }
+              {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
+              {/* @ts-expect-error */}
+              {t(`${item.label}.metadata.title`)}
             </Link>
           );
         })}

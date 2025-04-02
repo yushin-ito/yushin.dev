@@ -22,7 +22,7 @@ import {
 } from "@/components/ui/sheet";
 
 const Header = () => {
-  const t = useTranslations("contents");
+  const t = useTranslations("content");
   const pathname = usePathname();
   const [showMobileMenu, setShowMobileMenu] = useState(false);
 
@@ -38,12 +38,9 @@ const Header = () => {
               pathname === item.href ? "text-foreground" : "text-foreground/60"
             )}
           >
-            {
-              // todo: fix this type
-              t(
-                `${item.label as "top" | "about" | "works" | "blog" | "contact"}.title`
-              )
-            }
+            {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
+            {/* @ts-expect-error */}
+            {t(`${item.label}.metadata.title`)}
           </Link>
         ))}
       </nav>
@@ -74,12 +71,9 @@ const Header = () => {
                   "w-full"
                 )}
               >
-                {
-                  // todo: fix this type
-                  t(
-                    `${item.label as "top" | "about" | "works" | "blog" | "contact"}.title`
-                  )
-                }
+                {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
+                {/* @ts-expect-error */}
+                {t(`${item.label}.metadata.title`)}
               </Link>
             ))}
           </nav>

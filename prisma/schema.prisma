@@ -74,16 +74,29 @@ model Post {
   id        String   @id @default(cuid())
   title     String
   content   Json?
-  length    Int      @default(0)
+  preview   String?
   published Boolean  @default(false)
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @default(now()) @map("updated_at")
   authorId  String
 
   author User @relation(fields: [authorId], references: [id])
-  like   Like[]
+  views   View[]
+  likes   Like[]
 
   @@map("posts")
+}
+
+model View {
+  id         String   @id @default(cuid())
+  postId     String   @map("post_id")
+  visitorId  String   @unique
+  createdAt  DateTime @default(now()) @map("created_at")
+
+  post  Post  @relation(fields: [postId], references: [id], onDelete: Cascade)
+
+  @@unique([postId, visitorId])
+  @@map("views")
 }
 
 model Like {
