@@ -112,8 +112,7 @@ const Editor = ({ post }: EditorProps) => {
             class: ImageTool,
             config: {
               endpoints: {
-                byFile: "",
-                byUrl: "",
+                byFile: "/api/upload",
               },
             },
           },

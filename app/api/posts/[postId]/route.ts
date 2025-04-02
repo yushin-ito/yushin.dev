@@ -47,10 +47,10 @@ export const DELETE = async (
   }
 };
 
-export async function PATCH(
+export const PATCH = async (
   req: Request,
   context: z.infer<typeof contextSchema>
-) {
+) => {
   try {
     const session = await auth();
 
@@ -82,4 +82,4 @@ export async function PATCH(
 
     return new NextResponse("Internal Server Error", { status: 500 });
   }
-}
+};

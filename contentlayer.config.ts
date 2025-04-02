@@ -13,10 +13,6 @@ import type { UnistNode, UnistTree } from "@/types/unist";
 export const Deck = defineNestedType(() => ({
   name: "Deck",
   fields: {
-    title: {
-      type: "string",
-      required: true,
-    },
     directory: {
       type: "string",
       required: true,
