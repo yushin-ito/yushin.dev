@@ -15,7 +15,7 @@ const AboutPage = async () => {
         <p className="text-sm text-muted-foreground">{t("description")}</p>
       </div>
       <hr className="mb-8 mt-4 w-full" />
-      <div className="relative px-1 lg:grid lg:grid-cols-[1fr_120px] lg:gap-12 xl:gap-20">
+      <div className="relative px-1 lg:grid lg:grid-cols-[1fr_120px] lg:gap-20">
         <div className="space-y-12">
           <div className="space-y-4">
             <h2 id="introduction" className="font-bold sm:text-lg md:text-xl">
@@ -81,8 +81,8 @@ const AboutPage = async () => {
             </div>
           </div>
         </div>
-        <div className="hidden text-sm xl:block">
-          <div className="sticky top-16 mt-4 overflow-y-auto pt-6">
+        <div className="hidden lg:block">
+          <div className="sticky top-12 overflow-y-auto pt-12">
             <TableOfContents
               items={[
                 {

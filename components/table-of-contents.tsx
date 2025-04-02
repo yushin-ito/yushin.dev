@@ -51,20 +51,23 @@ const TableOfContents = ({ items }: TableOfContentsProps) => {
 
   return (
     <div className="space-y-0.5">
-      <p className="font-bold">目次</p>
-      <ul className="m-0 list-decimal pl-5">
+      <p className="text-sm font-bold">目次</p>
+      <ul className="list-decimal pl-5">
         {items.map((item, index) => {
           return (
             <li
               key={index}
               className={cn(
-                "mt-0 pt-2",
+                "pt-1.5",
                 item.id === activeId
                   ? "font-medium text-primary marker:font-medium marker:text-primary"
                   : "text-muted-foreground marker:text-muted-foreground"
               )}
             >
-              <a href={`#${item.id}`} className="inline-block no-underline">
+              <a
+                href={`#${item.id}`}
+                className="inline-block text-sm no-underline"
+              >
                 {item.title}
               </a>
             </li>

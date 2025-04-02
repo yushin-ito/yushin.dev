@@ -99,7 +99,7 @@ const WorkPage = async ({ params }: WorkPageProps) => {
           </div>
         </div>
         <hr className="mb-8 mt-4 w-full" />
-        <div className="relative px-1 lg:grid lg:grid-cols-[1fr_120px] lg:gap-12 xl:gap-20">
+        <div className="relative px-1 lg:grid lg:grid-cols-[1fr_120px] lg:gap-20">
           <div className="space-y-8">
             {work.deck ? (
               <Slideshow deck={work.deck} />
@@ -123,8 +123,8 @@ const WorkPage = async ({ params }: WorkPageProps) => {
               </Link>
             </div>
           </div>
-          <div className="hidden text-sm xl:block">
-            <div className="sticky top-16 mt-4 overflow-y-auto pt-6">
+          <div className="hidden lg:block">
+            <div className="sticky top-12 overflow-y-auto pt-12">
               <TableOfContents items={toc} />
             </div>
           </div>
