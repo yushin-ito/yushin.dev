@@ -49,18 +49,19 @@ const BlogPage = async () => {
               key={post.id}
               className="group relative flex flex-col space-y-2.5"
             >
-              <Image
-                src="/github.png"
-                alt={post.title}
-                width={540}
-                height={450}
-                className="rounded-lg border bg-muted shadow-sm transition-colors"
-                priority
-              />
+              <div className="relative aspect-video w-full overflow-hidden rounded-lg border">
+                <Image
+                  src=""
+                  alt={post.title}
+                  fill
+                  className="bg-muted transition-colors"
+                  priority
+                />
+              </div>
               <div className="space-y-0.5 px-2">
                 <div className="flex items-center justify-between">
                   <h2 className="text-2xl font-bold">{post.title}</h2>
-                  <p className="text-sm text-muted-foreground">
+                  <p className="text-xs text-muted-foreground">
                     {format.relativeTime(new Date(post.updatedAt), new Date())}
                   </p>
                 </div>
