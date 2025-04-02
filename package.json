@@ -105,6 +105,7 @@
     "eslint-plugin-tailwindcss": "^3.18.0",
     "eslint-plugin-unused-imports": "^4.1.4",
     "postcss": "^8",
+    "prettier": "^3.5.3",
     "prisma": "^6.4.1",
     "rehype": "^13.0.2",
     "rehype-autolink-headings": "^7.1.0",

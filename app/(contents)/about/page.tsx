@@ -61,23 +61,23 @@ const AboutPage = async () => {
                 私が普段使っているスキルです。
               </p>
             </div>
-            <div className="mx-auto grid grid-cols-4 justify-center gap-10 px-4 sm:grid-cols-8 sm:gap-12">
-              <Icons.python className="dark:fill-white" />
-              <Icons.cplusplus className="dark:fill-white" />
-              <Icons.html5 className="dark:fill-white" />
-              <Icons.css3 className="dark:fill-white" />
-              <Icons.javascript className="dark:fill-white" />
-              <Icons.typescript className="dark:fill-white" />
-              <Icons.ruby className="dark:fill-white" />
-              <Icons.go className="dark:fill-white" />
-              <Icons.react className="dark:fill-white" />
-              <Icons.nextdotjs className="dark:fill-white" />
-              <Icons.tailwindcss className="dark:fill-white" />
-              <Icons.expo className="dark:fill-white" />
-              <Icons.supabase className="dark:fill-white" />
-              <Icons.prisma className="dark:fill-white" />
-              <Icons.github className="dark:fill-white" />
-              <Icons.figma className="dark:fill-white" />
+            <div className="grid grid-cols-4 place-items-center gap-8 px-4 sm:grid-cols-8 sm:gap-12">
+              <Icons.python className="size-12 dark:fill-white" />
+              <Icons.cplusplus className="size-12 dark:fill-white" />
+              <Icons.html5 className="size-12 dark:fill-white" />
+              <Icons.css3 className="size-12 dark:fill-white" />
+              <Icons.javascript className="size-12 dark:fill-white" />
+              <Icons.typescript className="size-12 dark:fill-white" />
+              <Icons.ruby className="size-12 dark:fill-white" />
+              <Icons.go className="size-12 dark:fill-white" />
+              <Icons.react className="size-12 dark:fill-white" />
+              <Icons.nextdotjs className="size-12 dark:fill-white" />
+              <Icons.tailwindcss className="size-12 dark:fill-white" />
+              <Icons.expo className="size-12 dark:fill-white" />
+              <Icons.supabase className="size-12 dark:fill-white" />
+              <Icons.prisma className="size-12 dark:fill-white" />
+              <Icons.github className="size-12 dark:fill-white" />
+              <Icons.figma className="size-12 dark:fill-white" />
             </div>
           </div>
         </div>
