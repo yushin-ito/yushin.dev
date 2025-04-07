@@ -1,10 +1,11 @@
 import { getTranslations } from "next-intl/server";
+import { Locale } from "next-intl";
 
 import ContactForm from "@/components/contact-form";
 
 interface ContactPageProps {
   params: Promise<{
-    locale: "en" | "ja";
+    locale: Locale;
   }>;
 }
 

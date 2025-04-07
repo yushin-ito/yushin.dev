@@ -1,6 +1,7 @@
 import { getFormatter, getTranslations } from "next-intl/server";
 import Image from "next/image";
 import Link from "next/link";
+import { Locale } from "next-intl";
 
 import { db } from "@/lib/db";
 import {
@@ -12,7 +13,7 @@ import {
 
 interface BlogPageProps {
   params: Promise<{
-    locale: "en" | "ja";
+    locale: Locale;
   }>;
 }
 

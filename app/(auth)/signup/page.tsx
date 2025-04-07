@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { getTranslations } from "next-intl/server";
 import { Suspense } from "react";
+import { Locale } from "next-intl";
 
 import { cn } from "@/lib/utils";
 import { buttonVariants } from "@/components/ui/button";
@@ -9,13 +10,16 @@ import SignupForm from "@/components/signup-form";
 
 interface SignupPageProps {
   params: Promise<{
-    locale: "en" | "ja";
+    locale: Locale;
   }>;
 }
 
 export const generateMetadata = async ({ params }: SignupPageProps) => {
   const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: "auth.signup.metadata" });
+  const t = await getTranslations({
+    locale,
+    namespace: "auth.signup.metadata",
+  });
 
   return {
     title: t("title"),

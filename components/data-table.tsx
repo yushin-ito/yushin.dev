@@ -37,7 +37,7 @@ const DataTable = <TData, TValue>({
   columns,
   data,
 }: DataTableProps<TData, TValue>) => {
-  const t = useTranslations("dashboard.post");
+  const t = useTranslations("dashboard.posts");
 
   const [rowSelection, setRowSelection] = useState({});
   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
@@ -112,7 +112,7 @@ const DataTable = <TData, TValue>({
                   colSpan={columns.length}
                   className="h-24 text-center"
                 >
-                  {t("no_results")}
+                  {t("no_post_found")}
                 </TableCell>
               </TableRow>
             )}

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { getTranslations } from "next-intl/server";
 import { Suspense } from "react";
+import { Locale } from "next-intl";
 
 import { cn } from "@/lib/utils";
 import { buttonVariants } from "@/components/ui/button";
@@ -9,7 +10,7 @@ import Icons from "@/components/icons";
 
 interface LoginPageProps {
   params: Promise<{
-    locale: "en" | "ja";
+    locale: Locale;
   }>;
 }
 

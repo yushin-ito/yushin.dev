@@ -1,5 +1,4 @@
 import { Column } from "@tanstack/react-table";
-import { ArrowDown, ArrowUp, EyeOff } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { HTMLAttributes } from "react";
 
@@ -25,7 +24,7 @@ const DataTableColumnHeader = <TData, TValue>({
   title,
   className,
 }: DataTableColumnHeaderProps<TData, TValue>) => {
-  const t = useTranslations("dashboard.post");
+  const t = useTranslations("dashboard.posts");
 
   if (!column.getCanSort()) {
     return <div className={cn("w-24 text-sm", className)}>{title}</div>;
@@ -51,16 +50,16 @@ const DataTableColumnHeader = <TData, TValue>({
         </DropdownMenuTrigger>
         <DropdownMenuContent align="center">
           <DropdownMenuItem onClick={() => column.toggleSorting(false)}>
-            <ArrowUp className="size-4 text-muted-foreground/70" />
+            <Icons.arrowUp className="size-4 text-muted-foreground/70" />
             {t("asc")}
           </DropdownMenuItem>
           <DropdownMenuItem onClick={() => column.toggleSorting(true)}>
-            <ArrowDown className="size-4 text-muted-foreground/70" />
+            <Icons.arrowDown className="size-4 text-muted-foreground/70" />
             {t("desc")}
           </DropdownMenuItem>
           <DropdownMenuSeparator />
           <DropdownMenuItem onClick={() => column.toggleVisibility(false)}>
-            <EyeOff className="size-4 text-muted-foreground/70" />
+            <Icons.eyeOff className="size-4 text-muted-foreground/70" />
             {t("hide")}
           </DropdownMenuItem>
         </DropdownMenuContent>

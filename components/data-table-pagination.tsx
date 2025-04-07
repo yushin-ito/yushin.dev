@@ -11,7 +11,7 @@ interface DataTablePaginationProps<TData> {
 const DataTablePagination = <TData,>({
   table,
 }: DataTablePaginationProps<TData>) => {
-  const t = useTranslations("dashboard.post");
+  const t = useTranslations("dashboard.posts");
 
   return (
     <div className="flex justify-between px-2">

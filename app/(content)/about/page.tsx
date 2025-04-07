@@ -1,17 +1,21 @@
 import { getTranslations } from "next-intl/server";
+import { Locale } from "next-intl";
 
 import Icons from "@/components/icons";
 import TableOfContents from "@/components/table-of-contents";
 
 interface AboutPageProps {
   params: Promise<{
-    locale: "en" | "ja";
+    locale: Locale;
   }>;
 }
 
 export const generateMetadata = async ({ params }: AboutPageProps) => {
   const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: "content.about.metadata" });
+  const t = await getTranslations({
+    locale,
+    namespace: "content.about.metadata",
+  });
 
   return {
     title: t("title"),

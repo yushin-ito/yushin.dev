@@ -1,5 +1,6 @@
 import { getTranslations } from "next-intl/server";
 import { redirect } from "next/navigation";
+import { Locale } from "next-intl";
 
 import { auth } from "@/auth";
 import { db } from "@/lib/db";
@@ -13,8 +14,27 @@ import CreatePostButton from "@/components/create-post-button";
 import DataTable from "@/components/data-table";
 import { columns } from "@/components/columns";
 
-const PostPage = async () => {
-  const t = await getTranslations("dashboard.post");
+interface PostsPageProps {
+  params: Promise<{
+    locale: Locale;
+  }>;
+}
+
+export const generateMetadata = async ({ params }: PostsPageProps) => {
+  const { locale } = await params;
+  const t = await getTranslations({
+    locale,
+    namespace: "dashboard.posts.metadata",
+  });
+
+  return {
+    title: t("title"),
+    description: t("description"),
+  };
+};
+
+const PostsPage = async () => {
+  const t = await getTranslations("dashboard.posts");
   const session = await auth();
 
   if (!session?.user) {
@@ -43,7 +63,7 @@ const PostPage = async () => {
   });
 
   return (
-    <section className="container max-w-6xl py-4 md:py-6 lg:py-8">
+    <section className="container max-w-6xl space-y-12 py-4 md:py-6 lg:py-8">
       <div className="flex items-center justify-between">
         <div className="space-y-1">
           <h1 className="text-lg font-bold md:text-xl">
@@ -55,25 +75,23 @@ const PostPage = async () => {
         </div>
         <CreatePostButton>{t("new_post")}</CreatePostButton>
       </div>
-      <div className="mt-8">
-        {posts.length ? (
-          <DataTable data={posts} columns={columns} />
-        ) : (
-          <EmptyPlaceholder>
-            <EmptyPlaceholderIcon name="post" />
-            <EmptyPlaceholderTitle>
-              {t("empty_placeholder.title")}
-            </EmptyPlaceholderTitle>
-            <EmptyPlaceholderDescription>
-              {t("empty_placeholder.description")}
-            </EmptyPlaceholderDescription>
-            <CreatePostButton className="rounded-full px-10 py-5">
-              {t("new_post")}
-            </CreatePostButton>
-          </EmptyPlaceholder>
-        )}
-      </div>
+      {posts.length ? (
+        <DataTable data={posts} columns={columns} />
+      ) : (
+        <EmptyPlaceholder>
+          <EmptyPlaceholderIcon name="post" />
+          <EmptyPlaceholderTitle>
+            {t("empty_placeholder.title")}
+          </EmptyPlaceholderTitle>
+          <EmptyPlaceholderDescription>
+            {t("empty_placeholder.description")}
+          </EmptyPlaceholderDescription>
+          <CreatePostButton className="rounded-full px-10 py-5">
+            {t("new_post")}
+          </CreatePostButton>
+        </EmptyPlaceholder>
+      )}
     </section>
   );
 };
-export default PostPage;
+export default PostsPage;

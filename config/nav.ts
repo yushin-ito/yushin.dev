@@ -25,7 +25,7 @@ export const navConfig = {
   ],
   dashboard: [
     {
-      label: "post",
+      label: "posts",
       href: "/dashboard",
       icon: "post",
     },

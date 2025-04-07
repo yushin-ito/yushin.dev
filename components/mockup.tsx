@@ -1,7 +1,7 @@
-import { Search } from "lucide-react";
 import Image from "next/image";
 
 import { ScrollArea } from "@/components/ui/scroll-area";
+import Icons from "@/components/icons";
 
 interface MockupProps {
   title: string;
@@ -18,7 +18,7 @@ const Mockup = ({ title, src }: MockupProps) => {
           <div className="size-2.5 rounded-full bg-green-500 sm:size-3" />
         </div>
         <div className="relative flex w-1/2 items-center justify-center rounded-md border bg-background py-1 text-center text-muted-foreground">
-          <Search className="absolute left-2 size-3 sm:size-4" />
+          <Icons.search className="absolute left-2 size-3 sm:size-4" />
           <p className="text-xs sm:text-sm">{title}</p>
         </div>
       </div>

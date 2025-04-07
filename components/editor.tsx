@@ -5,7 +5,7 @@ import "@/styles/editor.css";
 import { useRouter } from "next/navigation";
 import EditorJS, { BlockMutationEvent } from "@editorjs/editorjs";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Post } from "@prisma/client";
+import { Prisma } from "@prisma/client";
 import { useForm } from "react-hook-form";
 import TextareaAutosize from "react-textarea-autosize";
 import { z } from "zod";
@@ -20,8 +20,17 @@ import Icons from "@/components/icons";
 import { cn } from "@/lib/utils";
 import { getTextFromBlocks } from "@/lib/editor";
 
+type Post = Prisma.PostGetPayload<{
+  select: {
+    id: true;
+    title: true;
+    content: true;
+    published: true;
+  };
+}>;
+
 interface EditorProps {
-  post: Pick<Post, "id" | "title" | "content" | "published">;
+  post: Post;
 }
 
 type FormData = z.infer<typeof editorSchema>;

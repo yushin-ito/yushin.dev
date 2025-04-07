@@ -33,7 +33,7 @@ interface DataTableRowActionsProps<TData> {
 const DataTableRowActions = <TData,>({
   row,
 }: DataTableRowActionsProps<TData>) => {
-  const t = useTranslations("dashboard.post");
+  const t = useTranslations("dashboard.posts");
   const post = tableSchema.parse(row.original);
 
   return (

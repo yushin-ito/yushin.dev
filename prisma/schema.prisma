@@ -81,10 +81,23 @@ model Post {
   authorId  String
 
   author User @relation(fields: [authorId], references: [id])
+  impressions Impression[]
   views   View[]
   likes   Like[]
 
   @@map("posts")
+}
+
+model Impression {
+  id         String   @id @default(cuid())
+  postId     String   @map("post_id")
+  visitorId  String   @unique
+  createdAt  DateTime @default(now()) @map("created_at")
+
+  post  Post  @relation(fields: [postId], references: [id], onDelete: Cascade)
+
+  @@unique([postId, visitorId])
+  @@map("impressions")
 }
 
 model View {

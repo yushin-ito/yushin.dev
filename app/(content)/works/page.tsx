@@ -2,6 +2,7 @@ import { compareDesc } from "date-fns";
 import Image from "next/image";
 import Link from "next/link";
 import { getFormatter, getTranslations } from "next-intl/server";
+import { Locale } from "next-intl";
 
 import { allWorks } from "contentlayer/generated";
 import {
@@ -13,7 +14,7 @@ import {
 
 interface WorksPageProps {
   params: Promise<{
-    locale: "en" | "ja";
+    locale: Locale;
   }>;
 }
 

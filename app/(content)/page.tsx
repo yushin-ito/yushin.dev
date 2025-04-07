@@ -1,11 +1,12 @@
 import Image from "next/image";
 import { getTranslations } from "next-intl/server";
+import { Locale } from "next-intl";
 
 import Typewriter from "@/components/typewriter";
 
 interface TopPageProps {
   params: Promise<{
-    locale: "en" | "ja";
+    locale: Locale;
   }>;
 }
 

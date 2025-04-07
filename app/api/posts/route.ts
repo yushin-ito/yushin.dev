@@ -9,22 +9,6 @@ const bodySchema = z.object({
   content: z.string().optional(),
 });
 
-export const GET = async () => {
-  try {
-    const posts = await db.post.findMany({
-      where: { published: true },
-      orderBy: { updatedAt: "desc" },
-    });
-
-    return NextResponse.json(posts, { status: 200 });
-  } catch {
-    return NextResponse.json(
-      { error: "Internal Server Error" },
-      { status: 500 }
-    );
-  }
-};
-
 export const POST = async (req: NextRequest) => {
   try {
     const session = await auth();
