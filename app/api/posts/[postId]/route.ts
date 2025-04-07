@@ -16,6 +16,7 @@ const bodySchema = z.object({
   title: z.string().min(3).max(128).optional(),
   content: z.any().optional(),
   preview: z.string().optional(),
+  published: z.boolean().optional(),
 });
 
 export const DELETE = async (
@@ -73,6 +74,8 @@ export const PATCH = async (
         title: body.title,
         content: body.content,
         preview: body.preview,
+        published: body.published,
+        updatedAt: new Date(),
       },
     });
 

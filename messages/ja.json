@@ -154,6 +154,12 @@
       "search": "検索する",
       "open_menu": "メニューを開く",
       "edit": "編集",
+      "publish": "公開",
+      "unpublish": "非公開",
+      "error": {
+        "title": "エラーが発生しました。",
+        "description": "記事の更新に失敗しました。もう一度お試しください。"
+      },
       "duplicate": "複製",
       "delete": "削除",
       "cancel": "キャンセル",

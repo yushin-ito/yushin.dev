@@ -154,7 +154,13 @@
       "search": "Search",
       "open_menu": "Open menu",
       "edit": "Edit",
+      "publish": "Publish",
+      "unpublish": "Unpublish",
       "duplicate": "Duplicate",
+      "error": {
+        "title": "Something went wrong.",
+        "description": "Your post was not updated. Please try again."
+      },
       "delete": "Delete",
       "cancel": "Cancel",
       "continue": "Continue",

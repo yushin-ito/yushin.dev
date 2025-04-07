@@ -3,6 +3,8 @@
 import { Row } from "@tanstack/react-table";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
+import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 
 import {
   DropdownMenu,
@@ -34,6 +36,9 @@ const DataTableRowActions = <TData,>({
   row,
 }: DataTableRowActionsProps<TData>) => {
   const t = useTranslations("dashboard.posts");
+
+  const router = useRouter();
+
   const post = tableSchema.parse(row.original);
 
   return (
@@ -54,6 +59,32 @@ const DataTableRowActions = <TData,>({
               <Icons.pencil className="ml-1 mr-2" />
               <span>{t("edit")}</span>
             </Link>
+          </DropdownMenuItem>
+          <DropdownMenuItem
+            onClick={async () => {
+              const response = await fetch(`/api/posts/${post.id}`, {
+                method: "PATCH",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                  published: !post.published,
+                }),
+              });
+
+              if (!response.ok) {
+                toast.error(t("error.title"), {
+                  description: t("error.description"),
+                });
+
+                return;
+              }
+
+              router.refresh();
+            }}
+          >
+            <Icons.globe className="ml-1 mr-2" />
+            <span>{post.published ? t("unpublish") : t("publish")}</span>
           </DropdownMenuItem>
           <DropdownMenuItem>
             <Icons.copy className="ml-1 mr-2" />
