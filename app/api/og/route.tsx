@@ -4,13 +4,15 @@ import { z } from "zod";
 
 import { cn } from "@/lib/utils";
 
+export const runtime = "edge";
+
 const searchParamsSchema = z.object({
   title: z.string(),
   mode: z.enum(["light", "dark"]).default("light"),
 });
 
 const noto_sans_jp = fetch(
-  new URL("../../../assets/fonts/NotoSansJP-Bold.woff", import.meta.url)
+  `${process.env.NEXT_PUBLIC_SITE_URL}/fonts/NotoSansJP-Bold.woff`
 ).then((res) => res.arrayBuffer());
 
 export const GET = async (req: NextRequest) => {
@@ -64,7 +66,6 @@ export const GET = async (req: NextRequest) => {
                   <div tw="flex text-[40px] font-bold">Yushin Ito</div>
                 </div>
               </div>
-              <div></div>
             </div>
           </div>
         </div>
