@@ -14,6 +14,7 @@ import { buttonVariants } from "@/components/ui/button";
 import Icons from "@/components/icons";
 import {
   Sheet,
+  SheetClose,
   SheetContent,
   SheetDescription,
   SheetHeader,
@@ -60,21 +61,22 @@ const Header = () => {
           </SheetHeader>
           <nav className="space-y-4 py-8">
             {navConfig.contents.map((item, index) => (
-              <Link
-                key={index}
-                href={item.href}
-                className={cn(
-                  buttonVariants({ variant: "ghost" }),
-                  pathname === item.href
-                    ? "bg-muted hover:bg-muted"
-                    : "hover:bg-transparent hover:underline",
-                  "w-full"
-                )}
-              >
-                {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
-                {/* @ts-expect-error */}
-                {t(`${item.label}.metadata.title`)}
-              </Link>
+              <SheetClose asChild key={index}>
+                <Link
+                  href={item.href}
+                  className={cn(
+                    buttonVariants({ variant: "ghost" }),
+                    pathname === item.href
+                      ? "bg-muted hover:bg-muted"
+                      : "hover:bg-transparent hover:underline",
+                    "w-full"
+                  )}
+                >
+                  {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
+                  {/* @ts-expect-error */}
+                  {t(`${item.label}.metadata.title`)}
+                </Link>
+              </SheetClose>
             ))}
           </nav>
         </SheetContent>
