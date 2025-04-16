@@ -53,7 +53,6 @@ const WorksPage = async () => {
                   alt={work.title}
                   fill
                   sizes="(min-width: 640px) 640px, 100vw"
-                  priority
                   className="bg-muted transition-colors"
                 />
               </div>
