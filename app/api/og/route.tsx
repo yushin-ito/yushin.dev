@@ -49,10 +49,10 @@ export const GET = async (req: NextRequest) => {
               <div tw="flex mx-2 w-6 h-6 rounded-full bg-green-500" />
             </div>
           </div>
-          <div tw="flex flex-col justify-between flex-1 px-24 py-16">
-            <div tw="flex leading-[1.25] text-[80px] font-bold">
-              {title.length > 16 * 3 - 1
-                ? `${title.substring(0, 16 * 3 - 1)}...`
+          <div tw="flex flex-col justify-between flex-1 px-24 py-14">
+            <div tw="flex leading-[1.4] text-[80px] font-bold">
+              {title.length > 12 * 3 - 1
+                ? `${title.substring(0, 12 * 3 - 1)}...`
                 : title}
             </div>
             <div tw="flex items-center justify-end">
