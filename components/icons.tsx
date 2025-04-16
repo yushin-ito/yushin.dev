@@ -1,4 +1,5 @@
 import {
+  AlertTriangle,
   ArrowDown,
   ArrowLeft,
   ArrowRight,
@@ -18,6 +19,8 @@ import {
   Globe,
   Heart,
   House,
+  Info,
+  Lightbulb,
   Loader2,
   LogOut,
   Maximize,
@@ -36,6 +39,7 @@ import {
 } from "lucide-react";
 
 const Icons = {
+  alert: AlertTriangle,
   arrowDown: ArrowDown,
   arrowLeft: ArrowLeft,
   arrowRight: ArrowRight,
@@ -59,6 +63,7 @@ const Icons = {
   menu: Menu,
   minimize: Minimize,
   moon: Moon,
+  note: Info,
   pointer: MousePointer2,
   pencil: Pencil,
   post: FileText,
@@ -67,6 +72,7 @@ const Icons = {
   signOut: LogOut,
   spinner: Loader2,
   sun: Sun,
+  tip: Lightbulb,
   trash: Trash,
   user: User,
   chakraui: (props: LucideProps) => (
