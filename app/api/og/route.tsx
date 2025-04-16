@@ -3,24 +3,27 @@ import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 
 import { cn } from "@/lib/utils";
+import { siteConfig } from "@/config/site";
 
 export const runtime = "edge";
 
 const searchParamsSchema = z.object({
   title: z.string(),
   mode: z.enum(["light", "dark"]).default("light"),
+  width: z.coerce.number().int().positive().default(1200),
+  height: z.coerce.number().int().positive().default(630),
 });
 
-const noto_sans_jp = fetch(
-  `${process.env.NEXT_PUBLIC_SITE_URL}/fonts/NotoSansJP-Bold.woff`
-).then((res) => res.arrayBuffer());
+const noto_sans_jp = fetch(`${siteConfig.url}/fonts/NotoSansJP-Bold.woff`).then(
+  (res) => res.arrayBuffer()
+);
 
 export const GET = async (req: NextRequest) => {
   try {
     const font = await noto_sans_jp;
 
     const { searchParams } = new URL(req.url);
-    const { title, mode } = searchParamsSchema.parse(
+    const { title, mode, width, height } = searchParamsSchema.parse(
       Object.fromEntries(searchParams)
     );
 
@@ -47,7 +50,7 @@ export const GET = async (req: NextRequest) => {
             </div>
           </div>
           <div tw="flex flex-col justify-between flex-1 px-24 py-16">
-            <div tw="flex leading-[1.2] text-[70px] font-bold">
+            <div tw="flex leading-[1.25] text-[80px] font-bold">
               {title.length > 16 * 3 - 1
                 ? `${title.substring(0, 16 * 3 - 1)}...`
                 : title}
@@ -71,8 +74,8 @@ export const GET = async (req: NextRequest) => {
         </div>
       ),
       {
-        width: 1200,
-        height: 630,
+        width,
+        height,
         fonts: [
           {
             name: "Noto Sans JP",
@@ -83,7 +86,8 @@ export const GET = async (req: NextRequest) => {
         ],
       }
     );
-  } catch {
+  } catch (error) {
+    console.log(error);
     return NextResponse.json(
       { error: "Internal Server Error" },
       { status: 500 }

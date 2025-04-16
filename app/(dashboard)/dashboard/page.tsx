@@ -48,7 +48,7 @@ const PostsPage = async () => {
     select: {
       id: true,
       title: true,
-      preview: true,
+      description: true,
       published: true,
       authorId: true,
       createdAt: true,

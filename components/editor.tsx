@@ -320,7 +320,7 @@ const Editor = ({ post }: EditorProps) => {
         body: JSON.stringify({
           title: data.title,
           content,
-          preview: text.slice(0, 100),
+          description: text.slice(0, 100),
         }),
       });
 

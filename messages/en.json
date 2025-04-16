@@ -87,6 +87,7 @@
         "description": "Welcome to my blog page. Please feel free to read my posts."
       },
       "view_post": "View Post",
+      "no_description": "No description",
       "back": "Back",
       "empty_placeholder": {
         "title": "No posts published",

@@ -87,6 +87,7 @@
         "description": "私のポートフォリオへようこそ。このページでは私のブログを投稿しています。"
       },
       "view_post": "記事を見る",
+      "no_description": "本文がありません。",
       "back": "戻る",
       "empty_placeholder": {
         "title": "記事がありません",

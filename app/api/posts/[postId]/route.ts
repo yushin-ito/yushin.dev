@@ -15,7 +15,7 @@ const contextSchema = z.object({
 const bodySchema = z.object({
   title: z.string().min(3).max(128).optional(),
   content: z.any().optional(),
-  preview: z.string().optional(),
+  description: z.string().optional(),
   published: z.boolean().optional(),
 });
 
@@ -73,7 +73,7 @@ export const PATCH = async (
       data: {
         title: body.title,
         content: body.content,
-        preview: body.preview,
+        description: body.description,
         published: body.published,
         updatedAt: new Date(),
       },

@@ -73,7 +73,7 @@ export const columns: ColumnDef<z.infer<typeof tableSchema>>[] = [
     enableSorting: false,
   },
   {
-    accessorKey: "preview",
+    accessorKey: "description",
     meta: { label: "content" },
     header: function Header({ column }) {
       const t = useTranslations("dashboard.posts");
@@ -82,7 +82,9 @@ export const columns: ColumnDef<z.infer<typeof tableSchema>>[] = [
     },
     cell: ({ row }) => {
       return (
-        <div className="max-w-[240px] truncate">{row.getValue("preview")}</div>
+        <div className="max-w-[240px] truncate">
+          {row.getValue("description")}
+        </div>
       );
     },
     enableSorting: false,

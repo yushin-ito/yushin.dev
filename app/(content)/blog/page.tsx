@@ -1,6 +1,4 @@
-import { getFormatter, getTranslations } from "next-intl/server";
-import Image from "next/image";
-import Link from "next/link";
+import { getTranslations } from "next-intl/server";
 import { Locale } from "next-intl";
 
 import { db } from "@/lib/db";
@@ -10,7 +8,7 @@ import {
   EmptyPlaceholderTitle,
   EmptyPlaceholderDescription,
 } from "@/components/empty-placeholder";
-import { siteConfig } from "@/config/site";
+import PostItem from "@/components/post-item";
 
 interface BlogPageProps {
   params: Promise<{
@@ -33,7 +31,6 @@ export const generateMetadata = async ({ params }: BlogPageProps) => {
 
 const BlogPage = async () => {
   const t = await getTranslations("content.blog");
-  const format = await getFormatter();
 
   const posts = await db.post.findMany({
     where: {
@@ -42,6 +39,7 @@ const BlogPage = async () => {
     select: {
       id: true,
       title: true,
+      description: true,
       published: true,
       updatedAt: true,
       _count: {
@@ -66,44 +64,15 @@ const BlogPage = async () => {
       <hr className="mb-8 mt-4 w-full" />
       {posts.length ? (
         <div className="grid gap-10 px-2 sm:grid-cols-2">
-          {posts.map((post) => {
-            const ogUrl = new URL(`${siteConfig.url}/api/og`);
-            ogUrl.searchParams.set("title", post.title);
-
-            return (
-              <article
-                key={post.id}
-                className="group relative flex flex-col space-y-2.5"
-              >
-                <div className="relative aspect-video w-full overflow-hidden rounded-lg border">
-                  <Image
-                    src={ogUrl.toString()}
-                    alt={post.title}
-                    fill
-                    className="bg-muted transition-colors"
-                    priority
-                  />
-                </div>
-                <div className="space-y-0.5 px-2">
-                  <div className="flex items-center justify-between">
-                    <h2 className="truncate text-2xl font-bold">
-                      {post.title}
-                    </h2>
-                    <p className="whitespace-nowrap text-xs text-muted-foreground">
-                      {format.relativeTime(
-                        new Date(post.updatedAt),
-                        new Date()
-                      )}
-                    </p>
-                  </div>
-                  <p className="text-sm text-muted-foreground">{post.title}</p>
-                </div>
-                <Link href={post.id} className="absolute inset-0">
-                  <span className="sr-only">{t("view_post")}</span>
-                </Link>
-              </article>
-            );
-          })}
+          {posts.map((post, index) => (
+            <PostItem
+              key={index}
+              id={post.id}
+              title={post.title}
+              description={post.description || t("no_description")}
+              updatedAt={post.updatedAt}
+            />
+          ))}
         </div>
       ) : (
         <EmptyPlaceholder className="min-h-[360px] border-none">

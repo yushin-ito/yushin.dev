@@ -10,7 +10,7 @@ const ThemeProvider = ({
   <NextThemesProvider
     attribute="class"
     defaultTheme="light"
-    enableSystem
+    enableSystem={false}
     {...props}
   >
     {children}
