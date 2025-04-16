@@ -50,7 +50,7 @@ export const generateMetadata = async ({ params }: WorkPageProps) => {
       url: `${siteConfig.url}/works/${work.slug}`,
       images: [
         {
-          url: `${siteConfig.url}/images/works/${work.slug}/thumbnail.png`,
+          url: `${siteConfig.url}/images/${work.slug}/thumbnail.png`,
           width: 1200,
           height: 630,
           alt: work.title,
@@ -61,7 +61,7 @@ export const generateMetadata = async ({ params }: WorkPageProps) => {
       card: "summary_large_image",
       title: work.title,
       description: work.description,
-      images: [`${siteConfig.url}/images/works/${work.slug}/thumbnail.png`],
+      images: [`${siteConfig.url}/images/${work.slug}/thumbnail.png`],
     },
   };
 };
