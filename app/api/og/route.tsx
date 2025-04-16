@@ -4,8 +4,6 @@ import { z } from "zod";
 
 import { cn } from "@/lib/utils";
 
-export const runtime = "edge";
-
 const searchParamsSchema = z.object({
   title: z.string(),
   mode: z.enum(["light", "dark"]).default("light"),
