@@ -1,5 +1,4 @@
 import { getTranslations } from "next-intl/server";
-import { Locale } from "next-intl";
 import { redirect } from "next/navigation";
 import { subDays } from "date-fns";
 
@@ -16,7 +15,6 @@ import Stats from "@/components/stats";
 import LineChart from "@/components/line-chart";
 
 interface AnalyticsPageProps {
-  params: Promise<{ locale: Locale }>;
   searchParams: Promise<{
     postId?: string;
     tab?: string;
@@ -25,12 +23,8 @@ interface AnalyticsPageProps {
   }>;
 }
 
-export const generateMetadata = async ({ params }: AnalyticsPageProps) => {
-  const { locale } = await params;
-  const t = await getTranslations({
-    locale,
-    namespace: "dashboard.analytics.metadata",
-  });
+export const generateMetadata = async () => {
+  const t = await getTranslations("dashboard.analytics.metadata");
 
   return {
     title: t("title"),

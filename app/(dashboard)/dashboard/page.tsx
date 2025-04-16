@@ -1,6 +1,5 @@
 import { getTranslations } from "next-intl/server";
 import { redirect } from "next/navigation";
-import { Locale } from "next-intl";
 
 import { auth } from "@/auth";
 import { db } from "@/lib/db";
@@ -14,18 +13,8 @@ import CreatePostButton from "@/components/create-post-button";
 import DataTable from "@/components/data-table";
 import { columns } from "@/components/columns";
 
-interface PostsPageProps {
-  params: Promise<{
-    locale: Locale;
-  }>;
-}
-
-export const generateMetadata = async ({ params }: PostsPageProps) => {
-  const { locale } = await params;
-  const t = await getTranslations({
-    locale,
-    namespace: "dashboard.posts.metadata",
-  });
+export const generateMetadata = async () => {
+  const t = await getTranslations("dashboard.posts.metadata");
 
   return {
     title: t("title"),

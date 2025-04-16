@@ -1,22 +1,14 @@
 import Link from "next/link";
 import { getTranslations } from "next-intl/server";
 import { Suspense } from "react";
-import { Locale } from "next-intl";
 
 import { cn } from "@/lib/utils";
 import { buttonVariants } from "@/components/ui/button";
 import LoginForm from "@/components/login-form";
 import Icons from "@/components/icons";
 
-interface LoginPageProps {
-  params: Promise<{
-    locale: Locale;
-  }>;
-}
-
-export const generateMetadata = async ({ params }: LoginPageProps) => {
-  const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: "auth.login.metadata" });
+export const generateMetadata = async () => {
+  const t = await getTranslations("auth.login.metadata");
 
   return {
     title: t("title"),

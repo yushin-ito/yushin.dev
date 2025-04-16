@@ -2,7 +2,6 @@ import { compareDesc } from "date-fns";
 import Image from "next/image";
 import Link from "next/link";
 import { getFormatter, getTranslations } from "next-intl/server";
-import { Locale } from "next-intl";
 
 import { allWorks } from "contentlayer/generated";
 import {
@@ -12,18 +11,8 @@ import {
   EmptyPlaceholderDescription,
 } from "@/components/empty-placeholder";
 
-interface WorksPageProps {
-  params: Promise<{
-    locale: Locale;
-  }>;
-}
-
-export const generateMetadata = async ({ params }: WorksPageProps) => {
-  const { locale } = await params;
-  const t = await getTranslations({
-    locale,
-    namespace: "content.works.metadata",
-  });
+export const generateMetadata = async () => {
+  const t = await getTranslations("content.works.metadata");
 
   return {
     title: t("title"),

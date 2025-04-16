@@ -1,20 +1,9 @@
 import { getTranslations } from "next-intl/server";
-import { Locale } from "next-intl";
 
 import ContactForm from "@/components/contact-form";
 
-interface ContactPageProps {
-  params: Promise<{
-    locale: Locale;
-  }>;
-}
-
-export const generateMetadata = async ({ params }: ContactPageProps) => {
-  const { locale } = await params;
-  const t = await getTranslations({
-    locale,
-    namespace: "content.contact.metadata",
-  });
+export const generateMetadata = async () => {
+  const t = await getTranslations("content.contact.metadata");
 
   return {
     title: t("title"),

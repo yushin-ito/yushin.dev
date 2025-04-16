@@ -1,5 +1,4 @@
 import { getTranslations } from "next-intl/server";
-import { Locale } from "next-intl";
 
 import { db } from "@/lib/db";
 import {
@@ -10,18 +9,8 @@ import {
 } from "@/components/empty-placeholder";
 import PostItem from "@/components/post-item";
 
-interface BlogPageProps {
-  params: Promise<{
-    locale: Locale;
-  }>;
-}
-
-export const generateMetadata = async ({ params }: BlogPageProps) => {
-  const { locale } = await params;
-  const t = await getTranslations({
-    locale,
-    namespace: "content.blog.metadata",
-  });
+export const generateMetadata = async () => {
+  const t = await getTranslations("content.blog.metadata");
 
   return {
     title: t("title"),

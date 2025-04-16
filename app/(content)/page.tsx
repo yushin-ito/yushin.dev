@@ -1,21 +1,10 @@
 import Image from "next/image";
 import { getTranslations } from "next-intl/server";
-import { Locale } from "next-intl";
 
 import Typewriter from "@/components/typewriter";
 
-interface TopPageProps {
-  params: Promise<{
-    locale: Locale;
-  }>;
-}
-
-export const generateMetadata = async ({ params }: TopPageProps) => {
-  const { locale } = await params;
-  const t = await getTranslations({
-    locale,
-    namespace: "content.top.metadata",
-  });
+export const generateMetadata = async () => {
+  const t = await getTranslations("content.top.metadata");
 
   return {
     title: t("title"),

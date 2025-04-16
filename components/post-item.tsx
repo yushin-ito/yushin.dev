@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useTheme } from "next-themes";
 import { useFormatter, useTranslations } from "next-intl";
+import { useState, useEffect } from "react";
 
 import { siteConfig } from "@/config/site";
 
@@ -18,7 +19,14 @@ const PostItem = ({ id, title, description, updatedAt }: PostItem) => {
   const t = useTranslations("content.blog");
   const format = useFormatter();
 
+  const [mounted, setMounted] = useState(false);
   const { theme } = useTheme();
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) return null;
 
   const ogUrl = new URL(`${siteConfig.url}/api/og`);
   ogUrl.searchParams.set("title", title);
