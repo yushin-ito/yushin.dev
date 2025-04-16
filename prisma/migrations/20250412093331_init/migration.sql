@@ -67,6 +67,16 @@ CREATE TABLE "posts" (
 );
 
 -- CreateTable
+CREATE TABLE "impressions" (
+    "id" TEXT NOT NULL,
+    "post_id" TEXT NOT NULL,
+    "visitorId" TEXT NOT NULL,
+    "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT "impressions_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
 CREATE TABLE "views" (
     "id" TEXT NOT NULL,
     "post_id" TEXT NOT NULL,
@@ -102,6 +112,12 @@ CREATE UNIQUE INDEX "verification_tokens_token_key" ON "verification_tokens"("to
 CREATE UNIQUE INDEX "verification_tokens_identifier_token_key" ON "verification_tokens"("identifier", "token");
 
 -- CreateIndex
+CREATE UNIQUE INDEX "impressions_visitorId_key" ON "impressions"("visitorId");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "impressions_post_id_visitorId_key" ON "impressions"("post_id", "visitorId");
+
+-- CreateIndex
 CREATE UNIQUE INDEX "views_visitorId_key" ON "views"("visitorId");
 
 -- CreateIndex
@@ -121,6 +137,9 @@ ALTER TABLE "sessions" ADD CONSTRAINT "sessions_user_id_fkey" FOREIGN KEY ("user
 
 -- AddForeignKey
 ALTER TABLE "posts" ADD CONSTRAINT "posts_authorId_fkey" FOREIGN KEY ("authorId") REFERENCES "users"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "impressions" ADD CONSTRAINT "impressions_post_id_fkey" FOREIGN KEY ("post_id") REFERENCES "posts"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "views" ADD CONSTRAINT "views_post_id_fkey" FOREIGN KEY ("post_id") REFERENCES "posts"("id") ON DELETE CASCADE ON UPDATE CASCADE;

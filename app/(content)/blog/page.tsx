@@ -10,6 +10,7 @@ import {
   EmptyPlaceholderTitle,
   EmptyPlaceholderDescription,
 } from "@/components/empty-placeholder";
+import { siteConfig } from "@/config/site";
 
 interface BlogPageProps {
   params: Promise<{
@@ -65,34 +66,44 @@ const BlogPage = async () => {
       <hr className="mb-8 mt-4 w-full" />
       {posts.length ? (
         <div className="grid gap-10 px-2 sm:grid-cols-2">
-          {posts.map((post) => (
-            <article
-              key={post.id}
-              className="group relative flex flex-col space-y-2.5"
-            >
-              <div className="relative aspect-video w-full overflow-hidden rounded-lg border">
-                <Image
-                  src=""
-                  alt={post.title}
-                  fill
-                  className="bg-muted transition-colors"
-                  priority
-                />
-              </div>
-              <div className="space-y-0.5 px-2">
-                <div className="flex items-center justify-between">
-                  <h2 className="text-2xl font-bold">{post.title}</h2>
-                  <p className="text-xs text-muted-foreground">
-                    {format.relativeTime(new Date(post.updatedAt), new Date())}
-                  </p>
+          {posts.map((post) => {
+            const ogUrl = new URL(`${siteConfig.url}/api/og`);
+            ogUrl.searchParams.set("title", post.title);
+
+            return (
+              <article
+                key={post.id}
+                className="group relative flex flex-col space-y-2.5"
+              >
+                <div className="relative aspect-video w-full overflow-hidden rounded-lg border">
+                  <Image
+                    src={ogUrl.toString()}
+                    alt={post.title}
+                    fill
+                    className="bg-muted transition-colors"
+                    priority
+                  />
                 </div>
-                <p className="text-sm text-muted-foreground">{post.title}</p>
-              </div>
-              <Link href={post.id} className="absolute inset-0">
-                <span className="sr-only">{t("view_post")}</span>
-              </Link>
-            </article>
-          ))}
+                <div className="space-y-0.5 px-2">
+                  <div className="flex items-center justify-between">
+                    <h2 className="truncate text-2xl font-bold">
+                      {post.title}
+                    </h2>
+                    <p className="whitespace-nowrap text-xs text-muted-foreground">
+                      {format.relativeTime(
+                        new Date(post.updatedAt),
+                        new Date()
+                      )}
+                    </p>
+                  </div>
+                  <p className="text-sm text-muted-foreground">{post.title}</p>
+                </div>
+                <Link href={post.id} className="absolute inset-0">
+                  <span className="sr-only">{t("view_post")}</span>
+                </Link>
+              </article>
+            );
+          })}
         </div>
       ) : (
         <EmptyPlaceholder className="min-h-[360px] border-none">

@@ -61,7 +61,9 @@ const TopPage = () => {
         <Typewriter cursor="|" speed={100} className="text-3xl font-bold">
           Hi, I&apos;m Yushin Ito
         </Typewriter>
-        <p className="text-muted-foreground">Web Developer & Web Designer</p>
+        <p className="text-muted-foreground">
+          Junior Web Developer & CS Student
+        </p>
       </div>
     </section>
   );

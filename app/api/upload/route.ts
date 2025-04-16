@@ -31,8 +31,7 @@ export const POST = async (req: NextRequest) => {
         url: blob.url,
       },
     });
-  } catch (error) {
-    console.log(error);
+  } catch {
     return NextResponse.json(
       { success: 0, message: "Internal Server Error" },
       { status: 500 }

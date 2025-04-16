@@ -1,13 +1,17 @@
 import type { NextConfig } from "next";
-import { withContentlayer } from "next-contentlayer2";
 import createNextIntlPlugin from "next-intl/plugin";
+import { createContentlayerPlugin } from "next-contentlayer2";
 
 import "@/env";
 
+const withContentlayer = createContentlayerPlugin();
 const withNextIntl = createNextIntlPlugin();
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
+  images: {
+    domains: ["localhost", "yushin.dev"],
+  },
 };
 
 export default withContentlayer(withNextIntl(nextConfig));

@@ -39,11 +39,6 @@ export const generateMetadata = async ({ params }: WorkPageProps) => {
     return {};
   }
 
-  const url = new URL(`${siteConfig.url}/api/og`);
-  url.searchParams.set("heading", work.title);
-  url.searchParams.set("type", "Blog Work");
-  url.searchParams.set("mode", "dark");
-
   return {
     title: work.title,
     description: work.description,
@@ -52,10 +47,10 @@ export const generateMetadata = async ({ params }: WorkPageProps) => {
       title: work.title,
       description: work.description,
       type: "article",
-      url: `${url}/works/${work.slug}`,
+      url: `${siteConfig.url}/works/${work.slug}`,
       images: [
         {
-          url: url.toString(),
+          url: `${siteConfig.url}/images/works/${work.slug}/thumbnail.png`,
           width: 1200,
           height: 630,
           alt: work.title,
@@ -66,7 +61,7 @@ export const generateMetadata = async ({ params }: WorkPageProps) => {
       card: "summary_large_image",
       title: work.title,
       description: work.description,
-      images: [url.toString()],
+      images: [`${siteConfig.url}/images/works/${work.slug}/thumbnail.png`],
     },
   };
 };

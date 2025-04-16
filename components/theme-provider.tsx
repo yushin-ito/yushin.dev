@@ -7,7 +7,14 @@ const ThemeProvider = ({
   children,
   ...props
 }: ComponentProps<typeof NextThemesProvider>) => (
-  <NextThemesProvider {...props}>{children}</NextThemesProvider>
+  <NextThemesProvider
+    attribute="class"
+    defaultTheme="system"
+    enableSystem
+    {...props}
+  >
+    {children}
+  </NextThemesProvider>
 );
 
 export default ThemeProvider;
