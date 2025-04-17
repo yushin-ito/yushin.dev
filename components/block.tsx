@@ -17,6 +17,8 @@ import {
   ImageData,
 } from "@/types/editorjs";
 
+// todo: add id to each block.
+
 const components = {
   header: ({ text, level }: HeaderData) => {
     if (level === 1) {
@@ -82,7 +84,9 @@ const components = {
   },
   list: ({ style, itemMeta, items }: ListData) => {
     if (style === "ordered") {
-      const { start = 1 } = itemMeta as OrderedListItemMeta;
+      const start = (itemMeta as OrderedListItemMeta)?.start ?? 1;
+
+      // todo: add counter type.
 
       return (
         <ol start={start} className="my-6 ml-6 list-decimal">

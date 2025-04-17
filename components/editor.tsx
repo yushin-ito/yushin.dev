@@ -17,7 +17,7 @@ import Link from "next/link";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { editorSchema } from "@/schemas/post";
 import Icons from "@/components/icons";
-import { cn } from "@/lib/utils";
+import { cn, getImageByUrl } from "@/lib/utils";
 import { generateThumnail, getTextFromBlocks } from "@/lib/editor";
 
 type Post = Prisma.PostGetPayload<{
@@ -134,6 +134,41 @@ const Editor = ({ post }: EditorProps) => {
             config: {
               uploader: {
                 async uploadByFile(file: File) {
+                  const formData = new FormData();
+                  formData.append("bucket", "images");
+                  formData.append("file", file);
+
+                  const response = await fetch("/api/upload", {
+                    method: "POST",
+                    body: formData,
+                  });
+
+                  if (!response.ok) {
+                    return {
+                      success: 0,
+                      message: "Internal Server Error",
+                    };
+                  }
+
+                  const data = await response.json();
+
+                  return {
+                    success: 1,
+                    file: {
+                      url: data.url,
+                    },
+                  };
+                },
+                async uploadByUrl(url: string) {
+                  const file = await getImageByUrl(url, "image");
+
+                  if (!file) {
+                    return {
+                      success: 0,
+                      message: "Internal Server Error",
+                    };
+                  }
+
                   const formData = new FormData();
                   formData.append("bucket", "images");
                   formData.append("file", file);
