@@ -7,6 +7,20 @@
       },
       "reload": "再読み込みする"
     },
+    "forbidden": {
+      "metadata": {
+        "title": "管理者権限がありません。",
+        "description": "このページにアクセスするには、管理者権限が必要です。"
+      },
+      "back_to_top": "トップページに戻る"
+    },
+    "unauthorized": {
+      "metadata": {
+        "title": "ログインしていません。",
+        "description": "このページにアクセスするには、ログインする必要があります。"
+      },
+      "back_to_login": "ログインページに戻る"
+    },
     "not_found": {
       "metadata": {
         "title": "ご指定のページが見つかりません。",

@@ -1,5 +1,6 @@
 import { z } from "zod";
 import { NextRequest, NextResponse } from "next/server";
+import { forbidden, unauthorized } from "next/navigation";
 
 import { db } from "@/lib/db";
 import { auth } from "@/auth";
@@ -13,10 +14,13 @@ export const POST = async (req: NextRequest) => {
   try {
     const session = await auth();
 
-    if (!session) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 403 });
+    if (!session?.user) {
+      unauthorized();
     }
 
+    if (session?.user?.role === "ADMIN") {
+      forbidden();
+    }
     const json = await req.json();
     const body = bodySchema.parse(json);
 

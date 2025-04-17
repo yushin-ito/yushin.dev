@@ -1,5 +1,5 @@
-import { notFound } from "next/navigation";
 import { ReactNode } from "react";
+import { forbidden, unauthorized } from "next/navigation";
 
 import { auth } from "@/auth";
 import Sidebar from "@/components/sidebar";
@@ -12,7 +12,11 @@ const DashboardLayout = async ({ children }: DashboardLayoutProps) => {
   const session = await auth();
 
   if (!session?.user) {
-    return notFound();
+    unauthorized();
+  }
+
+  if (session?.user?.role !== "ADMIN") {
+    forbidden();
   }
 
   return (

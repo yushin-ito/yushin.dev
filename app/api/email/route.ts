@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
 import { render } from "@react-email/render";
+import { forbidden, unauthorized } from "next/navigation";
 
 import { auth } from "@/auth";
 import { siteConfig } from "@/config/site";
@@ -15,8 +16,12 @@ export const GET = async (req: Request) => {
   try {
     const session = await auth();
 
-    if (!session) {
-      return new NextResponse("Unauthorized", { status: 403 });
+    if (!session?.user) {
+      unauthorized();
+    }
+
+    if (session?.user?.role === "ADMIN") {
+      forbidden();
     }
 
     const { searchParams } = new URL(req.url);

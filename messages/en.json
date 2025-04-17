@@ -7,6 +7,20 @@
       },
       "reload": "Reload"
     },
+    "forbidden": {
+      "metadata": {
+        "title": "403 Forbidden",
+        "description": "You are not authorized to access this page."
+      },
+      "back_to_top": "Back to Top"
+    },
+    "unauthorized": {
+      "metadata": {
+        "title": "401 Unauthorized",
+        "description": "You are not logged in  to access this page."
+      },
+      "back_to_login": "Back to Login"
+    },
     "not_found": {
       "metadata": {
         "title": "404 Not Found",

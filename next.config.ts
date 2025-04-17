@@ -12,6 +12,9 @@ const nextConfig: NextConfig = {
   images: {
     domains: ["localhost", "yushin.dev"],
   },
+  experimental: {
+    authInterrupts: true,
+  },
 };
 
 export default withContentlayer(withNextIntl(nextConfig));
