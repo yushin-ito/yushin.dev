@@ -1,5 +1,7 @@
 "use client";
 
+import { OutputBlockData } from "@editorjs/editorjs";
+
 import { Checkbox } from "@/components/ui/checkbox";
 import { useBlockComponent } from "@/hooks/use-block-component";
 import { cn } from "@/lib/utils";
@@ -72,9 +74,7 @@ const components = {
       <p
         className="leading-7 [&:not(:first-child)]:mt-6"
         dangerouslySetInnerHTML={{ __html: text }}
-      >
-        {text}
-      </p>
+      />
     );
   },
   delemitor: () => {
@@ -225,12 +225,12 @@ const components = {
   },
 };
 
-interface BlockContentProps {
-  code: string;
+interface BlockProps {
+  data: OutputBlockData[];
 }
 
-const BlockContent = ({ code }: BlockContentProps) => {
-  const BlockComponent = useBlockComponent(code);
+const Block = ({ data }: BlockProps) => {
+  const BlockComponent = useBlockComponent(data);
 
   return (
     <div>
@@ -239,4 +239,4 @@ const BlockContent = ({ code }: BlockContentProps) => {
   );
 };
 
-export default BlockContent;
+export default Block;

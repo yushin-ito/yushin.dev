@@ -9,7 +9,7 @@ import { allWorks } from "contentlayer/generated";
 import Mdx from "@/components/mdx";
 import { buttonVariants } from "@/components/ui/button";
 import TableOfContents from "@/components/table-of-contents";
-import { getTableOfContents } from "@/lib/toc";
+import { getTableOfContents } from "@/lib/mdx";
 import Slideshow from "@/components/slideshow";
 import { cn } from "@/lib/utils";
 import Icons from "@/components/icons";

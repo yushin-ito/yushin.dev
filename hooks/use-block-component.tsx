@@ -2,7 +2,6 @@
 
 import { OutputBlockData } from "@editorjs/editorjs";
 import { JSX, useMemo } from "react";
-import { z } from "zod";
 
 interface BlockComponentProps {
   components: Record<
@@ -11,27 +10,13 @@ interface BlockComponentProps {
   >;
 }
 
-const BlockSchema = z.object({
-  id: z.string(),
-  type: z.string(),
-  data: z.any(),
-});
-
-const BlocksSchema = z.object({
-  blocks: z.array(BlockSchema),
-});
-
-const getBlockComponent = (code: string) => {
-  const raw = JSON.parse(code);
-
-  const { blocks } = BlocksSchema.parse(raw);
-
+const getBlockComponent = (data: OutputBlockData[]) => {
   const BlockComponent = ({ components }: BlockComponentProps) => {
-    return blocks.map((block) => {
+    return data.map((block) => {
       const Block = components[block.type];
 
       if (Block) {
-        return <Block key={block.id} data={block.data} />;
+        return <Block key={block.id} {...block.data} />;
       }
 
       return null;
@@ -41,8 +26,8 @@ const getBlockComponent = (code: string) => {
   return BlockComponent;
 };
 
-export const useBlockComponent = (code: string) => {
-  const BlockComponent = useMemo(() => getBlockComponent(code), [code]);
+export const useBlockComponent = (data: OutputBlockData[]) => {
+  const BlockComponent = useMemo(() => getBlockComponent(data), [data]);
 
   return BlockComponent;
 };

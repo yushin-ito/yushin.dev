@@ -93,7 +93,7 @@ const BlogPage = async () => {
                     {format.relativeTime(new Date(post.updatedAt), new Date())}
                   </p>
                 </div>
-                <Link href={post.id} className="absolute inset-0">
+                <Link href={`/blog/${post.id}`} className="absolute inset-0">
                   <span className="sr-only">{t("view_post")}</span>
                 </Link>
               </article>
