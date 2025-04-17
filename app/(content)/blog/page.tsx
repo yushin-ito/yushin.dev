@@ -32,6 +32,7 @@ const BlogPage = async () => {
       id: true,
       title: true,
       description: true,
+      thumbnail: true,
       published: true,
       updatedAt: true,
       _count: {
@@ -68,22 +69,16 @@ const BlogPage = async () => {
                 className="group relative flex flex-col space-y-2.5"
               >
                 <div className="relative aspect-video w-full overflow-hidden rounded-lg border">
-                  <Image
-                    src={ogUrl.toString() + "&mode=light"}
-                    alt={post.title}
-                    fill
-                    sizes="(min-width: 640px) 640px, 100vw"
-                    className="bg-muted transition-colors dark:hidden"
-                    priority
-                  />
-                  <Image
-                    src={ogUrl.toString() + "&mode=dark"}
-                    alt={post.title}
-                    fill
-                    sizes="(min-width: 640px) 640px, 100vw"
-                    className="hidden bg-muted transition-colors dark:block"
-                    priority
-                  />
+                  {post.thumbnail && (
+                    <Image
+                      src={post.thumbnail}
+                      alt={post.title}
+                      fill
+                      sizes="(min-width: 640px) 640px, 100vw"
+                      className="bg-muted transition-colors dark:hidden"
+                      priority
+                    />
+                  )}
                 </div>
                 <div className="flex items-center justify-between px-2">
                   <p className="text-sm text-muted-foreground">

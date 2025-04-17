@@ -18,7 +18,7 @@ import { Button, buttonVariants } from "@/components/ui/button";
 import { editorSchema } from "@/schemas/post";
 import Icons from "@/components/icons";
 import { cn } from "@/lib/utils";
-import { getTextFromBlocks } from "@/lib/editor";
+import { generateThumnail, getTextFromBlocks } from "@/lib/editor";
 
 type Post = Prisma.PostGetPayload<{
   select: {
@@ -132,8 +132,33 @@ const Editor = ({ post }: EditorProps) => {
           image: {
             class: ImageTool,
             config: {
-              endpoints: {
-                byFile: "/api/upload",
+              uploader: {
+                async uploadByFile(file: File) {
+                  const formData = new FormData();
+                  formData.append("bucket", "images");
+                  formData.append("file", file);
+
+                  const response = await fetch("/api/upload", {
+                    method: "POST",
+                    body: formData,
+                  });
+
+                  if (!response.ok) {
+                    return {
+                      success: 0,
+                      message: "Internal Server Error",
+                    };
+                  }
+
+                  const data = await response.json();
+
+                  return {
+                    success: 1,
+                    file: {
+                      url: data.url,
+                    },
+                  };
+                },
               },
             },
           },
@@ -312,6 +337,16 @@ const Editor = ({ post }: EditorProps) => {
 
       const text = getTextFromBlocks(content.blocks);
 
+      const url = await generateThumnail(post.id, data.title);
+
+      if (!url) {
+        toast.error(t("error.title"), {
+          description: t("error.description"),
+        });
+
+        return;
+      }
+
       const response = await fetch(`/api/posts/${post.id}`, {
         method: "PATCH",
         headers: {
@@ -320,7 +355,8 @@ const Editor = ({ post }: EditorProps) => {
         body: JSON.stringify({
           title: data.title,
           content,
-          description: text.slice(0, 100),
+          description: text.slice(0, 30),
+          thumbnail: url,
         }),
       });
 

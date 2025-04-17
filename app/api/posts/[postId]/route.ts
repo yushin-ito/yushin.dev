@@ -17,6 +17,7 @@ const bodySchema = z.object({
   title: z.string().min(3).max(128).optional(),
   content: z.any().optional(),
   description: z.string().optional(),
+  thumbnail: z.string().optional(),
   published: z.boolean().optional(),
 });
 
@@ -83,6 +84,7 @@ export const PATCH = async (
         title: body.title,
         content: body.content,
         description: body.description,
+        thumbnail: body.thumbnail,
         published: body.published,
         updatedAt: new Date(),
       },

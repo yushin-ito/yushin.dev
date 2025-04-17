@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { getTranslations } from "next-intl/server";
+import Image from "next/image";
 
 import { db } from "@/lib/db";
 import { contentSchema } from "@/schemas/editor";
@@ -48,7 +49,11 @@ const PostPage = async ({ params }: PostPageProps) => {
         <hr className="mb-8 mt-4 w-full" />
         <div className="relative px-1 lg:grid lg:grid-cols-[1fr_120px] lg:gap-20">
           <div className="space-y-8">
-            <div className="relative aspect-[16/9] overflow-hidden rounded-xl border bg-muted transition-colors"></div>
+            <div className="relative aspect-[16/9] overflow-hidden rounded-xl border bg-muted transition-colors">
+              {post.thumbnail && (
+                <Image src={post.thumbnail} alt={post.title} fill priority />
+              )}
+            </div>
             <Block data={content.blocks} />
             <hr className="mt-12" />
             <div className="flex justify-center py-6 lg:py-10">

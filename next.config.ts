@@ -10,7 +10,12 @@ const withNextIntl = createNextIntlPlugin();
 const nextConfig: NextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ["localhost", "yushin.dev"],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "**.public.blob.vercel-storage.com",
+      },
+    ],
   },
   experimental: {
     authInterrupts: true,

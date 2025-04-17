@@ -17,28 +17,25 @@ export const POST = async (req: NextRequest) => {
     }
 
     const formData = await req.formData();
-    const file = formData.get("image") as File;
 
-    if (!file) {
+    const bucket = formData.get("bucket") as string | null;
+    const file = formData.get("file") as File;
+
+    if (!bucket || !file) {
       return NextResponse.json(
         { success: 0, message: "Bad Request" },
         { status: 400 }
       );
     }
 
-    const blob = await put(`images/${file.name}`, file, {
+    const blob = await put(`${bucket}/${file.name}`, file, {
       access: "public",
     });
 
-    return NextResponse.json({
-      success: 1,
-      file: {
-        url: blob.url,
-      },
-    });
+    return NextResponse.json(blob);
   } catch {
     return NextResponse.json(
-      { success: 0, message: "Internal Server Error" },
+      { error: "Internal Server Error" },
       { status: 500 }
     );
   }

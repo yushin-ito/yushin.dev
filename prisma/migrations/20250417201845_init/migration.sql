@@ -58,6 +58,7 @@ CREATE TABLE "posts" (
     "title" TEXT NOT NULL,
     "content" JSONB,
     "description" TEXT,
+    "thumbnail" TEXT,
     "published" BOOLEAN NOT NULL DEFAULT false,
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
