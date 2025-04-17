@@ -11,9 +11,8 @@ import { useMDXComponent } from "next-contentlayer2/hooks";
 import { type LucideProps } from "lucide-react";
 
 import { cn } from "@/lib/utils";
-import MdxCard from "@/components/mdx-card";
-import MdxCallout from "@/components/mdx-callout";
 import Icons from "@/components/icons";
+import Callout from "@/components/callout";
 import Mockup from "@/components/mockup";
 
 const components = {
@@ -168,16 +167,15 @@ const components = {
     return <Icon {...props} />;
   },
   Image,
-  Callout: MdxCallout,
-  Card: MdxCard,
+  Callout,
   Mockup,
 };
 
-interface MdxContentProps {
+interface MdxProps {
   code: string;
 }
 
-const MdxContent = ({ code }: MdxContentProps) => {
+const Mdx = ({ code }: MdxProps) => {
   const MdxComponent = useMDXComponent(code);
 
   return (
@@ -187,4 +185,4 @@ const MdxContent = ({ code }: MdxContentProps) => {
   );
 };
 
-export default MdxContent;
+export default Mdx;

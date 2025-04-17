@@ -7,7 +7,7 @@ interface CalloutProps {
   children?: ReactNode;
 }
 
-const MdxCallout = ({ type = "note", children }: CalloutProps) => {
+const Callout = ({ type = "note", children }: CalloutProps) => {
   if (type === "note") {
     return (
       <div className="relative my-4 space-y-2 rounded-md bg-blue-50 px-6 pb-4 pt-2">
@@ -52,4 +52,4 @@ const MdxCallout = ({ type = "note", children }: CalloutProps) => {
   return null;
 };
 
-export default MdxCallout;
+export default Callout;

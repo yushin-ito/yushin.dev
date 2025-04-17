@@ -1,4 +1,4 @@
-import { notFound, redirect } from "next/navigation";
+import { forbidden, notFound, unauthorized } from "next/navigation";
 
 import { db } from "@/lib/db";
 import Editor from "@/components/editor";
@@ -13,7 +13,11 @@ const EditorPage = async ({ params }: EditorPageProps) => {
   const { postId } = await params;
 
   if (!session?.user) {
-    redirect("/login");
+    unauthorized();
+  }
+
+  if (session.user.role !== "ADMIN") {
+    forbidden();
   }
 
   const post = await db.post.findFirst({

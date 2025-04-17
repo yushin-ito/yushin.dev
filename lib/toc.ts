@@ -1,6 +1,6 @@
 import { toc } from "mdast-util-toc";
 import { remark } from "remark";
-import { Link, List, Paragraph, Root, Text } from "mdast";
+import type { Link, List, Paragraph, Root, Text } from "mdast";
 import { VFile } from "vfile";
 
 const getItems = (list: List) => {

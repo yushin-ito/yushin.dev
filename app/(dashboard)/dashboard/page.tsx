@@ -1,5 +1,5 @@
 import { getTranslations } from "next-intl/server";
-import { redirect } from "next/navigation";
+import { unauthorized, forbidden } from "next/navigation";
 
 import { auth } from "@/auth";
 import { db } from "@/lib/db";
@@ -27,7 +27,11 @@ const PostsPage = async () => {
   const session = await auth();
 
   if (!session?.user) {
-    redirect("/login");
+    unauthorized();
+  }
+
+  if (session.user.role !== "ADMIN") {
+    forbidden();
   }
 
   const posts = await db.post.findMany({
@@ -83,4 +87,5 @@ const PostsPage = async () => {
     </section>
   );
 };
+
 export default PostsPage;

@@ -1,6 +1,6 @@
 import { getTranslations } from "next-intl/server";
-import { redirect } from "next/navigation";
 import { subDays } from "date-fns";
+import { unauthorized, forbidden } from "next/navigation";
 
 import PostSwitcher from "@/components/post-switcher";
 import { db } from "@/lib/db";
@@ -39,7 +39,11 @@ const AnalyticsPage = async ({ searchParams }: AnalyticsPageProps) => {
   const session = await auth();
 
   if (!session?.user) {
-    redirect("/login");
+    unauthorized();
+  }
+
+  if (session.user.role !== "ADMIN") {
+    forbidden();
   }
 
   const posts = await db.post.findMany({
