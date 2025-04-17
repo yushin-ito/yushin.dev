@@ -15,7 +15,7 @@ const DashboardLayout = async ({ children }: DashboardLayoutProps) => {
     unauthorized();
   }
 
-  if (session?.user?.role !== "ADMIN") {
+  if (session.user?.role !== "ADMIN") {
     forbidden();
   }
 
