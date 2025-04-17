@@ -1,6 +1,6 @@
 import { z } from "zod";
 import { NextRequest, NextResponse } from "next/server";
-import { forbidden, unauthorized } from "next/navigation";
+import { unauthorized } from "next/navigation";
 
 import { db } from "@/lib/db";
 import { auth } from "@/auth";
@@ -31,8 +31,8 @@ export const DELETE = async (
       unauthorized();
     }
 
-    if (session.user.role === "ADMIN") {
-      forbidden();
+    if (session.user.role !== "ADMIN") {
+      return NextResponse.json({ error: "Forbidden" }, { status: 403 });
     }
 
     const { params } = contextSchema.parse(context);
@@ -65,8 +65,8 @@ export const PATCH = async (
       unauthorized();
     }
 
-    if (session.user.role === "ADMIN") {
-      forbidden();
+    if (session.user.role !== "ADMIN") {
+      return NextResponse.json({ error: "Forbidden" }, { status: 403 });
     }
 
     const { params } = contextSchema.parse(context);

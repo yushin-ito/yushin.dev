@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { put } from "@vercel/blob";
-import { forbidden, unauthorized } from "next/navigation";
+import { unauthorized } from "next/navigation";
 
 import { auth } from "@/auth";
 
@@ -12,9 +12,10 @@ export const POST = async (req: NextRequest) => {
       unauthorized();
     }
 
-    if (session.user.role === "ADMIN") {
-      forbidden();
+    if (session.user.role !== "ADMIN") {
+      return NextResponse.json({ error: "Forbidden" }, { status: 403 });
     }
+
     const formData = await req.formData();
     const file = formData.get("image") as File;
 
