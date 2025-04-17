@@ -1,5 +1,4 @@
-import { OutputBlockData } from "@editorjs/editorjs";
-import { HeaderData } from "@editorjs/header";
+import { BlockId, OutputBlockData } from "@editorjs/editorjs";
 
 import env from "@/env";
 
@@ -49,10 +48,10 @@ export const generateThumnail = async (id: string, title: string) => {
 export const getTableOfContents = (blocks: OutputBlockData[]) => {
   const result = blocks
     .filter((block) => block.type === "header" && block.data.level === 2)
-    .map(({ data }: { data: HeaderData }) => {
+    .map((block) => {
       return {
-        id: data.text,
-        title: data.text,
+        id: block.id as BlockId,
+        title: block.data.text as string,
       };
     });
 
