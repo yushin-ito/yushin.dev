@@ -20,7 +20,7 @@ export const GET = async (req: Request) => {
       unauthorized();
     }
 
-    if (session?.user?.role === "ADMIN") {
+    if (session.user.role === "ADMIN") {
       forbidden();
     }
 

@@ -12,7 +12,7 @@ export const POST = async (req: NextRequest) => {
       unauthorized();
     }
 
-    if (session?.user?.role === "ADMIN") {
+    if (session.user.role === "ADMIN") {
       forbidden();
     }
     const formData = await req.formData();

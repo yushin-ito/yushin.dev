@@ -31,7 +31,7 @@ export const DELETE = async (
       unauthorized();
     }
 
-    if (session?.user?.role === "ADMIN") {
+    if (session.user.role === "ADMIN") {
       forbidden();
     }
 
@@ -65,7 +65,7 @@ export const PATCH = async (
       unauthorized();
     }
 
-    if (session?.user?.role === "ADMIN") {
+    if (session.user.role === "ADMIN") {
       forbidden();
     }
 
