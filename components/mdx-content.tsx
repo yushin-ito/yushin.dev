@@ -173,18 +173,18 @@ const components = {
   Mockup,
 };
 
-interface MdxProps {
+interface MdxContentProps {
   code: string;
 }
 
-const Mdx = ({ code }: MdxProps) => {
-  const Component = useMDXComponent(code);
+const MdxContent = ({ code }: MdxContentProps) => {
+  const MdxComponent = useMDXComponent(code);
 
   return (
     <div className="mdx">
-      <Component components={components} />
+      <MdxComponent components={components} />
     </div>
   );
 };
 
-export default Mdx;
+export default MdxContent;

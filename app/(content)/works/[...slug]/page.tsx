@@ -6,7 +6,7 @@ import Image from "next/image";
 import { getTranslations } from "next-intl/server";
 
 import { allWorks } from "contentlayer/generated";
-import Mdx from "@/components/mdx";
+import MdxContent from "@/components/mdx-content";
 import { buttonVariants } from "@/components/ui/button";
 import TableOfContents from "@/components/table-of-contents";
 import { getTableOfContents } from "@/lib/toc";
@@ -103,7 +103,7 @@ const WorkPage = async ({ params }: WorkPageProps) => {
                 <Image src={work.thumbnail} alt={work.title} fill priority />
               </div>
             )}
-            <Mdx code={work.body.code} />
+            <MdxContent code={work.body.code} />
             <hr className="mt-12" />
             <div className="flex justify-center py-6 lg:py-10">
               <Link
