@@ -87,9 +87,8 @@ const components = {
   },
   list: ({ id, data }: OutputBlockData<string, ListData>) => {
     if (data.style === "ordered") {
-      console.log("ordered list", data.itemMeta);
       const { start = 1, counterType = "numeric" } =
-        data.itemMeta as OrderedListItemMeta;
+        (data.itemMeta as OrderedListItemMeta) || {};
 
       return (
         <ol
@@ -229,9 +228,6 @@ const components = {
           "w-full": data.stretched,
         })}
       >
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        {data.file.url && <img src={data.file.url} alt={data.caption} />}
-
         {/* eslint-disable-next-line @next/next/no-img-element */}
         {data.file.url && <img src={data.file.url} alt={data.caption} />}
 

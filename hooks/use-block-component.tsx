@@ -16,7 +16,7 @@ const getBlockComponent = (data: OutputBlockData[]) => {
       const Block = components[block.type];
 
       if (Block) {
-        return <Block key={block.id} {...block.data} />;
+        return <Block key={block.id} {...block} />;
       }
 
       return null;
