@@ -7,7 +7,16 @@ export interface ParagraphData {
   text: string;
 }
 
+export type DelimitorData = object;
+
 type ListDataStyle = "ordered" | "unordered" | "checklist";
+
+type CounterType =
+  | "numeric"
+  | "upper-roman"
+  | "lower-roman"
+  | "upper-alpha"
+  | "lower-alpha";
 
 export interface ChecklistItemMeta {
   checked: boolean;
@@ -15,14 +24,14 @@ export interface ChecklistItemMeta {
 
 export interface OrderedListItemMeta {
   start?: number;
-  counterType?: OlCounterType;
+  counterType?: CounterType;
 }
 
 export type UnorderedListItemMeta = object;
 
 interface ListItem {
   content: string;
-  itemMeta: ChecklistItemMeta | OrderedListItemMeta | UnorderedListItemMeta;
+  itemMeta: OrderedListItemMeta | UnorderedListItemMeta | ChecklistItemMeta;
   items: ListItem[];
 }
 

@@ -15,82 +15,92 @@ import {
   CodeData,
   EmbedData,
   ImageData,
+  DelimitorData,
 } from "@/types/editorjs";
 
-// todo: add id to each block.
-
 const components = {
-  header: ({ text, level }: HeaderData) => {
-    if (level === 1) {
+  header: ({ id, data }: OutputBlockData<string, HeaderData>) => {
+    if (data.level === 1) {
       return (
-        <h1 className="mt-2 scroll-m-20 text-4xl font-bold tracking-tight">
-          {text}
+        <h1
+          id={id}
+          className="mt-2 scroll-m-20 text-4xl font-bold tracking-tight"
+        >
+          {data.text}
         </h1>
       );
     }
 
-    if (level === 2) {
+    if (data.level === 2) {
       return (
         <h2 className="mt-10 scroll-m-20 border-b pb-1 text-3xl font-semibold tracking-tight first:mt-0">
-          {text}
+          {data.text}
         </h2>
       );
     }
 
-    if (level === 3) {
+    if (data.level === 3) {
       return (
         <h3 className="mt-8 scroll-m-20 text-2xl font-semibold tracking-tight">
-          {text}
+          {data.text}
         </h3>
       );
     }
 
-    if (level === 4) {
+    if (data.level === 4) {
       return (
         <h4 className="mt-8 scroll-m-20 text-xl font-semibold tracking-tight">
-          {text}
+          {data.text}
         </h4>
       );
     }
 
-    if (level === 5) {
+    if (data.level === 5) {
       return (
         <h5 className="mt-8 scroll-m-20 text-lg font-semibold tracking-tight">
-          {text}
+          {data.text}
         </h5>
       );
     }
 
-    if (level === 6) {
+    if (data.level === 6) {
       return (
         <h5 className="mt-8 scroll-m-20 text-base font-semibold tracking-tight">
-          {text}
+          {data.text}
         </h5>
       );
     }
 
     return null;
   },
-  paragraph: ({ text }: ParagraphData) => {
+  paragraph: ({ id, data }: OutputBlockData<string, ParagraphData>) => {
     return (
       <p
+        id={id}
         className="leading-7 [&:not(:first-child)]:mt-6"
-        dangerouslySetInnerHTML={{ __html: text }}
+        dangerouslySetInnerHTML={{ __html: data.text }}
       />
     );
   },
-  delemitor: () => {
-    return <hr className="my-4 md:my-8" />;
+  delemitor: ({ id }: OutputBlockData<string, DelimitorData>) => {
+    return <hr id={id} className="my-4 md:my-8" />;
   },
-  list: ({ style, itemMeta, items }: ListData) => {
-    if (style === "ordered") {
-      const start = (itemMeta as OrderedListItemMeta)?.start ?? 1;
-
-      // todo: add counter type.
+  list: ({ id, data }: OutputBlockData<string, ListData>) => {
+    if (data.style === "ordered") {
+      console.log("ordered list", data.itemMeta);
+      const { start = 1, counterType = "numeric" } =
+        data.itemMeta as OrderedListItemMeta;
 
       return (
-        <ol start={start} className="my-6 ml-6 list-decimal">
-          {items.map((item, index) => {
+        <ol
+          id={id}
+          start={start}
+          className={cn(
+            "my-6 ml-6",
+            counterType === "numeric" ? "list-decimal" : `list-[${counterType}]`
+          )}
+        >
+          {data.items.map((item, index) => {
             return (
               <li key={index} className="mt-2">
                 {item.content}
@@ -101,10 +111,10 @@ const components = {
       );
     }
 
-    if (style === "unordered") {
+    if (data.style === "unordered") {
       return (
-        <ul className="my-6 ml-6 list-disc">
-          {items.map((item, index) => (
+        <ul id={id} className="my-6 ml-6 list-disc">
+          {data.items.map((item, index) => (
             <li key={index} className="mt-2">
               {item.content}
             </li>
@@ -113,10 +123,10 @@ const components = {
       );
     }
 
-    if (style === "checklist") {
+    if (data.style === "checklist") {
       return (
-        <div className="my-6 ml-6">
-          {items.map((item, index) => {
+        <div id={id} className="my-6 ml-6">
+          {data.items.map((item, index) => {
             const { checked } = item.itemMeta as ChecklistItemMeta;
             return (
               <div key={index} className="mt-2 flex items-center space-x-2">
@@ -131,17 +141,17 @@ const components = {
 
     return null;
   },
-  table: ({ withHeadings, stretched, content }: TableData) => {
-    if (content.length === 0) {
+  table: ({ id, data }: OutputBlockData<string, TableData>) => {
+    if (data.content.length === 0) {
       return null;
     }
 
-    const [headings, ...rows] = content;
+    const [headings, ...rows] = data.content;
 
     return (
-      <div className="my-6 w-full overflow-y-auto">
-        <table className={cn({ "w-full": stretched })}>
-          {withHeadings && (
+      <div id={id} className="my-6 w-full overflow-y-auto">
+        <table className={cn({ "w-full": data.stretched })}>
+          {data.withHeadings && (
             <thead>
               <tr className="m-0 border-t p-0 even:bg-muted">
                 {headings.map((cell, idx) => (
@@ -156,7 +166,7 @@ const components = {
             </thead>
           )}
           <tbody>
-            {(withHeadings ? rows : content).map((row, rowIndex) => (
+            {(data.withHeadings ? rows : data.content).map((row, rowIndex) => (
               <tr key={rowIndex} className="m-0 border-t p-0 even:bg-muted">
                 {row.map((cell, cellIndex) => (
                   <td
@@ -173,57 +183,59 @@ const components = {
       </div>
     );
   },
-  code: ({ code }: CodeData) => {
+  code: ({ id, data }: OutputBlockData<string, CodeData>) => {
     return (
-      <pre className="mb-4 mt-6 overflow-x-auto rounded-lg border bg-black py-4">
+      <pre
+        id={id}
+        className="mb-4 mt-6 overflow-x-auto rounded-lg border bg-black py-4"
+      >
         <code className="font-mono relative rounded border px-[0.3rem] py-[0.2rem] text-sm">
-          {code}
+          {data.code}
         </code>
       </pre>
     );
   },
-  embed: ({ service, source, embed, width, height, caption }: EmbedData) => {
+  embed: ({ id, data }: OutputBlockData<string, EmbedData>) => {
     return (
-      <figure className={`embed-block-service-${service}`}>
-        {embed ? (
+      <figure id={id} className={`embed-block-service-${data.service}`}>
+        {data.embed ? (
           <iframe
-            title={service}
-            src={embed}
-            width={width}
-            height={height}
-            data-src={source}
+            title={data.service}
+            src={data.embed}
+            width={data.width}
+            height={data.height}
+            data-src={data.source}
           />
         ) : (
-          <a href={source} target="_blank" rel="noreferer nofollower external">
-            {source}
+          <a
+            href={data.source}
+            target="_blank"
+            rel="noreferer nofollower external"
+          >
+            {data.source}
           </a>
         )}
-        {caption && <figcaption>{caption}</figcaption>}
+        {data.caption && <figcaption>{data.caption}</figcaption>}
       </figure>
     );
   },
-  image: ({
-    file,
-    caption,
-    withBorder,
-    withBackground,
-    stretched,
-  }: ImageData) => {
+  image: ({ id, data }: OutputBlockData<string, ImageData>) => {
     return (
       <figure
+        id={id}
         className={cn({
-          border: withBorder,
-          "bg-muted": withBackground,
-          "w-full": stretched,
+          border: data.withBorder,
+          "bg-muted": data.withBackground,
+          "w-full": data.stretched,
         })}
       >
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        {file.url && <img src={file.url} alt={caption} />}
+        {data.file.url && <img src={data.file.url} alt={data.caption} />}
 
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        {file.url && <img src={file.url} alt={caption} />}
+        {data.file.url && <img src={data.file.url} alt={data.caption} />}
 
-        {caption && <figcaption>{caption}</figcaption>}
+        {data.caption && <figcaption>{data.caption}</figcaption>}
       </figure>
     );
   },
