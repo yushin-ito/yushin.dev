@@ -33,7 +33,10 @@ const components = {
 
     if (data.level === 2) {
       return (
-        <h2 className="mt-10 scroll-m-20 border-b pb-1 text-3xl font-semibold tracking-tight first:mt-0">
+        <h2
+          id={id}
+          className="mt-10 scroll-m-20 border-b pb-1 text-3xl font-semibold tracking-tight first:mt-0"
+        >
           {data.text}
         </h2>
       );
@@ -41,7 +44,10 @@ const components = {
 
     if (data.level === 3) {
       return (
-        <h3 className="mt-8 scroll-m-20 text-2xl font-semibold tracking-tight">
+        <h3
+          id={id}
+          className="mt-8 scroll-m-20 text-2xl font-semibold tracking-tight"
+        >
           {data.text}
         </h3>
       );
@@ -49,7 +55,10 @@ const components = {
 
     if (data.level === 4) {
       return (
-        <h4 className="mt-8 scroll-m-20 text-xl font-semibold tracking-tight">
+        <h4
+          id={id}
+          className="mt-8 scroll-m-20 text-xl font-semibold tracking-tight"
+        >
           {data.text}
         </h4>
       );
@@ -57,7 +66,10 @@ const components = {
 
     if (data.level === 5) {
       return (
-        <h5 className="mt-8 scroll-m-20 text-lg font-semibold tracking-tight">
+        <h5
+          id={id}
+          className="mt-8 scroll-m-20 text-lg font-semibold tracking-tight"
+        >
           {data.text}
         </h5>
       );
@@ -65,7 +77,10 @@ const components = {
 
     if (data.level === 6) {
       return (
-        <h5 className="mt-8 scroll-m-20 text-base font-semibold tracking-tight">
+        <h5
+          id={id}
+          className="mt-8 scroll-m-20 text-base font-semibold tracking-tight"
+        >
           {data.text}
         </h5>
       );
