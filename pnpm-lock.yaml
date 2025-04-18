@@ -59,6 +59,9 @@ importers:
       '@editorjs/underline':
         specifier: ^1.2.1
         version: 1.2.1
+      '@editorjs/warning':
+        specifier: ^1.4.1
+        version: 1.4.1
       '@fingerprintjs/fingerprintjs':
         specifier: ^4.6.1
         version: 4.6.2
@@ -489,6 +492,9 @@ packages:
 
   '@editorjs/underline@1.2.1':
     resolution: {integrity: sha512-LjJ01ia6Pj0Z/elifycp9+T1bQs0eXNnIcEYKOlk0sGHLy88DPcBOh9oz1i+uWarZ4AjGsvSMaptpWe+yQNsjQ==}
+
+  '@editorjs/warning@1.4.1':
+    resolution: {integrity: sha512-7A+irJ6gIh6li4DC7qw/NiWCThlBgtoPUeeIVdldVjoATAu+a1GjS+w/5L24ReacgQJNPVQPPCoMaS1nB83agw==}
 
   '@effect-ts/core@0.60.5':
     resolution: {integrity: sha512-qi1WrtJA90XLMnj2hnUszW9Sx4dXP03ZJtCc5DiUBIOhF4Vw7plfb65/bdBySPoC9s7zy995TdUX1XBSxUkl5w==}
@@ -5109,6 +5115,11 @@ snapshots:
   '@editorjs/underline@1.2.1':
     dependencies:
       '@codexteam/icons': 0.3.3
+
+  '@editorjs/warning@1.4.1':
+    dependencies:
+      '@codexteam/icons': 0.3.3
+      '@editorjs/editorjs': 2.30.8
 
   '@effect-ts/core@0.60.5':
     dependencies:

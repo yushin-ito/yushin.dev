@@ -71,6 +71,8 @@ const Editor = ({ post }: EditorProps) => {
 
     const Underline = (await import("@editorjs/underline")).default;
 
+    const Warning = (await import("@editorjs/warning")).default;
+
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-expect-error
     const Maker = (await import("@editorjs/marker")).default;
@@ -88,6 +90,9 @@ const Editor = ({ post }: EditorProps) => {
     const AttachesTool = (await import("@editorjs/attaches")).default;
 
     const body = editorSchema.parse(post);
+
+    const text = getTextFromBlocks(body.content.blocks);
+    setCount(text.length);
 
     if (!ref.current) {
       const editor = new EditorJS({
@@ -121,6 +126,7 @@ const Editor = ({ post }: EditorProps) => {
           marker: Maker,
           raw: RawTool,
           quote: Quote,
+          warning: Warning,
           attaches: {
             class: AttachesTool,
             config: {

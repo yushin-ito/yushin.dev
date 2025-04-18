@@ -4,8 +4,11 @@ import env from "@/env";
 
 export const getTextFromBlocks = (blocks: OutputBlockData[]) => {
   return blocks
-    .filter((block) => "text" in block.data)
-    .map((block) => block.data.text as string)
+    .filter((block) => block.type === "paragraph")
+    .map((block) => {
+      const text = block.data.text ?? "";
+      return text.replace(/<[^>]+>/g, "");
+    })
     .join("");
 };
 
