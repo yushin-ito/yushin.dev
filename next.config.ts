@@ -8,7 +8,7 @@ const withContentlayer = createContentlayerPlugin();
 const withNextIntl = createNextIntlPlugin();
 
 const nextConfig: NextConfig = {
-  reactStrictMode: true,
+  reactStrictMode: false,
   images: {
     remotePatterns: [
       {

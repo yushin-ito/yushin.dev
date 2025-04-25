@@ -1,8 +1,8 @@
 import { forbidden, notFound, unauthorized } from "next/navigation";
 
 import { db } from "@/lib/db";
-import Editor from "@/components/editor";
 import { auth } from "@/auth";
+import DynamicEditor from "@/components/dynamic-editor";
 
 interface EditorPageProps {
   params: Promise<{ postId: string }>;
@@ -30,16 +30,7 @@ const EditorPage = async ({ params }: EditorPageProps) => {
     notFound();
   }
 
-  return (
-    <Editor
-      post={{
-        id: post.id,
-        title: post.title,
-        content: post.content,
-        published: post.published,
-      }}
-    />
-  );
+  return <DynamicEditor post={post} />;
 };
 
 export default EditorPage;

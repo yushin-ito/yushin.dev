@@ -5,6 +5,7 @@ import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
+import { useCallback } from "react";
 
 import {
   DropdownMenu,
@@ -41,6 +42,44 @@ const DataTableRowActions = <TData,>({
 
   const post = tableSchema.parse(row.original);
 
+  const onPublish = useCallback(async () => {
+    const response = await fetch(`/api/posts/${post.id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        published: !post.published,
+      }),
+    });
+
+    if (!response.ok) {
+      toast.error(t("error.title"), {
+        description: t("error.description"),
+      });
+
+      return;
+    }
+
+    router.refresh();
+  }, [post.id, post.published, router, t]);
+
+  const onDelete = useCallback(async () => {
+    const response = await fetch(`/api/posts/${post.id}`, {
+      method: "DELETE",
+    });
+
+    if (!response.ok) {
+      toast.error(t("error.title"), {
+        description: t("error.description"),
+      });
+
+      return;
+    }
+
+    router.refresh();
+  }, [post.id, router, t]);
+
   return (
     <AlertDialog>
       <DropdownMenu>
@@ -60,29 +99,7 @@ const DataTableRowActions = <TData,>({
               <span>{t("edit")}</span>
             </Link>
           </DropdownMenuItem>
-          <DropdownMenuItem
-            onClick={async () => {
-              const response = await fetch(`/api/posts/${post.id}`, {
-                method: "PATCH",
-                headers: {
-                  "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                  published: !post.published,
-                }),
-              });
-
-              if (!response.ok) {
-                toast.error(t("error.title"), {
-                  description: t("error.description"),
-                });
-
-                return;
-              }
-
-              router.refresh();
-            }}
-          >
+          <DropdownMenuItem onClick={onPublish}>
             <Icons.globe className="ml-1 mr-2" />
             <span>{post.published ? t("unpublish") : t("publish")}</span>
           </DropdownMenuItem>
@@ -99,7 +116,6 @@ const DataTableRowActions = <TData,>({
           </AlertDialogTrigger>
         </DropdownMenuContent>
       </DropdownMenu>
-
       <AlertDialogContent>
         <AlertDialogHeader>
           <AlertDialogTitle>{t("delete_dialog.title")}</AlertDialogTitle>
@@ -109,7 +125,9 @@ const DataTableRowActions = <TData,>({
         </AlertDialogHeader>
         <AlertDialogFooter>
           <AlertDialogCancel>{t("cancel")}</AlertDialogCancel>
-          <AlertDialogAction>{t("continue")}</AlertDialogAction>
+          <AlertDialogAction onClick={onDelete}>
+            {t("continue")}
+          </AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>

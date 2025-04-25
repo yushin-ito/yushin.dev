@@ -1,9 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import { Prisma } from "@prisma/client";
 import { useTranslations } from "next-intl";
 import { useRouter, useSearchParams } from "next/navigation";
+import { Post } from "@prisma/client";
 
 import { cn } from "@/lib/utils";
 import {
@@ -22,15 +22,8 @@ import {
 import { Button } from "@/components/ui/button";
 import Icons from "@/components/icons";
 
-type Post = Prisma.PostGetPayload<{
-  select: {
-    id: true;
-    title: true;
-  };
-}>;
-
 interface PostSwitcherProps {
-  posts: Post[];
+  posts: Pick<Post, "id" | "title">[];
 }
 
 const PostSwitcher = ({ posts }: PostSwitcherProps) => {
