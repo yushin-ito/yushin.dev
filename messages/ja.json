@@ -179,7 +179,7 @@
       "delete": "削除",
       "cancel": "キャンセル",
       "continue": "続ける",
-      "delete_dialog": {
+      "dialog": {
         "title": "削除してよろしいですか？",
         "description": "この操作は元に戻せません。"
       },

@@ -118,9 +118,9 @@ const DataTableRowActions = <TData,>({
       </DropdownMenu>
       <AlertDialogContent>
         <AlertDialogHeader>
-          <AlertDialogTitle>{t("delete_dialog.title")}</AlertDialogTitle>
+          <AlertDialogTitle>{t("dialog.title")}</AlertDialogTitle>
           <AlertDialogDescription>
-            {t("delete_dialog.description")}
+            {t("dialog.description")}
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>

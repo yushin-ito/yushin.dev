@@ -179,7 +179,7 @@
       "delete": "Delete",
       "cancel": "Cancel",
       "continue": "Continue",
-      "delete_dialog": {
+      "dialog": {
         "title": "Are you sure you want to delete this post?",
         "description": "This action cannot be undone."
       },

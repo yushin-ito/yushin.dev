@@ -68,7 +68,7 @@ const BlogPage = async () => {
                     alt={post.title}
                     fill
                     sizes="(min-width: 640px) 640px, 100vw"
-                    className="bg-muted transition-colors dark:hidden"
+                    className="bg-muted transition-colors"
                     priority
                   />
                 )}

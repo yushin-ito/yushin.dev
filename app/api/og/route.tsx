@@ -9,7 +9,7 @@ export const runtime = "edge";
 
 const searchParamsSchema = z.object({
   title: z.string(),
-  mode: z.enum(["light", "dark"]).default("light"),
+  theme: z.enum(["light", "dark"]).default("light"),
   width: z.coerce.number().int().positive().default(1200),
   height: z.coerce.number().int().positive().default(630),
 });
@@ -23,7 +23,7 @@ export const GET = async (req: NextRequest) => {
     const font = await noto_sans_jp;
 
     const { searchParams } = new URL(req.url);
-    const { title, mode, width, height } = searchParamsSchema.parse(
+    const { title, theme, width, height } = searchParamsSchema.parse(
       Object.fromEntries(searchParams)
     );
 
@@ -32,13 +32,13 @@ export const GET = async (req: NextRequest) => {
         <div
           tw={cn(
             "flex w-full h-full flex-col",
-            mode === "dark" ? "bg-black text-white" : "bg-white text-zinc-950"
+            theme === "dark" ? "bg-black text-white" : "bg-white text-zinc-950"
           )}
         >
           <div
             tw={cn(
               "relative flex h-20 items-center w-full border-b",
-              mode === "dark"
+              theme === "dark"
                 ? "bg-zinc-800 border-zinc-800"
                 : "bg-zinc-100 border-zinc-200"
             )}
