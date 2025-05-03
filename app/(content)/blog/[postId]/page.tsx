@@ -1,6 +1,6 @@
 import "@blocknote/core/fonts/inter.css";
 import "@blocknote/mantine/style.css";
-import "@/styles/editor.css";
+import "@/styles/content.css";
 
 import { notFound } from "next/navigation";
 import Link from "next/link";
