@@ -1,5 +1,3 @@
-import { NavConfig } from "@/types";
-
 export const navConfig = {
   contents: [
     {
@@ -40,4 +38,4 @@ export const navConfig = {
       icon: "settings",
     },
   ],
-} satisfies NavConfig;
+};

@@ -24,6 +24,12 @@ const EditorPage = async ({ params }: EditorPageProps) => {
     where: {
       id: postId,
     },
+    select: {
+      id: true,
+      title: true,
+      blocks: true,
+      published: true,
+    },
   });
 
   if (!post) {

@@ -56,8 +56,9 @@ CREATE TABLE "verification_tokens" (
 CREATE TABLE "posts" (
     "id" TEXT NOT NULL,
     "title" TEXT NOT NULL,
-    "content" JSONB,
     "description" TEXT,
+    "content" TEXT,
+    "blocks" JSONB,
     "thumbnail" TEXT,
     "published" BOOLEAN NOT NULL DEFAULT false,
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,

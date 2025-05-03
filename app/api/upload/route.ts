@@ -22,10 +22,7 @@ export const POST = async (req: NextRequest) => {
     const file = formData.get("file") as File;
 
     if (!bucket || !file) {
-      return NextResponse.json(
-        { success: 0, message: "Bad Request" },
-        { status: 400 }
-      );
+      return NextResponse.json({ error: "Bad Request" }, { status: 400 });
     }
 
     const blob = await put(`${bucket}/${file.name}`, file, {

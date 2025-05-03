@@ -1,5 +1,4 @@
 import env from "@/env";
-import { SiteConfig } from "@/types";
 
 export const siteConfig = {
   name: env.NEXT_PUBLIC_APP_NAME,
@@ -11,4 +10,4 @@ export const siteConfig = {
     x: "https://x.com/yushin_ito",
     instagram: "https://instagram.com/yushin_505",
   },
-} satisfies SiteConfig;
+};

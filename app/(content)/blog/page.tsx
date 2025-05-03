@@ -9,7 +9,6 @@ import {
   EmptyPlaceholderTitle,
   EmptyPlaceholderDescription,
 } from "@/components/empty-placeholder";
-import { siteConfig } from "@/config/site";
 
 export const generateMetadata = async () => {
   const t = await getTranslations("content.blog.metadata");
@@ -57,43 +56,36 @@ const BlogPage = async () => {
       <hr className="mb-8 mt-4 w-full" />
       {posts.length ? (
         <div className="grid gap-10 px-2 sm:grid-cols-2">
-          {posts.map((post) => {
-            const ogUrl = new URL(`${siteConfig.url}/api/og`);
-            ogUrl.searchParams.set("title", post.title);
-            ogUrl.searchParams.set("width", "1280");
-            ogUrl.searchParams.set("height", "720");
-
-            return (
-              <article
-                key={post.id}
-                className="group relative flex flex-col space-y-2.5"
-              >
-                <div className="relative aspect-video w-full overflow-hidden rounded-lg border">
-                  {post.thumbnail && (
-                    <Image
-                      src={post.thumbnail}
-                      alt={post.title}
-                      fill
-                      sizes="(min-width: 640px) 640px, 100vw"
-                      className="bg-muted transition-colors dark:hidden"
-                      priority
-                    />
-                  )}
-                </div>
-                <div className="flex items-center justify-between px-2">
-                  <p className="text-sm text-muted-foreground">
-                    {post.description || t("no_description")}
-                  </p>
-                  <p className="whitespace-nowrap text-xs text-muted-foreground">
-                    {format.relativeTime(new Date(post.updatedAt), new Date())}
-                  </p>
-                </div>
-                <Link href={`/blog/${post.id}`} className="absolute inset-0">
-                  <span className="sr-only">{t("view_post")}</span>
-                </Link>
-              </article>
-            );
-          })}
+          {posts.map((post) => (
+            <article
+              key={post.id}
+              className="group relative flex flex-col space-y-2.5"
+            >
+              <div className="relative aspect-video w-full overflow-hidden rounded-lg border">
+                {post.thumbnail && (
+                  <Image
+                    src={post.thumbnail}
+                    alt={post.title}
+                    fill
+                    sizes="(min-width: 640px) 640px, 100vw"
+                    className="bg-muted transition-colors dark:hidden"
+                    priority
+                  />
+                )}
+              </div>
+              <div className="flex items-center justify-between space-x-4 px-2">
+                <p className="truncate whitespace-nowrap text-sm text-muted-foreground">
+                  {post.description || t("no_description")}
+                </p>
+                <p className="whitespace-nowrap text-xs text-muted-foreground">
+                  {format.relativeTime(new Date(post.updatedAt), new Date())}
+                </p>
+              </div>
+              <Link href={`/blog/${post.id}`} className="absolute inset-0">
+                <span className="sr-only">{t("view_post")}</span>
+              </Link>
+            </article>
+          ))}
         </div>
       ) : (
         <EmptyPlaceholder className="min-h-[360px] border-none">

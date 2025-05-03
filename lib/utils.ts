@@ -5,18 +5,6 @@ export const cn = (...inputs: ClassValue[]) => {
   return twMerge(clsx(inputs));
 };
 
-export const getImageByUrl = async (url: string, name: string) => {
-  const response = await fetch(url);
-
-  if (!response.ok) {
-    return null;
-  }
-
-  const blob = await response.blob();
-
-  const file = new File([blob], `${name}.png`, {
-    type: "image/png",
-  });
-
-  return file;
+export const wait = (sec: number) => {
+  return new Promise((resolve) => setTimeout(resolve, sec * 1000));
 };

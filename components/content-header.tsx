@@ -3,8 +3,8 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useTranslations } from "next-intl";
-import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import { useState } from "react";
+import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 
 import { cn } from "@/lib/utils";
 import { navConfig } from "@/config/nav";
@@ -20,12 +20,12 @@ import {
   SheetHeader,
   SheetTitle,
   SheetTrigger,
-} from "@/components/ui/sheet";
+} from "./ui/sheet";
 
-const Header = () => {
+const ContentHeader = () => {
   const t = useTranslations("content");
   const pathname = usePathname();
-  const [showMobileMenu, setShowMobileMenu] = useState(false);
+  const [open, setOpen] = useState(false);
 
   return (
     <div className="flex h-12 items-center justify-between px-4 md:h-16 md:px-10">
@@ -46,10 +46,7 @@ const Header = () => {
         ))}
       </nav>
       <Sheet>
-        <SheetTrigger
-          className="flex md:hidden"
-          onClick={() => setShowMobileMenu(!showMobileMenu)}
-        >
+        <SheetTrigger className="flex md:hidden" onClick={() => setOpen(!open)}>
           <Icons.menu className="size-6" />
         </SheetTrigger>
         <SheetContent className="w-3/5" side="left">
@@ -96,4 +93,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default ContentHeader;

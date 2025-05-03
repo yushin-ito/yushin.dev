@@ -1,16 +1,17 @@
+import "@blocknote/core/fonts/inter.css";
+import "@blocknote/mantine/style.css";
+
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { getTranslations } from "next-intl/server";
 import Image from "next/image";
 
 import { db } from "@/lib/db";
-import { contentSchema } from "@/schemas/editor";
-import TableOfContents from "@/components/table-of-contents";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import Block from "@/components/block";
 import Icons from "@/components/icons";
-import { getTableOfContents } from "@/lib/editor";
+import TableOfContents from "@/components/table-of-contents";
+import { getTableOfContents } from "@/actions/content";
 
 interface PostPageProps {
   params: Promise<{ postId: string }>;
@@ -25,15 +26,19 @@ const PostPage = async ({ params }: PostPageProps) => {
     where: {
       id: postId,
     },
+    select: {
+      id: true,
+      title: true,
+      content: true,
+      thumbnail: true,
+    },
   });
 
   if (!post) {
     notFound();
   }
 
-  const content = contentSchema.parse(post.content);
-
-  const toc = getTableOfContents(content.blocks);
+  const toc = await getTableOfContents(post.content as string);
 
   return (
     <article className="py-6 md:py-8 lg:py-12">
@@ -43,7 +48,7 @@ const PostPage = async ({ params }: PostPageProps) => {
             <h1 className="text-xl font-bold sm:text-2xl md:text-3xl">
               {post.title}
             </h1>
-            <p className="text-sm text-muted-foreground">{post.description}</p>
+            {/* <p className="text-sm text-muted-foreground">{post.description}</p> */}
           </div>
         </div>
         <hr className="mb-8 mt-4 w-full" />
@@ -54,7 +59,7 @@ const PostPage = async ({ params }: PostPageProps) => {
                 <Image src={post.thumbnail} alt={post.title} fill priority />
               )}
             </div>
-            <Block data={content.blocks} />
+            <div dangerouslySetInnerHTML={{ __html: post.content as string }} />
             <hr className="mt-12" />
             <div className="flex justify-center py-6 lg:py-10">
               <Link

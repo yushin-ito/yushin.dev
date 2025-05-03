@@ -66,8 +66,9 @@ model VerificationToken {
 model Post {
   id          String       @id @default(cuid())
   title       String
-  content     Json?
   description String?
+  content     String?
+  blocks      Json?
   thumbnail   String?
   published   Boolean      @default(false)
   createdAt   DateTime     @default(now()) @map("created_at")

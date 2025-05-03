@@ -27,6 +27,7 @@
   font-family: "Inter", "Noto Sans JP", sans-serif;
 }
 .bn-editor {
+  background-color: transparent !important;
   padding-inline: 0 !important;
 }
 

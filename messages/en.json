@@ -235,7 +235,7 @@
     "back": "Back",
     "cancel": "Cancel",
     "continue": "Continue",
-    "unload_dialog": {
+    "dialog": {
       "title": "Unsaved changes",
       "description": "You have unsaved changes. If you leave this page, your changes may be lost."
     },
@@ -244,8 +244,14 @@
       "description": "Your post has been created successfully."
     },
     "error": {
-      "title": "Something went wrong.",
-      "description": "Your post was not saved. Please try again."
+      "upload": {
+        "title": "Something went wrong.",
+        "description": "Your file upload failed. Please try again."
+      },
+      "save": {
+        "title": "Something went wrong.",
+        "description": "Your post was not saved. Please try again."
+      }
     }
   },
   "email": {

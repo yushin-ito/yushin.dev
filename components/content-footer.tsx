@@ -1,8 +1,8 @@
 import { siteConfig } from "@/config/site";
 
-const Footer = () => {
+const ContentFooter = () => {
   return (
-    <footer className="h-6">
+    <div className="h-6">
       <p className="text-center text-xs text-muted-foreground md:text-sm">
         &copy; {new Date().getFullYear()}{" "}
         <a
@@ -15,8 +15,8 @@ const Footer = () => {
         </a>{" "}
         All rights reserved.
       </p>
-    </footer>
+    </div>
   );
 };
 
-export default Footer;
+export default ContentFooter;

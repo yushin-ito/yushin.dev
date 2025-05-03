@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
 
-import Footer from "@/components/footer";
-import Header from "@/components/header";
+import CotentFooter from "@/components/content-footer";
+import ContentHeader from "@/components/content-header";
 
 interface ContentLayoutProps {
   children: ReactNode;
@@ -11,10 +11,12 @@ const ContentLayout = ({ children }: ContentLayoutProps) => {
   return (
     <div className="relative flex min-h-screen flex-col">
       <header>
-        <Header />
+        <ContentHeader />
       </header>
       <main className="flex-1">{children}</main>
-      <Footer />
+      <footer>
+        <CotentFooter />
+      </footer>
     </div>
   );
 };

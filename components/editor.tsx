@@ -1,5 +1,9 @@
 "use client";
 
+import "@blocknote/core/fonts/inter.css";
+import "@blocknote/mantine/style.css";
+import "@/styles/editor.css";
+
 import { codeBlock } from "@blocknote/code-block";
 import { BlockNoteView } from "@blocknote/mantine";
 import { useCreateBlockNote } from "@blocknote/react";
@@ -16,12 +20,12 @@ import { Post } from "@prisma/client";
 import { toast } from "sonner";
 import { CharacterCount } from "@tiptap/extension-character-count";
 import { useRouter } from "next/navigation";
+import { PutBlobResult } from "@vercel/blob";
 
 import Icons from "@/components/icons";
 import { cn } from "@/lib/utils";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { editorSchema } from "@/schemas/post";
-import { generateThumnail } from "@/lib/editor";
 import LeftArrowConversionExtension from "@/extensions/left-arrow-conversion-extension";
 import RightArrowConversionExtension from "@/extensions/right-arrow-conversion-extension";
 import {
@@ -34,13 +38,11 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
-
-import "@blocknote/core/fonts/inter.css";
-import "@blocknote/mantine/style.css";
-import "@/styles/editor.css";
+import env from "@/env";
+import { getHTMLWithAnchor } from "@/actions/content";
 
 interface EditorProps {
-  post: Pick<Post, "id" | "title" | "content" | "published">;
+  post: Pick<Post, "id" | "title" | "blocks" | "published">;
 }
 
 type FormData = z.infer<typeof editorSchema>;
@@ -58,9 +60,58 @@ const Editor = ({ post }: EditorProps) => {
 
   const dictionary = locale === "ja" ? ja : en;
 
+  const uploadFile = useCallback(
+    async (file: File) => {
+      const formData = new FormData();
+      formData.append("bucket", "images");
+      formData.append("file", file);
+
+      const response = await fetch("/api/upload", {
+        method: "POST",
+        body: formData,
+      });
+
+      if (!response.ok) {
+        toast.error(t("error.upload.title"), {
+          description: t("error.upload.description"),
+        });
+        return "";
+      }
+
+      const blob = (await response.json()) as PutBlobResult;
+
+      return blob.url;
+    },
+    [t]
+  );
+
+  const getTumbnail = useCallback(
+    async (title: string) => {
+      const ogUrl = new URL("/api/og", env.NEXT_PUBLIC_APP_URL);
+      ogUrl.searchParams.set("title", title);
+      ogUrl.searchParams.set("width", "1920");
+      ogUrl.searchParams.set("height", "1080");
+
+      const response = await fetch(ogUrl.toString());
+
+      if (!response.ok) {
+        return;
+      }
+
+      const blob = await response.blob();
+      const file = new File([blob], `${post.id}.png`, { type: "image/png" });
+      const url = await uploadFile(file);
+
+      return url;
+    },
+    [post.id, uploadFile]
+  );
+
   const editor = useCreateBlockNote({
     animations: false,
+    initialContent: JSON.parse(post.blocks as string),
     codeBlock,
+    uploadFile,
     dictionary: {
       ...dictionary,
       placeholders: {
@@ -86,19 +137,19 @@ const Editor = ({ post }: EditorProps) => {
   const onSubmit = useCallback(
     (data: FormData) => {
       startTransition(async () => {
-        setIsDirty(false);
-
-        const html = await editor.blocksToHTMLLossy(editor.document);
-
-        const url = await generateThumnail(post.id, data.title);
+        const url = await getTumbnail(data.title);
 
         if (!url) {
-          toast.error(t("error.title"), {
-            description: t("error.description"),
+          toast.error(t("error.save.title"), {
+            description: t("error.save.description"),
           });
 
           return;
         }
+
+        const text = editor._tiptapEditor.getText();
+        const html = await editor.blocksToFullHTML(editor.document);
+        const blocks = JSON.stringify(editor.document);
 
         const response = await fetch(`/api/posts/${post.id}`, {
           method: "PATCH",
@@ -107,15 +158,16 @@ const Editor = ({ post }: EditorProps) => {
           },
           body: JSON.stringify({
             title: data.title,
-            content: html,
-            description: "",
+            description: text.slice(0, 100),
+            content: await getHTMLWithAnchor(html),
+            blocks: blocks,
             thumbnail: url,
           }),
         });
 
         if (!response.ok) {
-          toast.error(t("error.title"), {
-            description: t("error.description"),
+          toast.error(t("error.save.title"), {
+            description: t("error.save.description"),
           });
 
           return;
@@ -126,9 +178,11 @@ const Editor = ({ post }: EditorProps) => {
         toast.success(t("success.title"), {
           description: t("success.description"),
         });
+
+        setIsDirty(false);
       });
     },
-    [t, editor, router, post.id]
+    [getTumbnail, post.id, editor, router, t]
   );
 
   useEffect(() => {
@@ -205,7 +259,6 @@ const Editor = ({ post }: EditorProps) => {
               }}
             />
             <BlockNoteView
-              autoFocus
               theme={resolvedTheme as "light" | "dark"}
               editor={editor}
               onChange={() => {
@@ -221,9 +274,9 @@ const Editor = ({ post }: EditorProps) => {
       <AlertDialog open={open} onOpenChange={setOpen}>
         <AlertDialogContent>
           <AlertDialogHeader>
-            <AlertDialogTitle>{t("unload_dialog.title")}</AlertDialogTitle>
+            <AlertDialogTitle>{t("dialog.title")}</AlertDialogTitle>
             <AlertDialogDescription>
-              {t("unload_dialog.description")}
+              {t("dialog.description")}
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>

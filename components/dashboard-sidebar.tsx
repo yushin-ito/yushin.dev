@@ -11,7 +11,7 @@ import { Button, buttonVariants } from "@/components/ui/button";
 import { signOut } from "@/actions/auth";
 import Icons from "@/components/icons";
 
-const Sidebar = () => {
+const DashboardSidebar = () => {
   const t = useTranslations("dashboard");
   const pathname = usePathname();
   const [isPending, startTransition] = useTransition();
@@ -20,7 +20,7 @@ const Sidebar = () => {
     <div className="fixed z-40 flex h-screen flex-col justify-between border-r px-6 py-8">
       <nav className="space-y-6">
         {navConfig.dashboard.map((item, index) => {
-          const Icon = Icons[item.icon];
+          const Icon = Icons[item.icon as keyof typeof Icons];
 
           return (
             <Link
@@ -59,4 +59,4 @@ const Sidebar = () => {
   );
 };
 
-export default Sidebar;
+export default DashboardSidebar;
