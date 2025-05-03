@@ -50,7 +50,7 @@ const TableOfContents = ({ items }: TableOfContentsProps) => {
   }
 
   return (
-    <div className="space-y-0.5">
+    <div className="space-y-0.5 transition-colors">
       <p className="text-sm font-bold">目次</p>
       <ul className="list-decimal pl-5">
         {items.map((item, index) => {

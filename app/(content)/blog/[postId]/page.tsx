@@ -12,6 +12,8 @@ import { cn } from "@/lib/utils";
 import Icons from "@/components/icons";
 import TableOfContents from "@/components/table-of-contents";
 import { getTableOfContents } from "@/actions/content";
+import LikeButton from "@/components/like-button";
+import Tracker from "@/components/tracker";
 
 interface PostPageProps {
   params: Promise<{ postId: string }>;
@@ -32,6 +34,15 @@ const PostPage = async ({ params }: PostPageProps) => {
       content: true,
       thumbnail: true,
       updatedAt: true,
+      author: {
+        select: {
+          name: true,
+          image: true,
+        },
+      },
+      _count: {
+        select: { views: true, likes: true },
+      },
     },
   });
 
@@ -41,15 +52,37 @@ const PostPage = async ({ params }: PostPageProps) => {
 
   const toc = await getTableOfContents(post.content as string);
 
+  const tags = [] as string[];
+
   return (
     <article className="py-6 md:py-8 lg:py-12">
       <div className="container max-w-5xl">
-        <div className="flex items-center justify-between">
-          <div className="space-y-2">
+        <div className="flex w-full items-center justify-between">
+          <div className="w-full space-y-2">
             <h1 className="text-xl font-bold sm:text-2xl md:text-3xl">
               {post.title}
             </h1>
-            {/* <p className="text-sm text-muted-foreground">{post.description}</p> */}
+            <div className="flex w-full justify-between px-1">
+              <div className="flex items-center">
+                <div className="flex items-center space-x-2 text-muted-foreground">
+                  {tags.map((tag) => (
+                    <Link key={tag} href={`/tags/${tag}`} className="text-sm">
+                      #{tag}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+              <div className="flex items-center space-x-4">
+                <div className="flex items-center space-x-1 text-sm text-muted-foreground">
+                  <Icons.heart className="size-4" />
+                  <p className="text-xs">{post._count.likes}</p>
+                </div>
+                <div className="flex items-center space-x-1 text-sm text-muted-foreground">
+                  <Icons.eye className="size-4" />
+                  <p className="text-xs">{post._count.views}</p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
         <hr className="mb-8 mt-4 w-full" />
@@ -71,12 +104,16 @@ const PostPage = async ({ params }: PostPageProps) => {
             </div>
           </div>
           <div className="hidden lg:block">
-            <div className="sticky top-12 overflow-y-auto pt-12">
+            <div className="sticky top-12 overflow-y-auto">
               <TableOfContents items={toc} />
             </div>
           </div>
         </div>
       </div>
+      <div className="fixed bottom-8 right-8">
+        <LikeButton postId={post.id} />
+      </div>
+      <Tracker postId={post.id} />
     </article>
   );
 };

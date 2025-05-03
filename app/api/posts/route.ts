@@ -37,7 +37,7 @@ export const POST = async (req: NextRequest) => {
     return NextResponse.json(post, { status: 201 });
   } catch (error) {
     if (error instanceof z.ZodError) {
-      return NextResponse.json({ errors: error.issues }, { status: 422 });
+      return NextResponse.json({ errors: error.errors }, { status: 422 });
     }
 
     return NextResponse.json(
