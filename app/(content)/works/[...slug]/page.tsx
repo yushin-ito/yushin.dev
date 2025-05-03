@@ -50,7 +50,7 @@ export const generateMetadata = async ({ params }: WorkPageProps) => {
       url: `${siteConfig.url}/works/${work.slug}`,
       images: [
         {
-          url: `${siteConfig.url}/images/${work.slug}/thumbnail.png`,
+          url: `${siteConfig.url}/images/${work.slug}/og.png`,
           width: 1200,
           height: 630,
           alt: work.title,
