@@ -120,9 +120,9 @@ const AnalyticsPage = async ({ searchParams }: AnalyticsPageProps) => {
         },
       });
 
-      data = raws.map((d, i) => ({
-        time: d.createdAt,
-        value: i + 1,
+      data = raws.map((raw, index) => ({
+        time: raw.createdAt,
+        value: index + 1,
       }));
 
       break;
@@ -141,9 +141,9 @@ const AnalyticsPage = async ({ searchParams }: AnalyticsPageProps) => {
         },
       });
 
-      data = raws.map((d, i) => ({
-        time: d.createdAt,
-        value: i + 1,
+      data = raws.map((raw, index) => ({
+        time: raw.createdAt,
+        value: index + 1,
       }));
 
       break;
@@ -162,9 +162,9 @@ const AnalyticsPage = async ({ searchParams }: AnalyticsPageProps) => {
         },
       });
 
-      data = raws.map((d, i) => ({
-        time: d.createdAt,
-        value: i + 1,
+      data = raws.map((raw, index) => ({
+        time: raw.createdAt,
+        value: index + 1,
       }));
 
       break;

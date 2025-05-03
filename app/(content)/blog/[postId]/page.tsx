@@ -14,16 +14,15 @@ import TableOfContents from "@/components/table-of-contents";
 import { getTableOfContents } from "@/actions/content";
 import LikeButton from "@/components/like-button";
 import Tracker from "@/components/tracker";
+import env from "@/env";
+import { siteConfig } from "@/config/site";
 
 interface PostPageProps {
   params: Promise<{ postId: string }>;
 }
 
-const PostPage = async ({ params }: PostPageProps) => {
+const getPostFromParams = async (params: PostPageProps["params"]) => {
   const { postId } = await params;
-
-  const t = await getTranslations("content.blog");
-
   const post = await db.post.findFirst({
     where: {
       id: postId,
@@ -31,20 +30,63 @@ const PostPage = async ({ params }: PostPageProps) => {
     select: {
       id: true,
       title: true,
+      description: true,
       content: true,
       thumbnail: true,
       updatedAt: true,
-      author: {
-        select: {
-          name: true,
-          image: true,
-        },
-      },
       _count: {
         select: { views: true, likes: true },
       },
     },
   });
+
+  if (!post) {
+    return null;
+  }
+
+  return post;
+};
+
+export const generateMetadata = async ({ params }: PostPageProps) => {
+  const post = await getPostFromParams(params);
+
+  if (!post) {
+    return {};
+  }
+
+  const ogUrl = new URL("/api/og", env.NEXT_PUBLIC_APP_URL);
+  ogUrl.searchParams.set("title", post.title);
+
+  return {
+    title: post.title,
+    description: post.description,
+    authors: [],
+    openGraph: {
+      title: post.title,
+      description: post.description,
+      type: "article",
+      url: `${siteConfig.url}/blog/${post.id}`,
+      images: [
+        {
+          url: ogUrl.toString(),
+          width: 1200,
+          height: 630,
+          alt: post.title,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: post.title,
+      description: post.description,
+      images: [ogUrl.toString()],
+    },
+  };
+};
+
+const PostPage = async ({ params }: PostPageProps) => {
+  const t = await getTranslations("content.blog");
+  const post = await getPostFromParams(params);
 
   if (!post) {
     notFound();
@@ -92,7 +134,7 @@ const PostPage = async ({ params }: PostPageProps) => {
             <hr className="mt-12" />
             <div className="flex justify-center py-6 lg:py-10">
               <Link
-                href="/posts"
+                href="/blog"
                 className={cn(
                   buttonVariants({ variant: "ghost" }),
                   "pl-2 flex items-center"

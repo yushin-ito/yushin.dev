@@ -23,6 +23,7 @@ export const generateMetadata = async () => {
 const WorksPage = async () => {
   const t = await getTranslations("content.works");
   const format = await getFormatter();
+
   const works = allWorks
     .filter((work) => work.published)
     .sort((a, b) => {
