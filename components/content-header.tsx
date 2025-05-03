@@ -27,6 +27,9 @@ const ContentHeader = () => {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
 
+  const isActive = (href: string) =>
+    pathname === href || (href !== "/" && pathname.startsWith(href));
+
   return (
     <div className="flex h-12 items-center justify-between px-4 md:h-16 md:px-10">
       <nav className="hidden space-x-6 md:flex">
@@ -36,7 +39,7 @@ const ContentHeader = () => {
             href={item.href}
             className={cn(
               "flex items-center text-sm font-medium transition-colors hover:text-foreground/80",
-              pathname === item.href ? "text-foreground" : "text-foreground/60"
+              isActive(item.href) ? "text-foreground" : "text-foreground/60"
             )}
           >
             {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
@@ -63,7 +66,7 @@ const ContentHeader = () => {
                   href={item.href}
                   className={cn(
                     buttonVariants({ variant: "ghost" }),
-                    pathname === item.href
+                    isActive(item.href)
                       ? "bg-muted hover:bg-muted"
                       : "hover:bg-transparent hover:underline",
                     "w-full"
