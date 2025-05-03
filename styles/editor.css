@@ -49,3 +49,33 @@
 .mantine-Menu-itemLabel {
   font-weight: 500;
 }
+
+.bn-block-content[data-content-type="heading"] h1 {
+  font-size: 1.625rem;
+  line-height: 1.35;
+  font-weight: 700;
+}
+
+.bn-block-content[data-content-type="heading"] h2 {
+  font-size: 1.375rem;
+  line-height: 1.4;
+  font-weight: 700;
+}
+
+.bn-block-content[data-content-type="heading"] h3 {
+  font-size: 1.125rem;
+  line-height: 1.45;
+  font-weight: 700;
+}
+
+.bn-block-content[data-content-type="heading"] h4 {
+  font-size: 1rem;
+  line-height: 1.5;
+  font-weight: 700;
+}
+
+.bn-block-content[data-content-type="heading"] h5 {
+  font-size: 0.875rem;
+  line-height: 1.5;
+  font-weight: 700;
+}

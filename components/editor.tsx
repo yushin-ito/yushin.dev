@@ -89,8 +89,8 @@ const Editor = ({ post }: EditorProps) => {
     async (title: string) => {
       const ogUrl = new URL("/api/og", env.NEXT_PUBLIC_APP_URL);
       ogUrl.searchParams.set("title", title);
-      ogUrl.searchParams.set("width", "1920");
-      ogUrl.searchParams.set("height", "1080");
+      ogUrl.searchParams.set("width", "1280");
+      ogUrl.searchParams.set("height", "720");
 
       const response = await fetch(ogUrl.toString());
 

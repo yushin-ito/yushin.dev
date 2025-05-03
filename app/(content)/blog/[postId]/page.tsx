@@ -1,10 +1,10 @@
 import "@blocknote/core/fonts/inter.css";
 import "@blocknote/mantine/style.css";
+import "@/styles/editor.css";
 
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { getTranslations } from "next-intl/server";
-import Image from "next/image";
 
 import { db } from "@/lib/db";
 import { buttonVariants } from "@/components/ui/button";
@@ -31,6 +31,7 @@ const PostPage = async ({ params }: PostPageProps) => {
       title: true,
       content: true,
       thumbnail: true,
+      updatedAt: true,
     },
   });
 
@@ -54,11 +55,6 @@ const PostPage = async ({ params }: PostPageProps) => {
         <hr className="mb-8 mt-4 w-full" />
         <div className="relative px-1 lg:grid lg:grid-cols-[1fr_120px] lg:gap-20">
           <div className="space-y-8">
-            <div className="relative aspect-[16/9] overflow-hidden rounded-xl border bg-muted transition-colors">
-              {post.thumbnail && (
-                <Image src={post.thumbnail} alt={post.title} fill priority />
-              )}
-            </div>
             <div dangerouslySetInnerHTML={{ __html: post.content as string }} />
             <hr className="mt-12" />
             <div className="flex justify-center py-6 lg:py-10">

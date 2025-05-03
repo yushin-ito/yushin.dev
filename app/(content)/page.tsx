@@ -17,7 +17,7 @@ const TopPage = () => {
     <section className="container flex max-w-5xl flex-col items-center justify-center space-y-8 py-16 md:h-[calc(100vh-6rem)] md:flex-row md:space-x-12">
       <Image
         src="/images/icon.png"
-        alt="Profile Image"
+        alt="avatar"
         width={512}
         height={512}
         className="size-[240px] rounded-full md:size-[280px]"
