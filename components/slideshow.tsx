@@ -46,7 +46,7 @@ const Slideshow = ({ deck }: SlideshowProps) => {
         setApi={setApi}
         plugins={[
           Autoplay({
-            delay: 2000,
+            delay: 3000,
           }),
         ]}
       >

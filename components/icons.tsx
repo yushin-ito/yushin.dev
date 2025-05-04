@@ -20,6 +20,7 @@ import {
   Heart,
   House,
   Info,
+  Languages,
   Lightbulb,
   Loader2,
   LogOut,
@@ -77,6 +78,7 @@ const Icons = {
   sun: Sun,
   tag: Tag,
   tip: Lightbulb,
+  translation: Languages,
   trash: Trash,
   user: User,
   chakraui: (props: LucideProps) => (

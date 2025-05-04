@@ -1,16 +1,16 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { useTranslations } from "next-intl";
-import { useState } from "react";
+import { usePathname, useRouter } from "next/navigation";
+import { useLocale, useTranslations } from "next-intl";
+import { useCallback, useState } from "react";
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 
 import { cn } from "@/lib/utils";
 import { navConfig } from "@/config/nav";
 import ModeToggle from "@/components/mode-toggle";
 import { siteConfig } from "@/config/site";
-import { buttonVariants } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
 import Icons from "@/components/icons";
 import {
   Sheet,
@@ -20,15 +20,27 @@ import {
   SheetHeader,
   SheetTitle,
   SheetTrigger,
-} from "./ui/sheet";
+} from "@/components/ui/sheet";
 
 const ContentHeader = () => {
   const t = useTranslations("content");
+  const locale = useLocale();
+  const router = useRouter();
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
 
   const isActive = (href: string) =>
     pathname === href || (href !== "/" && pathname.startsWith(href));
+
+  const onTranslation = useCallback(() => {
+    document.cookie = [
+      `locale=${locale === "en" ? "ja" : "en"}`,
+      "path=/",
+      "max-age=31536000",
+    ].join("; ");
+
+    router.refresh();
+  }, [locale, router]);
 
   return (
     <div className="flex h-12 items-center justify-between px-4 md:h-16 md:px-10">
@@ -88,9 +100,16 @@ const ContentHeader = () => {
           rel="noreferrer"
           className={cn(buttonVariants({ variant: "ghost" }), "size-8")}
         >
-          <Icons.github className="size-6 dark:fill-white" />
+          <Icons.github className="dark:fill-white" />
         </Link>
         <ModeToggle />
+        <Button
+          variant="ghost"
+          className={cn(buttonVariants({ variant: "ghost" }), "size-8")}
+          onClick={onTranslation}
+        >
+          <Icons.translation className="size-6" />
+        </Button>
       </div>
     </div>
   );
