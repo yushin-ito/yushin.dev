@@ -59,7 +59,7 @@ const BlogPage = async () => {
           {posts.map((post) => (
             <article
               key={post.id}
-              className="group relative flex flex-col space-y-2.5"
+              className="group relative flex flex-col space-y-2.5 overflow-hidden"
             >
               <div className="relative aspect-video w-full overflow-hidden rounded-lg border">
                 {post.thumbnail && (
@@ -69,7 +69,6 @@ const BlogPage = async () => {
                     fill
                     sizes="(min-width: 640px) 640px, 100vw"
                     className="bg-muted transition-colors"
-                    priority
                   />
                 )}
               </div>

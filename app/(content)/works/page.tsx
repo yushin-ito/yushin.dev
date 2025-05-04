@@ -46,7 +46,7 @@ const WorksPage = async () => {
           {works.map((work) => (
             <article
               key={work._id}
-              className="group relative flex flex-col space-y-2.5"
+              className="group relative flex flex-col space-y-2.5 overflow-hidden"
             >
               <div className="relative aspect-video w-full overflow-hidden rounded-lg border">
                 <Image
