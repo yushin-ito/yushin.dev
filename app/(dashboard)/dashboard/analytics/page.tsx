@@ -107,7 +107,7 @@ const AnalyticsPage = async ({ searchParams }: AnalyticsPageProps) => {
 
   switch (tab) {
     case "impression": {
-      const raws = await db.impression.findMany({
+      const impressions = await db.impression.findMany({
         where: {
           postId: post?.id,
           createdAt: {
@@ -120,15 +120,15 @@ const AnalyticsPage = async ({ searchParams }: AnalyticsPageProps) => {
         },
       });
 
-      data = raws.map((raw, index) => ({
-        time: raw.createdAt,
+      data = impressions.map((impression, index) => ({
+        time: impression.createdAt,
         value: index + 1,
       }));
 
       break;
     }
     case "view": {
-      const raws = await db.view.findMany({
+      const views = await db.view.findMany({
         where: {
           postId: post?.id,
           createdAt: {
@@ -141,15 +141,15 @@ const AnalyticsPage = async ({ searchParams }: AnalyticsPageProps) => {
         },
       });
 
-      data = raws.map((raw, index) => ({
-        time: raw.createdAt,
+      data = views.map((view, index) => ({
+        time: view.createdAt,
         value: index + 1,
       }));
 
       break;
     }
     case "like": {
-      const raws = await db.like.findMany({
+      const likes = await db.like.findMany({
         where: {
           postId: post?.id,
           createdAt: {
@@ -162,8 +162,8 @@ const AnalyticsPage = async ({ searchParams }: AnalyticsPageProps) => {
         },
       });
 
-      data = raws.map((raw, index) => ({
-        time: raw.createdAt,
+      data = likes.map((like, index) => ({
+        time: like.createdAt,
         value: index + 1,
       }));
 
@@ -178,6 +178,7 @@ const AnalyticsPage = async ({ searchParams }: AnalyticsPageProps) => {
           value: Math.floor(Math.random() * 100) + 1,
         };
       });
+
       break;
   }
 
