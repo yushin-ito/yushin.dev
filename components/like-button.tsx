@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useState } from "react";
 import { load } from "@fingerprintjs/fingerprintjs";
+import { useRouter } from "next/navigation";
 
 import { Button } from "@/components/ui/button";
 import Icons from "@/components/icons";
@@ -11,6 +12,7 @@ interface LikeButtonProps {
 }
 
 const LikeButton = ({ postId }: LikeButtonProps) => {
+  const router = useRouter();
   const [visitorId, setVisitorId] = useState<string>();
   const [liked, setLiked] = useState(false);
 
@@ -31,6 +33,7 @@ const LikeButton = ({ postId }: LikeButtonProps) => {
         `/api/posts/${postId}/like?visitorId=${encodeURIComponent(visitorId)}`,
         { method: "GET" }
       );
+
       if (response.ok) {
         setLiked(true);
       }
@@ -50,8 +53,10 @@ const LikeButton = ({ postId }: LikeButtonProps) => {
 
     if (response.ok) {
       setLiked(!liked);
+
+      router.refresh();
     }
-  }, [visitorId, liked, postId]);
+  }, [visitorId, postId, liked, router]);
 
   return (
     <Button
