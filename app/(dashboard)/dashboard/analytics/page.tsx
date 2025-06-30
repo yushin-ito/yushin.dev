@@ -1,5 +1,10 @@
 import { getTranslations } from "next-intl/server";
-import { fromUnixTime, subDays } from "date-fns";
+import {
+  addDays,
+  differenceInCalendarDays,
+  fromUnixTime,
+  subDays,
+} from "date-fns";
 import { unauthorized, forbidden } from "next/navigation";
 
 import PostSwitcher from "@/components/post-switcher";
@@ -105,14 +110,19 @@ const AnalyticsPage = async ({ searchParams }: AnalyticsPageProps) => {
 
   let data: { time: Date; value: number }[] = [];
 
+  const gte = from ? fromUnixTime(Number(from)) : subDays(new Date(), 6);
+  const lte = to ? fromUnixTime(Number(to)) : new Date();
+
+  const diff = differenceInCalendarDays(lte, gte);
+
   switch (tab) {
     case "impression": {
       const impressions = await db.impression.findMany({
         where: {
           postId: post?.id,
           createdAt: {
-            gte: fromUnixTime(Number(from)) || subDays(new Date(), 6),
-            lte: fromUnixTime(Number(to)) || new Date(),
+            gte,
+            lte,
           },
         },
         select: {
@@ -122,9 +132,8 @@ const AnalyticsPage = async ({ searchParams }: AnalyticsPageProps) => {
 
       const keys = (date: Date) => date.toISOString().split("T")[0];
 
-      const now = new Date();
-      data = Array.from({ length: 7 }, (_, i) => {
-        const date = subDays(now, 6 - i);
+      data = Array.from({ length: diff + 1 }, (_, i) => {
+        const date = addDays(gte, i);
         const key = keys(date);
 
         const impression = impressions.filter(
@@ -144,8 +153,8 @@ const AnalyticsPage = async ({ searchParams }: AnalyticsPageProps) => {
         where: {
           postId: post?.id,
           createdAt: {
-            gte: fromUnixTime(Number(from)) || subDays(new Date(), 6),
-            lte: fromUnixTime(Number(to)) || new Date(),
+            gte,
+            lte,
           },
         },
         select: {
@@ -155,9 +164,8 @@ const AnalyticsPage = async ({ searchParams }: AnalyticsPageProps) => {
 
       const keys = (date: Date) => date.toISOString().split("T")[0];
 
-      const now = new Date();
-      data = Array.from({ length: 7 }, (_, i) => {
-        const date = subDays(now, 6 - i);
+      data = Array.from({ length: diff + 1 }, (_, i) => {
+        const date = addDays(gte, i);
         const key = keys(date);
 
         const view = views.filter(
@@ -177,8 +185,8 @@ const AnalyticsPage = async ({ searchParams }: AnalyticsPageProps) => {
         where: {
           postId: post?.id,
           createdAt: {
-            gte: fromUnixTime(Number(from)) || subDays(new Date(), 6),
-            lte: fromUnixTime(Number(to)) || new Date(),
+            gte,
+            lte,
           },
         },
         select: {
@@ -188,9 +196,8 @@ const AnalyticsPage = async ({ searchParams }: AnalyticsPageProps) => {
 
       const keys = (date: Date) => date.toISOString().split("T")[0];
 
-      const now = new Date();
-      data = Array.from({ length: 7 }, (_, i) => {
-        const date = subDays(now, 6 - i);
+      data = Array.from({ length: diff + 1 }, (_, i) => {
+        const date = addDays(gte, i);
         const key = keys(date);
 
         const like = likes.filter(
@@ -210,8 +217,8 @@ const AnalyticsPage = async ({ searchParams }: AnalyticsPageProps) => {
         where: {
           postId: post?.id,
           createdAt: {
-            gte: fromUnixTime(Number(from)) || subDays(new Date(), 6),
-            lte: fromUnixTime(Number(to)) || new Date(),
+            gte,
+            lte,
           },
         },
         select: { createdAt: true },
@@ -221,8 +228,8 @@ const AnalyticsPage = async ({ searchParams }: AnalyticsPageProps) => {
         where: {
           postId: post?.id,
           createdAt: {
-            gte: fromUnixTime(Number(from)) || subDays(new Date(), 6),
-            lte: fromUnixTime(Number(to)) || new Date(),
+            gte,
+            lte,
           },
         },
         select: { createdAt: true },
@@ -250,6 +257,8 @@ const AnalyticsPage = async ({ searchParams }: AnalyticsPageProps) => {
 
       break;
   }
+
+  console.log(data);
 
   return (
     <section className="container max-w-6xl space-y-10 py-4 md:py-6 lg:py-8">
