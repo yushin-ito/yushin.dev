@@ -12,7 +12,9 @@ export const generateMetadata = async () => {
   };
 };
 
-const TopPage = () => {
+const TopPage = async () => {
+  const t = await getTranslations("content.top");
+
   return (
     <section className="container flex max-w-5xl flex-col items-center justify-center space-y-8 py-16 md:h-[calc(100vh-6rem)] md:flex-row md:space-x-12">
       <Image
@@ -36,15 +38,9 @@ const TopPage = () => {
               <h1 className="text-4xl font-bold tracking-[0.175rem]">優心</h1>
             </div>
           </div>
-          <p className="text-start text-muted-foreground">
-            2005年 1月 25日 生まれ
-          </p>
+          <p className="text-start text-muted-foreground">{t("birthday")}</p>
         </div>
-        <p className="max-w-md text-start">
-          筑波大学 情報学群 情報科学類の3年生です。 鈴鹿高専
-          電子情報工学科から編入し、現在はWebアプリケーション開発を中心に、フロントエンド・バックエンドの両方を学んでいます。
-          新しい技術を試すのが好きで、実践を通じてスキルを磨いています。ユーザー体験を意識した開発を心がけながら、より良いプロダクトを生み出すことを目指しています。
-        </p>
+        <p className="max-w-md text-start leading-relaxed">{t("profile")}</p>
       </div>
       <div className="space-y-2 text-center md:hidden">
         <Typewriter cursor="|" speed={100} className="text-3xl font-bold">

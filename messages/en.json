@@ -76,12 +76,29 @@
       "metadata": {
         "title": "Top",
         "description": "Welcome to Yushin Ito's portfolio. Please feel free to check out my profile."
-      }
+      },
+      "profile": "I am a third-year undergraduate student in the College of Information Science, University of Tsukuba. I transferred from the Department of Electronics and Information Engineering at Suzuka National College of Technology, and I am currently studying both frontend and backend software development. I enjoy exploring new technologies and aim to create better products by honing my skills through hands-on experience.",
+      "birthday": "Born on January 25, 2005"
     },
     "about": {
       "metadata": {
         "title": "About",
         "description": "Welcome to Yushin Ito's portfolio. Please feel free to check out my introduction."
+      },
+      "introduction": {
+        "title": "Introduction",
+        "description": "I am a third-year undergraduate student in the College of Information Science, University of Tsukuba. I transferred from the Department of Electronics and Information Engineering at Suzuka National College of Technology, and I am currently studying both frontend and backend software development. I enjoy exploring new technologies and aim to create better products by honing my skills through hands-on experience.\n\nMy motto in programming is to pursue simplicity. I always strive to write clean and readable code, and I focus on providing user-friendly services.\n\nAt Suzuka College of Technology, I was involved in research on the digital transformation of a biodiesel fuel production plant.I worked on developing systems for quantifying the stirring state using image processing and building an operation system that does not require specialized knowledge. Through this project, I experienced the full workflow from system design to implementation and operation.\n\nAt the University of Tsukuba, I am a member of a student team called iGEM TSUKUBA, preparing for the international synthetic biology competition iGEM.Our research focuses on multi-objective optimization of proteins. Using protein language models, we aim to design high-performance protein sequences from a limited amount of experimental data. Through this research, I have developed a strong interest in bioinformatics.\n\nRecently, my hobbies include personal software development and watching anime.I enjoy building applications that solve everyday problems, and I especially like refining the visual design of the products I create."
+      },
+      "skills": {
+        "title": "Skills",
+        "description": "Here are the skills I use regularly."
+      },
+      "career": {
+        "title": "Career",
+        "description": "Here is my career to date."
+      },
+      "hobby": {
+        "title": "Hobby"
       }
     },
     "works": {
