@@ -26,7 +26,9 @@ const LikeButton = ({ postId }: LikeButtonProps) => {
   }, []);
 
   useEffect(() => {
-    if (!visitorId) return;
+    if (!visitorId) {
+      return;
+    }
 
     (async () => {
       const response = await fetch(
@@ -41,7 +43,9 @@ const LikeButton = ({ postId }: LikeButtonProps) => {
   }, [visitorId, postId]);
 
   const onClick = useCallback(async () => {
-    if (!visitorId) return;
+    if (!visitorId) {
+      return;
+    }
 
     const response = await fetch(`/api/posts/${postId}/like`, {
       method: liked ? "DELETE" : "POST",
@@ -61,7 +65,7 @@ const LikeButton = ({ postId }: LikeButtonProps) => {
   return (
     <Button
       variant="ghost"
-      className="size-12 rounded-full border [&_svg]:size-5"
+      className="size-12 rounded-full border bg-background [&_svg]:size-5"
       onClick={onClick}
     >
       <Icons.heart

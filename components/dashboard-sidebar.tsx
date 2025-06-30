@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useTransition } from "react";
 import { useTranslations } from "next-intl";
 
@@ -13,6 +13,7 @@ import Icons from "@/components/icons";
 
 const DashboardSidebar = () => {
   const t = useTranslations("dashboard");
+  const router = useRouter();
   const pathname = usePathname();
   const [isPending, startTransition] = useTransition();
 
@@ -48,6 +49,8 @@ const DashboardSidebar = () => {
         onClick={() => {
           startTransition(async () => {
             await signOut();
+
+            router.refresh();
           });
         }}
         disabled={isPending}

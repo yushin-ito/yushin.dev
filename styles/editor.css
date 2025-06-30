@@ -51,31 +51,58 @@
 }
 
 .bn-block-content[data-content-type="heading"] h1 {
-  font-size: 1.625rem;
-  line-height: 1.35;
+  font-size: 1.875rem;
+  line-height: calc(2.25 / 1.875);
   font-weight: 700;
 }
 
 .bn-block-content[data-content-type="heading"] h2 {
-  font-size: 1.375rem;
-  line-height: 1.4;
+  font-size: 1.5rem;
+  line-height: calc(2 / 1.5);
   font-weight: 700;
 }
 
 .bn-block-content[data-content-type="heading"] h3 {
-  font-size: 1.125rem;
-  line-height: 1.45;
+  font-size: 1.25rem;
+  line-height: calc(1.75 / 1.25);
   font-weight: 700;
 }
 
 .bn-block-content[data-content-type="heading"] h4 {
-  font-size: 1rem;
-  line-height: 1.5;
+  font-size: 1.125rem;
+  line-height: calc(1.75 / 1.125);
   font-weight: 700;
 }
 
 .bn-block-content[data-content-type="heading"] h5 {
-  font-size: 0.875rem;
-  line-height: 1.5;
+  font-size: 1rem;
+  line-height: calc(1.5 / 1);
   font-weight: 700;
+}
+
+.bn-block-content[data-content-type="heading"] h6 {
+  font-size: 0.875rem;
+  line-height: calc(1.25 / 0.875);
+  font-weight: 700;
+}
+
+.bn-block-content[data-content-type="paragraph"] p {
+  font-size: 1rem;
+  line-height: 1.625;
+}
+
+.bn-mantine .bn-form-popover {
+  z-index: 10000 !important;
+}
+
+.katex * {
+  font-family: KaTeX_Main, KaTeX_Math, serif !important;
+}
+
+.equation::before,
+.equation::after {
+  content: "";
+  display: inline-block;
+  width: 0.2rem;
+  height: 1em;
 }

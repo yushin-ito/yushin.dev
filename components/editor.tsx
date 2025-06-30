@@ -3,10 +3,15 @@
 import "@blocknote/core/fonts/inter.css";
 import "@blocknote/mantine/style.css";
 import "@/styles/editor.css";
+import "katex/dist/katex.min.css";
 
 import { codeBlock } from "@blocknote/code-block";
 import { BlockNoteView } from "@blocknote/mantine";
-import { useCreateBlockNote } from "@blocknote/react";
+import {
+  getDefaultReactSlashMenuItems,
+  SuggestionMenuController,
+  useCreateBlockNote,
+} from "@blocknote/react";
 import { en, ja } from "@blocknote/core/locales";
 import { useLocale, useTranslations } from "next-intl";
 import Link from "next/link";
@@ -21,6 +26,11 @@ import { toast } from "sonner";
 import { CharacterCount } from "@tiptap/extension-character-count";
 import { useRouter } from "next/navigation";
 import { PutBlobResult } from "@vercel/blob";
+import {
+  BlockNoteSchema,
+  defaultInlineContentSpecs,
+  filterSuggestionItems,
+} from "@blocknote/core";
 
 import Icons from "@/components/icons";
 import { cn } from "@/lib/utils";
@@ -40,12 +50,20 @@ import {
 } from "@/components/ui/alert-dialog";
 import env from "@/env";
 import { getHTMLWithAnchor } from "@/actions/content";
+import { InlineEquation } from "@/components/inline-equation";
 
 interface EditorProps {
   post: Pick<Post, "id" | "title" | "blocks" | "published">;
 }
 
 type FormData = z.infer<typeof editorSchema>;
+
+const schema = BlockNoteSchema.create({
+  inlineContentSpecs: {
+    ...defaultInlineContentSpecs,
+    inlineEquation: InlineEquation,
+  },
+});
 
 const Editor = ({ post }: EditorProps) => {
   const { resolvedTheme } = useTheme();
@@ -59,6 +77,26 @@ const Editor = ({ post }: EditorProps) => {
   const [open, setOpen] = useState(false);
 
   const dictionary = locale === "ja" ? ja : en;
+
+  const insertLaTex = (editor: typeof schema.BlockNoteEditor) => ({
+    icon: <Icons.radical className="size-[18px]" />,
+    title: t("inline_equation.title"),
+    key: "inlineEquation",
+    subtext: t("inline_equation.description"),
+    aliases: ["equation", "latex", "katex"],
+    group: t("other"),
+    onItemClick: () => {
+      const view = editor._tiptapEditor.view;
+      const pos = editor._tiptapEditor.state.selection.from;
+      if (view) {
+        const tr = view.state.tr.insert(
+          pos,
+          view.state.schema.nodes.inlineEquation.create()
+        );
+        view.dispatch(tr);
+      }
+    },
+  });
 
   const uploadFile = useCallback(
     async (file: File) => {
@@ -109,6 +147,7 @@ const Editor = ({ post }: EditorProps) => {
 
   const editor = useCreateBlockNote({
     animations: false,
+    schema,
     initialContent: JSON.parse(post.blocks as string),
     codeBlock,
     uploadFile,
@@ -117,6 +156,17 @@ const Editor = ({ post }: EditorProps) => {
       placeholders: {
         emptyDocument: t("content_placeholder"),
       },
+    },
+    pasteHandler: ({ event, defaultPasteHandler }) => {
+      try {
+        return defaultPasteHandler();
+      } catch (error) {
+        if (event.clipboardData?.types.includes("text/plain")) {
+          editor.pasteText(event.clipboardData.getData("text/plain"));
+          return true;
+        }
+        throw error;
+      }
     },
     _tiptapOptions: {
       extensions: [
@@ -261,13 +311,27 @@ const Editor = ({ post }: EditorProps) => {
             <BlockNoteView
               theme={resolvedTheme as "light" | "dark"}
               editor={editor}
+              slashMenu={false}
               onChange={() => {
                 setIsDirty(true);
                 setCount(
                   editor._tiptapEditor.storage.characterCount.characters()
                 );
               }}
-            />
+            >
+              <SuggestionMenuController
+                triggerCharacter="/"
+                getItems={async (query) =>
+                  filterSuggestionItems(
+                    [
+                      ...getDefaultReactSlashMenuItems(editor),
+                      insertLaTex(editor),
+                    ],
+                    query
+                  )
+                }
+              />
+            </BlockNoteView>
           </div>
         </div>
       </form>
