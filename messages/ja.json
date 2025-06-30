@@ -206,6 +206,7 @@
       "impression": "表示回数",
       "view": "閲覧数",
       "like": "いいね数",
+      "value": "値",
       "new_post": "投稿する",
       "no_post_found": "記事が見つかりません。",
       "empty_placeholder": {

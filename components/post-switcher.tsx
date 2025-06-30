@@ -45,9 +45,11 @@ const PostSwitcher = ({ posts }: PostSwitcherProps) => {
           aria-label="Select a team"
           className="w-[200px] justify-between"
         >
-          {value
-            ? posts.find((post) => post.id === value)?.title
-            : t("select_post")}
+          <span className="truncate">
+            {value
+              ? posts.find((post) => post.id === value)?.title
+              : t("select_post")}
+          </span>
           <Icons.chevronsUpDown className="ml-auto opacity-50" />
         </Button>
       </PopoverTrigger>

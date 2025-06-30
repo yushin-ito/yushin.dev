@@ -32,6 +32,7 @@ const Stats = ({ data }: StatsProps) => {
   return (
     <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
       <Card
+        className="hover:bg-accent hover:text-accent-foreground"
         onClick={() => {
           const params = new URLSearchParams(searchParams);
           params.set("tab", "ctr");
@@ -44,18 +45,24 @@ const Stats = ({ data }: StatsProps) => {
         </CardHeader>
         <CardContent className="mx-1 space-y-0.5">
           <div className="text-2xl font-bold">
-            {Math.round((data.views.total / data.impressions.total) * 100 || 0)}
+            {data.impressions.total > 0
+              ? Math.round((data.views.total / data.impressions.total) * 100)
+              : 0}
           </div>
           <p className="text-xs text-muted-foreground">
             {t("from_last_week", {
-              value: Math.round(
-                (data.views.weekly / data.impressions.weekly) * 100 || 0
-              ),
+              value:
+                data.impressions.weekly > 0
+                  ? Math.round(
+                      (data.views.weekly / data.impressions.weekly) * 100
+                    )
+                  : 0,
             })}
           </p>
         </CardContent>
       </Card>
       <Card
+        className="hover:bg-accent hover:text-accent-foreground"
         onClick={() => {
           const params = new URLSearchParams(searchParams);
           params.set("tab", "impression");
@@ -76,6 +83,7 @@ const Stats = ({ data }: StatsProps) => {
         </CardContent>
       </Card>
       <Card
+        className="hover:bg-accent hover:text-accent-foreground"
         onClick={() => {
           const params = new URLSearchParams(searchParams);
           params.set("tab", "view");
@@ -94,6 +102,7 @@ const Stats = ({ data }: StatsProps) => {
         </CardContent>
       </Card>
       <Card
+        className="hover:bg-accent hover:text-accent-foreground"
         onClick={() => {
           const params = new URLSearchParams(searchParams);
           params.set("tab", "like");

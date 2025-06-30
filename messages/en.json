@@ -206,6 +206,7 @@
       "impression": "Impression",
       "view": "View",
       "like": "Like",
+      "value": "Value",
       "new_post": "New Post",
       "no_post_found": "No post found.",
       "empty_placeholder": {

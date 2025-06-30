@@ -1,5 +1,5 @@
 import { getTranslations } from "next-intl/server";
-import { subDays } from "date-fns";
+import { fromUnixTime, subDays } from "date-fns";
 import { unauthorized, forbidden } from "next/navigation";
 
 import PostSwitcher from "@/components/post-switcher";
@@ -17,7 +17,7 @@ import LineChart from "@/components/line-chart";
 interface AnalyticsPageProps {
   searchParams: Promise<{
     postId?: string;
-    tab?: string;
+    tab?: "ctr" | "impression" | "view" | "like";
     from?: string;
     to?: string;
   }>;
@@ -111,8 +111,8 @@ const AnalyticsPage = async ({ searchParams }: AnalyticsPageProps) => {
         where: {
           postId: post?.id,
           createdAt: {
-            gte: from || subDays(new Date(), 6),
-            lte: to || new Date(),
+            gte: fromUnixTime(Number(from)) || subDays(new Date(), 6),
+            lte: fromUnixTime(Number(to)) || new Date(),
           },
         },
         select: {
@@ -120,10 +120,22 @@ const AnalyticsPage = async ({ searchParams }: AnalyticsPageProps) => {
         },
       });
 
-      data = impressions.map((impression, index) => ({
-        time: impression.createdAt,
-        value: index + 1,
-      }));
+      const keys = (date: Date) => date.toISOString().split("T")[0];
+
+      const now = new Date();
+      data = Array.from({ length: 7 }, (_, i) => {
+        const date = subDays(now, 6 - i);
+        const key = keys(date);
+
+        const impression = impressions.filter(
+          (impression) => keys(impression.createdAt) === key
+        ).length;
+
+        return {
+          time: date,
+          value: impression,
+        };
+      });
 
       break;
     }
@@ -132,8 +144,8 @@ const AnalyticsPage = async ({ searchParams }: AnalyticsPageProps) => {
         where: {
           postId: post?.id,
           createdAt: {
-            gte: from || subDays(new Date(), 6),
-            lte: to || new Date(),
+            gte: fromUnixTime(Number(from)) || subDays(new Date(), 6),
+            lte: fromUnixTime(Number(to)) || new Date(),
           },
         },
         select: {
@@ -141,10 +153,22 @@ const AnalyticsPage = async ({ searchParams }: AnalyticsPageProps) => {
         },
       });
 
-      data = views.map((view, index) => ({
-        time: view.createdAt,
-        value: index + 1,
-      }));
+      const keys = (date: Date) => date.toISOString().split("T")[0];
+
+      const now = new Date();
+      data = Array.from({ length: 7 }, (_, i) => {
+        const date = subDays(now, 6 - i);
+        const key = keys(date);
+
+        const view = views.filter(
+          (view) => keys(view.createdAt) === key
+        ).length;
+
+        return {
+          time: date,
+          value: view,
+        };
+      });
 
       break;
     }
@@ -153,8 +177,8 @@ const AnalyticsPage = async ({ searchParams }: AnalyticsPageProps) => {
         where: {
           postId: post?.id,
           createdAt: {
-            gte: from || subDays(new Date(), 6),
-            lte: to || new Date(),
+            gte: fromUnixTime(Number(from)) || subDays(new Date(), 6),
+            lte: fromUnixTime(Number(to)) || new Date(),
           },
         },
         select: {
@@ -162,20 +186,65 @@ const AnalyticsPage = async ({ searchParams }: AnalyticsPageProps) => {
         },
       });
 
-      data = likes.map((like, index) => ({
-        time: like.createdAt,
-        value: index + 1,
-      }));
+      const keys = (date: Date) => date.toISOString().split("T")[0];
+
+      const now = new Date();
+      data = Array.from({ length: 7 }, (_, i) => {
+        const date = subDays(now, 6 - i);
+        const key = keys(date);
+
+        const like = likes.filter(
+          (like) => keys(like.createdAt) === key
+        ).length;
+
+        return {
+          time: date,
+          value: like,
+        };
+      });
 
       break;
     }
     default:
+      const views = await db.view.findMany({
+        where: {
+          postId: post?.id,
+          createdAt: {
+            gte: fromUnixTime(Number(from)) || subDays(new Date(), 6),
+            lte: fromUnixTime(Number(to)) || new Date(),
+          },
+        },
+        select: { createdAt: true },
+      });
+
+      const impressions = await db.impression.findMany({
+        where: {
+          postId: post?.id,
+          createdAt: {
+            gte: fromUnixTime(Number(from)) || subDays(new Date(), 6),
+            lte: fromUnixTime(Number(to)) || new Date(),
+          },
+        },
+        select: { createdAt: true },
+      });
+
+      const keys = (date: Date) => date.toISOString().split("T")[0];
+
       const now = new Date();
       data = Array.from({ length: 7 }, (_, i) => {
         const date = subDays(now, 6 - i);
+        const key = keys(date);
+
+        const view = views.filter(
+          (view) => keys(view.createdAt) === key
+        ).length;
+        const impression = impressions.filter(
+          (impression) => keys(impression.createdAt) === key
+        ).length;
+
         return {
           time: date,
-          value: Math.floor(Math.random() * 100) + 1,
+          value: impression > 0 ? Math.round((view / impression) * 100) : 0,
         };
       });
 
@@ -198,7 +267,7 @@ const AnalyticsPage = async ({ searchParams }: AnalyticsPageProps) => {
       {post ? (
         <div className="space-y-8">
           <Stats data={{ impressions, views, likes }} />
-          <LineChart data={data} />
+          <LineChart title={t(tab ?? "ctr")} data={data} />
         </div>
       ) : (
         <EmptyPlaceholder>
