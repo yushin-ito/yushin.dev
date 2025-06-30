@@ -94,7 +94,7 @@ const WorkPage = async ({ params }: WorkPageProps) => {
           </div>
         </div>
         <hr className="mb-8 mt-4 w-full" />
-        <div className="relative px-1 lg:grid lg:grid-cols-[1fr_120px] lg:gap-20">
+        <div className="relative px-1 lg:grid lg:grid-cols-[1fr_140px] lg:gap-20">
           <div className="space-y-8">
             {work.deck ? (
               <Slideshow deck={work.deck} />

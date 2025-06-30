@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useTranslations } from "next-intl";
 
 import useMounted from "@/hooks/use-mounted";
 import { cn } from "@/lib/utils";
@@ -13,6 +14,7 @@ interface TableOfContentsProps {
 }
 
 const TableOfContents = ({ items }: TableOfContentsProps) => {
+  const t = useTranslations("content");
   const mounted = useMounted();
   const [activeId, setActiveId] = useState<string>("");
 
@@ -51,7 +53,7 @@ const TableOfContents = ({ items }: TableOfContentsProps) => {
 
   return (
     <div className="space-y-0.5 transition-colors">
-      <p className="text-sm font-bold">目次</p>
+      <p className="text-sm font-bold">{t("table_of_contents")}</p>
       <ul className="list-decimal pl-5">
         {items.map((item, index) => {
           return (
@@ -64,10 +66,7 @@ const TableOfContents = ({ items }: TableOfContentsProps) => {
                   : "text-muted-foreground marker:text-muted-foreground"
               )}
             >
-              <a
-                href={`#${item.id}`}
-                className="inline-block text-sm no-underline"
-              >
+              <a href={`#${item.id}`} className="text-sm no-underline">
                 {item.title}
               </a>
             </li>

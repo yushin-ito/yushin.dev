@@ -71,22 +71,23 @@
   },
   "content": {
     "navigation": "ナビゲーション",
+    "table_of_contents": "目次",
     "top": {
       "metadata": {
         "title": "Top",
-        "description": ""
+        "description": "伊藤優心のポートフォリオへようこそ。このページでは、私のプロフィールを掲載しています。"
       }
     },
     "about": {
       "metadata": {
         "title": "About",
-        "description": "私のポートフォリオへようこそ。このページでは私の自己紹介を載せています。"
+        "description": "伊藤優心のポートフォリオへようこそ。このページでは、私の自己紹介を掲載しています。"
       }
     },
     "works": {
       "metadata": {
         "title": "Works",
-        "description": "私のポートフォリオへようこそ。このページでは私の作品を紹介しています。"
+        "description": "伊藤優心のポートフォリオへようこそ。このページでは、私の作品を掲載しています。"
       },
       "view_work": "作品を見る",
       "back": "戻る",
@@ -98,7 +99,7 @@
     "blog": {
       "metadata": {
         "title": "Blog",
-        "description": "私のポートフォリオへようこそ。このページでは私のブログを投稿しています。"
+        "description": "伊藤優心のポートフォリオへようこそ。このページでは、ブログを掲載しています。"
       },
       "view_post": "記事を見る",
       "no_description": "本文がありません。",
@@ -111,7 +112,7 @@
     "contact": {
       "metadata": {
         "title": "Contact",
-        "description": "私のポートフォリオへようこそ。ご用の方はお気軽にお問い合わせください。"
+        "description": "伊藤優心のポートフォリオへようこそ。ご用の方はお気軽にお問い合わせください。"
       },
       "name": "お名前",
       "name_placeholder": "山田 太郎",

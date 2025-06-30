@@ -71,22 +71,23 @@
   },
   "content": {
     "navigation": "Navigation",
+    "table_of_contents": "ToC",
     "top": {
       "metadata": {
         "title": "Top",
-        "description": ""
+        "description": "Welcome to Yushin Ito's portfolio. Please feel free to check out my profile."
       }
     },
     "about": {
       "metadata": {
         "title": "About",
-        "description": "Welecome to my about page. Please feel free to read about me."
+        "description": "Welcome to Yushin Ito's portfolio. Please feel free to check out my introduction."
       }
     },
     "works": {
       "metadata": {
         "title": "Works",
-        "description": "Welecom to my works page. Please feel free to check out my works."
+        "description": "Welecom to Yushin Ito's portfolio. Please feel free to check out my works."
       },
       "view_work": "View Work",
       "back": "Back",
@@ -98,7 +99,7 @@
     "blog": {
       "metadata": {
         "title": "Blog",
-        "description": "Welcome to my blog page. Please feel free to read my posts."
+        "description": "Welcome to Yushin Ito's portfolio. Please feel free to read my posts."
       },
       "view_post": "View Post",
       "no_description": "No description",
@@ -111,7 +112,7 @@
     "contact": {
       "metadata": {
         "title": "Contact",
-        "description": "Welecome to my contact page. Please feel free to contact us."
+        "description": "Welecome to Yushin Ito's portfolio. Please feel free to contact us."
       },
       "name": "Name",
       "name_placeholder": "John Doe",

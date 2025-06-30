@@ -39,6 +39,7 @@ ATLANAは、BDF製造プラントのデジタルトランスフォーメーシ�
 つまり、限られた人しかプラントを運転することができません。
 
 これらの課題は、現在のプラント産業にも共通した課題であり、早急に解決する必要がありました。
+そこで、ATLANAでは、次の3つの機能を実装することで、これらの課題を解決することを目指しました。
 
 ## 主な機能
 
@@ -122,7 +123,7 @@ U-Netは、セグメンテーションに特化したCNNの1つであり、画�
 <br />
 
 このグラフからも分かるように、時間が進むにつれて分離は緩やかに進行していることが確認できます。
-ATLANAでは、関数を用いて攪拌率を定義しました。
+ATLANAでは、関数を用いて以下のように攪拌率を定義しました。
 
 ### 2. 強化学習を用いたチューニング
 
@@ -136,7 +137,76 @@ ATLANAでは、関数を用いて攪拌率を定義しました。
 
 ### 3. 専門知識が必要ない運転システム
 
+この機能は、ユーザーフレンドリーなインターフェースを提供することで、専門知識がなくてもプラントを運転できるようにし、「プラント運転の高度化」を解決します。
+
+- **フロー画面** <br/>
+  プラントの運転状況をリアルタイムで確認できる画面です。[React Flow](https://reactflow.dev)を用いて、フロー図を実装しました。
+
+  <br />
+
+  <Mockup title="atlana.com" src="/images/atlana/flow.png" />
+
+  <br />
+  <br />
+
+- **分析画面** <br/>
+  プラントの運転状況を分析できる画面です。[Recharts](https://recharts.org/)を用いて、チャートを実装しました。
+
+  <br />
+
+  <Mockup title="atlana.com" src="/images/atlana/analytics.png" />
+
+  <br />
+  <br />
+
+- **ログ画面** <br/>
+  プラントの運転のログを確認できる画面です。[React Table](https://tanstack.com/table)を用いて、テーブルを実装しました。
+
+  <br />
+
+  <Mockup title="atlana.com" src="/images/atlana/log.png" />
+
+  <br />
+  <br />
+
+- **コントロール画面** <br/>
+  プラントの運転を制御できる画面です。[dnd kit](https://dndkit.com)を用いて、ドラッグ&ドロップを実装しました。
+
+  <br />
+
+  <Mockup title="atlana.com" src="/images/atlana/control.png" />
+
+  <br />
+  <br />
+
+## 使用した技術
+
 <br />
 <br />
 
-<Mockup title="plantdx" src="/images/entyoukai/memory.png" />
+<div className="grid grid-cols-3 gap-16 px-6 md:grid-cols-6 md:px-4">
+  <div className="flex flex-col items-center space-y-2">
+    <Icon name="python" className="size-16 dark:fill-white" />
+    <span className="font-semibold whitespace-nowrap">Python</span>
+  </div>
+  <div className="flex flex-col items-center space-y-2">
+    <Icon name="typescript" className="size-16 dark:fill-white" />
+    <span className="font-semibold whitespace-nowrap">TypeScript</span>
+  </div>
+  <div className="flex flex-col items-center space-y-2">
+    <Icon name="nextdotjs" className="size-16 dark:fill-white" />
+    <span className="font-semibold whitespace-nowrap">Next.js</span>
+  </div>
+  <div className="flex flex-col items-center space-y-2">
+    <Icon name="supabase" className="size-16 dark:fill-white" />
+    <span className="font-semibold whitespace-nowrap">Supabase</span>
+  </div>
+  <div className="flex flex-col items-center space-y-2">
+    <Icon name="shadcnui" className="size-16 dark:fill-white" />
+    <span className="font-semibold whitespace-nowrap">shadcn/ui</span>
+  </div>
+  <div className="flex flex-col items-center space-y-2">
+    <Icon name="tailwindcss" className="size-16 dark:fill-white" />
+    <span className="font-semibold whitespace-nowrap">Tailwind CSS</span>
+  </div>
+</div>

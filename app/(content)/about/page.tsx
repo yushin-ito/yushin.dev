@@ -26,7 +26,7 @@ const AboutPage = async () => {
         </p>
       </div>
       <hr className="mb-8 mt-4 w-full" />
-      <div className="relative px-1 lg:grid lg:grid-cols-[1fr_120px] lg:gap-20">
+      <div className="relative px-1 lg:grid lg:grid-cols-[1fr_140px] lg:gap-20">
         <div className="space-y-12">
           <div className="space-y-4">
             <h2 id="introduction" className="font-bold sm:text-lg md:text-xl">

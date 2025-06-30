@@ -29,7 +29,28 @@ const ContactForm = () => {
 
   const onSubmit = (data: FormData) => {
     startTransition(async () => {
-      console.log(data);
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          subject: data.subject,
+          message: data.message,
+          from: {
+            name: data.name,
+            email: data.email,
+          },
+        }),
+      });
+
+      if (!response.ok) {
+        toast.error(t("error.title"), {
+          description: t("error.description"),
+        });
+
+        return;
+      }
 
       toast.success(t("success.title"), {
         description: t("success.description"),

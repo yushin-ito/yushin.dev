@@ -128,7 +128,7 @@ const PostPage = async ({ params }: PostPageProps) => {
           </div>
         </div>
         <hr className="mb-8 mt-4 w-full" />
-        <div className="relative px-1 lg:grid lg:grid-cols-[1fr_120px] lg:gap-20">
+        <div className="relative px-1 lg:grid lg:grid-cols-[1fr_140px] lg:gap-20">
           <div className="space-y-8">
             <div dangerouslySetInnerHTML={{ __html: post.content as string }} />
             <hr className="mt-12" />

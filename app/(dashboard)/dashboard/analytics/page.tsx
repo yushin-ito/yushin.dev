@@ -258,8 +258,6 @@ const AnalyticsPage = async ({ searchParams }: AnalyticsPageProps) => {
       break;
   }
 
-  console.log(data);
-
   return (
     <section className="container max-w-6xl space-y-10 py-4 md:py-6 lg:py-8">
       <div className="flex items-center justify-between">
