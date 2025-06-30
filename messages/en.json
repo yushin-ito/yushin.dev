@@ -72,6 +72,7 @@
   "content": {
     "navigation": "Navigation",
     "table_of_contents": "ToC",
+    "toggle_theme": "Toggle Theme",
     "top": {
       "metadata": {
         "title": "Top",

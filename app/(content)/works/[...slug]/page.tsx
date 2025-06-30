@@ -1,4 +1,5 @@
 import "@/styles/mdx.css";
+import "katex/dist/katex.min.css";
 
 import { notFound } from "next/navigation";
 import Link from "next/link";

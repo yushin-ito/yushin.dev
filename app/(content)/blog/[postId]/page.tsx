@@ -1,6 +1,7 @@
 import "@blocknote/core/fonts/inter.css";
 import "@blocknote/mantine/style.css";
 import "@/styles/content.css";
+import "katex/dist/katex.min.css";
 
 import { notFound } from "next/navigation";
 import Link from "next/link";

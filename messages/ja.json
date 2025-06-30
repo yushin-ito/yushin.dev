@@ -72,6 +72,7 @@
   "content": {
     "navigation": "ナビゲーション",
     "table_of_contents": "目次",
+    "toggle_theme": "テーマを切り替える",
     "top": {
       "metadata": {
         "title": "Top",

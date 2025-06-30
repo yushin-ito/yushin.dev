@@ -49,6 +49,21 @@ const Callout = ({ type = "note", children }: CalloutProps) => {
     );
   }
 
+  if (type === "caution") {
+    return (
+      <div className="relative my-4 space-y-2 rounded-md bg-red-50 px-6 pb-4 pt-2">
+        <div className="absolute inset-y-1 left-1 w-1 rounded-full bg-red-700" />
+        <div className="flex items-center space-x-1">
+          <Icons.alert className="text-lg text-red-700" />
+          <p className="text-lg font-semibold text-red-700">Caution</p>
+        </div>
+        <div className="text-sm leading-relaxed text-red-900">
+          {children}
+        </div>
+      </div>
+    );
+  }
+
   return null;
 };
 

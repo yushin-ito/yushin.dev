@@ -7,6 +7,9 @@ import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import { rehypePrettyCode } from "rehype-pretty-code";
 import rehypeSlug from "rehype-slug";
 import remarkGfm from "remark-gfm";
+import rehypeCitation from "rehype-citation";
+import rehypeKatex from "rehype-katex";
+import remarkMath from "remark-math";
 
 import type { UnistNode, UnistTree } from "@/types/unist";
 
@@ -74,9 +77,11 @@ export default makeSource({
   contentDirPath: "content",
   documentTypes: [Work],
   mdx: {
-    remarkPlugins: [remarkGfm],
+    remarkPlugins: [remarkGfm, remarkMath],
     rehypePlugins: [
       rehypeSlug,
+      rehypeKatex,
+      rehypeCitation,
       [
         rehypePrettyCode,
         {

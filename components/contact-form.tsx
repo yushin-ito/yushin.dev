@@ -74,7 +74,7 @@ const ContactForm = () => {
               {...register("name")}
             />
             {errors.name && (
-              <p className="text-error px-1 text-xs">
+              <p className="px-1 text-xs text-destructive">
                 {t(errors.name.message as "too_short_name" | "too_long_name")}
               </p>
             )}
@@ -94,7 +94,7 @@ const ContactForm = () => {
               {...register("email")}
             />
             {errors.email && (
-              <p className="text-error px-1 text-xs">
+              <p className="px-1 text-xs text-destructive">
                 {t(errors.email.message as "invalid_email")}
               </p>
             )}
@@ -110,7 +110,7 @@ const ContactForm = () => {
               {...register("subject")}
             />
             {errors.subject && (
-              <p className="text-error px-1 text-xs">
+              <p className="px-1 text-xs text-destructive">
                 {t(
                   errors.subject.message as
                     | "too_short_subject"
@@ -131,7 +131,7 @@ const ContactForm = () => {
               {...register("message")}
             />
             {errors.message && (
-              <p className="text-error px-1 text-xs">
+              <p className="px-1 text-xs text-destructive">
                 {t(
                   (errors.message.message as "too_short_message") ||
                     "too_long_message"
