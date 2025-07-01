@@ -22,16 +22,12 @@ yushin.devは、私のポートフォリオサイトです。ダッシュボー�
 - **Top**<br/>
   Topでは、自分のプロフィールを載せています。
 
-  <br/>
-
   ![top](https://github.com/user-attachments/assets/21040a61-92e2-4d47-9526-a97ea023a7d6)
 
 <br/>
 
 - **About**<br/>
   Aboutでは、自分の自己紹介を載せています。
-
-  <br/>
 
   ![about](https://github.com/user-attachments/assets/7860d08b-e9f0-47a8-bab1-257499a3006a)
 
@@ -40,8 +36,6 @@ yushin.devは、私のポートフォリオサイトです。ダッシュボー�
 - **Works**<br/>
   Worksでは、自分の作品を載せています。
 
-  <br/>
-
   ![works](https://github.com/user-attachments/assets/a383417b-1eff-4ecd-974b-910cc5fd97c1)
 
 <br/>
@@ -49,16 +43,12 @@ yushin.devは、私のポートフォリオサイトです。ダッシュボー�
 - **Blog**<br/>
   Blogでは、自分のブログを載せています。
 
-  <br/>
-
   ![blog](https://github.com/user-attachments/assets/c29553f6-0960-49a3-83bb-b81935baa36c)
 
 <br/>
 
 - **Contact**<br/>
   Contactでは、自分のお問い合せを載せています。
-
-  <br/>
 
   ![contact](https://github.com/user-attachments/assets/f2d07361-6bb7-4a3e-9ec1-f20d6aa37650)
 
@@ -71,16 +61,12 @@ yushin.devは、私のポートフォリオサイトです。ダッシュボー�
 - **Posts**<br/>
   Postsでは、自分の記事を管理できます。
 
-  <br/>
-
   ![posts](https://github.com/user-attachments/assets/69a8cf05-2b9c-47de-a506-aed7a21068d6)
 
 <br/>
 
 - **Analytics**<br/>
   Analyticsでは、自分の記事を分析できます。
-
-  <br/>
 
   ![analytics](https://github.com/user-attachments/assets/71a2473f-4047-448a-a71b-3baa190232f4)
 
@@ -89,8 +75,6 @@ yushin.devは、私のポートフォリオサイトです。ダッシュボー�
 - **Settings**<br/>
   Settingsでは、自分のプロフィールを変更できます。
 
-  <br/>
-
   ![settings](https://github.com/user-attachments/assets/bfda0d0b-f07f-4b97-9297-cd163f54c5ce)
 
 <br/>
@@ -98,8 +82,6 @@ yushin.devは、私のポートフォリオサイトです。ダッシュボー�
 ### エディター
 
 エディターでは、自分のブログを執筆することができます。
-
-<br/>
 
 ![editor](https://github.com/user-attachments/assets/5ffa4f4a-42ef-42b3-ac39-63fad1aa2ef8)
 
