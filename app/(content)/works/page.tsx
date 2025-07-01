@@ -58,9 +58,11 @@ const WorksPage = async () => {
                 />
               </div>
               <div className="space-y-0.5 px-2">
-                <div className="flex items-center justify-between">
-                  <h2 className="text-2xl font-bold">{work.title}</h2>
-                  <p className="text-xs text-muted-foreground">
+                <div className="flex items-center justify-between space-x-4">
+                  <h2 className="truncate whitespace-nowrap text-2xl font-bold">
+                    {work.title}
+                  </h2>
+                  <p className="whitespace-nowrap text-xs text-muted-foreground">
                     {format.relativeTime(new Date(work.updatedAt), new Date())}
                   </p>
                 </div>
