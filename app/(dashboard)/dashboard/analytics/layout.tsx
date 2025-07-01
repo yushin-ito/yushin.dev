@@ -11,7 +11,7 @@ interface AnalyticsLayoutProps {
 }
 
 const AnalyticsLayout = async ({ children }: AnalyticsLayoutProps) => {
-  const t = await getTranslations("dashboard.settings");
+  const t = await getTranslations("dashboard.analytics");
   const session = await auth();
 
   if (!session?.user) {

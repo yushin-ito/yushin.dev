@@ -291,6 +291,46 @@
       "back": "戻る"
     }
   },
+  "editor": {
+    "metadata": {
+      "title": "エディター",
+      "description": "新しい記事を作成してください"
+    },
+    "title_placeholder": "無題の記事",
+    "content_placeholder": "ここに入力してください...",
+    "draft": "下書き",
+    "publish": "公開する",
+    "char": "{count}文字",
+    "save": "保存する",
+    "back": "戻る",
+    "cancel": "キャンセル",
+    "continue": "続ける",
+    "other": "その他",
+    "inline_equation": {
+      "title": "インライン数式",
+      "description": "KaTeXを用いて数式を入力します。",
+      "empty_placeholder": "数式を入力してください...",
+      "done": "完了"
+    },
+    "dialog": {
+      "title": "内容が保存されていません",
+      "description": "保存されていない変更が失われる可能性があります。"
+    },
+    "success": {
+      "title": "記事を保存しました。",
+      "description": "変更した内容が正常に保存されました。"
+    },
+    "error": {
+      "upload": {
+        "title": "エラーが発生しました。",
+        "description": "画像のアップロードに失敗しました。もう一度お試しください。"
+      },
+      "save": {
+        "title": "エラーが発生しました。",
+        "description": "記事の保存に失敗しました。もう一度お試しください。"
+      }
+    }
+  },
   "email": {
     "support": "お問い合わせは <link>support@{domain}</link> までご連絡ください。",
     "footer": "© {year} <link>{name}</link>",
