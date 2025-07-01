@@ -63,7 +63,7 @@ const SignupForm = () => {
                 {...register("email")}
               />
               {errors.email && (
-                <p className="text-destructive px-1 text-xs">
+                <p className="px-1 text-xs text-destructive">
                   {t(errors.email.message as "invalid_email")}
                 </p>
               )}

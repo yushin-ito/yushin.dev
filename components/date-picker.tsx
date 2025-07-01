@@ -37,7 +37,7 @@ const DatePicker = ({ className }: React.HTMLAttributes<HTMLDivElement>) => {
         <PopoverTrigger asChild>
           <Button
             id="date"
-            variant={"outline"}
+            variant="outline"
             className="w-[280px] justify-center font-normal"
           >
             <Icons.calendar />

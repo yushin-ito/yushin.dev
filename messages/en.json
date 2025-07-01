@@ -237,8 +237,58 @@
     "settings": {
       "metadata": {
         "title": "Settings",
-        "description": ""
-      }
+        "description": "Manage your settings. You can change your profile."
+      },
+      "avatar": "Avatar",
+      "avatar_placeholder": "Select an avatar",
+      "unknown_user": "Unknown User",
+      "file_format": "File format: PNG / JPG / GIF",
+      "file_size": "File size: 2MB",
+      "file_too_large": "File size is too large.",
+      "name": "Name",
+      "name_too_short": "Name must be at least 3 characters.",
+      "name_too_long": "Name must be at most 24 characters.",
+      "name_placeholder": "Enter your name",
+      "danger_zone": "Danger zone",
+      "delete_account": "Delete account",
+      "dialog": {
+        "unsaved": {
+          "title": "Unsaved changes",
+          "description": "You have unsaved changes. If you leave this page, your changes may be lost."
+        },
+        "delete": {
+          "title": "Are you sure you want to delete your account?",
+          "description": "This action cannot be undone. Please be careful when proceeding."
+        }
+      },
+      "success": {
+        "save": {
+          "title": "Your changes have been saved.",
+          "description": "Your changes have been saved successfully."
+        },
+        "delete": {
+          "title": "Your account has been deleted.",
+          "description": "Your account has been deleted successfully."
+        }
+      },
+      "error": {
+        "upload": {
+          "title": "Something went wrong.",
+          "description": "Your file upload failed. Please try again."
+        },
+        "save": {
+          "title": "Something went wrong.",
+          "description": "Your account was not updated. Please try again."
+        },
+        "delete": {
+          "title": "Something went wrong.",
+          "description": "Your account was not deleted. Please try again."
+        }
+      },
+      "cancel": "Cancel",
+      "continue": "Continue",
+      "save": "Save",
+      "back": "Back"
     }
   },
   "editor": {

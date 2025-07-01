@@ -7,7 +7,6 @@ import {
 } from "date-fns";
 import { unauthorized, forbidden } from "next/navigation";
 
-import PostSwitcher from "@/components/post-switcher";
 import { db } from "@/lib/db";
 import { auth } from "@/auth";
 import {
@@ -40,6 +39,8 @@ export const generateMetadata = async () => {
 const AnalyticsPage = async ({ searchParams }: AnalyticsPageProps) => {
   const { postId, tab, from, to } = await searchParams;
 
+  await new Promise((resolve) => setTimeout(resolve, 10000));
+
   const t = await getTranslations("dashboard.analytics");
   const session = await auth();
 
@@ -50,16 +51,6 @@ const AnalyticsPage = async ({ searchParams }: AnalyticsPageProps) => {
   if (session.user.role !== "ADMIN") {
     forbidden();
   }
-
-  const posts = await db.post.findMany({
-    where: {
-      authorId: session.user.id,
-    },
-    select: {
-      id: true,
-      title: true,
-    },
-  });
 
   const post = await db.post.findUnique({
     where: {
@@ -259,18 +250,7 @@ const AnalyticsPage = async ({ searchParams }: AnalyticsPageProps) => {
   }
 
   return (
-    <section className="container max-w-6xl space-y-10 py-4 md:py-6 lg:py-8">
-      <div className="flex items-center justify-between">
-        <div className="space-y-1">
-          <h1 className="text-lg font-bold md:text-xl">
-            {t("metadata.title")}
-          </h1>
-          <p className="text-sm text-muted-foreground">
-            {t("metadata.description")}
-          </p>
-        </div>
-        <PostSwitcher posts={posts} />
-      </div>
+    <>
       {post ? (
         <div className="space-y-8">
           <Stats data={{ impressions, views, likes }} />
@@ -287,7 +267,7 @@ const AnalyticsPage = async ({ searchParams }: AnalyticsPageProps) => {
           </EmptyPlaceholderDescription>
         </EmptyPlaceholder>
       )}
-    </section>
+    </>
   );
 };
 export default AnalyticsPage;
