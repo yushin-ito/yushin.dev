@@ -39,8 +39,6 @@ export const generateMetadata = async () => {
 const AnalyticsPage = async ({ searchParams }: AnalyticsPageProps) => {
   const { postId, tab, from, to } = await searchParams;
 
-  await new Promise((resolve) => setTimeout(resolve, 10000));
-
   const t = await getTranslations("dashboard.analytics");
   const session = await auth();
 
