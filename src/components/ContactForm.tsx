@@ -17,6 +17,7 @@ import {
 	InputGroupTextarea,
 } from "@/components/ui/input-group";
 import { m } from "@/paraglide/messages";
+import Icons from "./Icons";
 
 const formSchema = z.object({
 	email: z.string().email(m.component_contact_form_invalid_email()),
@@ -43,9 +44,13 @@ const ContactForm = () => {
 	});
 
 	const onSubmit = async (data: FormData) => {
-		const error = "";
+		const response = await fetch("/api/contact", {
+			method: "POST",
+			headers: { "Content-Type": "application/json" },
+			body: JSON.stringify(data),
+		});
 
-		if (error) {
+		if (!response.ok) {
 			toast.error(m.component_contact_form_toast_error_title(), {
 				description: m.component_contact_form_toast_error_description(),
 			});
@@ -130,7 +135,12 @@ const ContactForm = () => {
 				/>
 			</FieldGroup>
 			<Field>
-				<Button type="submit">{m.component_contact_form_submit()}</Button>
+				<Button type="submit" disabled={form.formState.isSubmitting}>
+					{form.formState.isSubmitting && (
+						<Icons.loader className="size-4 animate-spin" />
+					)}
+					{m.component_contact_form_submit()}
+				</Button>
 			</Field>
 		</form>
 	);
