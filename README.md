@@ -125,7 +125,7 @@ yushin.dev/
 3. 開発サーバーの起動
 
    ```bash
-   bun dev
+   bun run dev
    ```
 
 6. ブラウザで [http://localhost:3000](http://localhost:3000) にアクセス
