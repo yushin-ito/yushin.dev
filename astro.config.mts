@@ -1,7 +1,6 @@
 // @ts-check
 
 import mdx from "@astrojs/mdx";
-import node from "@astrojs/node";
 import react from "@astrojs/react";
 import sitemap from "@astrojs/sitemap";
 import { paraglideVitePlugin } from "@inlang/paraglide-js";
@@ -14,7 +13,6 @@ import { siteConfig } from "./src/lib/config";
 // https://astro.build/config
 export default defineConfig({
 	site: siteConfig.url,
-	adapter: node({ mode: "standalone" }),
 	i18n: {
 		locales: ["en", "ja"],
 		defaultLocale: "ja",
