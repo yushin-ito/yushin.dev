@@ -2,6 +2,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Controller, useForm } from "react-hook-form";
 import { toast } from "sonner";
 import * as z from "zod";
+import Icons from "@/components/Icons";
 import { Button } from "@/components/ui/button";
 import {
 	Field,
@@ -17,7 +18,6 @@ import {
 	InputGroupTextarea,
 } from "@/components/ui/input-group";
 import { m } from "@/paraglide/messages";
-import Icons from "./Icons";
 
 const formSchema = z.object({
 	email: z.string().email(m.component_contact_form_invalid_email()),
