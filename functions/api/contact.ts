@@ -37,7 +37,7 @@ export const onRequestPost: PagesFunction<Env> = async ({ request, env }) => {
 
 		return new Response(null, { status: 204 });
 	} catch {
-        console.log("Unexpected error occurred in contact API");
+		console.log("Unexpected error occurred in contact API");
 		return new Response(null, { status: 500 });
 	}
 };
