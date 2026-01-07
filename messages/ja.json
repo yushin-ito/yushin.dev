@@ -1,360 +1,64 @@
 {
-  "root": {
-    "error": {
-      "metadata": {
-        "title": "予期せぬエラーが発生しました。",
-        "description": "もう一度お試しいただくか、時間をおいてアクセスしてください。"
-      },
-      "reload": "再読み込みする"
-    },
-    "forbidden": {
-      "metadata": {
-        "title": "管理者権限がありません。",
-        "description": "このページにアクセスするには、管理者権限が必要です。"
-      },
-      "back_to_top": "トップページに戻る"
-    },
-    "unauthorized": {
-      "metadata": {
-        "title": "ログインしていません。",
-        "description": "このページにアクセスするには、ログインする必要があります。"
-      },
-      "back_to_login": "ログインページに戻る"
-    },
-    "not_found": {
-      "metadata": {
-        "title": "ご指定のページが見つかりません。",
-        "description": "URLが変更されたか、削除された可能性があります。"
-      },
-      "back_to_top": "トップページに戻る"
-    }
-  },
-  "auth": {
-    "email": "メールアドレス",
-    "invalid_email": "無効なメールアドレスです。",
-    "or": "または",
-    "back": "戻る",
-    "login": {
-      "metadata": {
-        "title": "ログイン",
-        "description": "アカウントにログインしてください"
-      },
-      "submit": "ログイン",
-      "login_with_provider": "{provider}でログイン",
-      "do_not_have_an_account": "アカウントをお持ちでないですか？",
-      "success": {
-        "title": "メールアドレスの確認が必要です。",
-        "description": "確認メールを送信しました。メールに記載されたリンクをクリックしてください。"
-      },
-      "error": {
-        "title": "エラーが発生しました。",
-        "description": "サインインに失敗しました。もう一度お試しください。"
-      }
-    },
-    "signup": {
-      "metadata": {
-        "title": "新規登録",
-        "description": "新しいアカウントを作成してください"
-      },
-      "submit": "新規登録",
-      "signup_with_provider": "{provider}で新規登録",
-      "already_have_an_account": "すでにアカウントをお持ちですか？",
-      "success": {
-        "title": "メールアドレスの確認が必要です。",
-        "description": "確認メールを送信しました。メールに記載されたリンクをクリックしてください。"
-      },
-      "error": {
-        "title": "エラーが発生しました。",
-        "description": "サインアップに失敗しました。もう一度お試しください。"
-      }
-    }
-  },
-  "content": {
-    "navigation": "ナビゲーション",
-    "table_of_contents": "目次",
-    "toggle_theme": "テーマを切り替える",
-    "top": {
-      "metadata": {
-        "title": "Top",
-        "description": "伊藤優心のポートフォリオへようこそ。このページでは、私のプロフィールを掲載しています。"
-      },
-      "profile": "筑波大学 情報学群 情報科学類の3年生です。鈴鹿工業高等専門学校専 電子情報工学科から編入し、現在はソフトウェア開発を中心に、フロントエンド・バックエンドの両方を学んでいます。新しい技術を試すのが好きで、実践を通じてスキルを磨いています。ユーザー体験を意識した開発を心がけながら、より良いプロダクトを生み出すことを目指しています。",
-      "birthday": "2005年 1月 25日 生まれ"
-    },
-    "about": {
-      "metadata": {
-        "title": "About",
-        "description": "伊藤優心のポートフォリオへようこそ。このページでは、私の自己紹介を掲載しています。"
-      },
-      "introduction": {
-        "title": "自己紹介",
-        "description": "筑波大学 情報学群 情報科学類の3年生です。鈴鹿工業高等専門学校 電子情報工学科から編入し、現在はソフトウェア開発を中心に、フロントエンド・バックエンドの両方を学んでいます。新しい技術に触れることが好きで、実践を通じてスキルを磨きながら、より良いプロダクトを生み出すことを目指しています。\n\nプログラミングをする上で、「シンプルさ」を追求することをモットーに活動しています。シンプルで読みやすいコードを心がけ、ユーザーにとって使いやすいサービスを提供することを意識しています。\n\n鈴鹿高専では、バイオディーゼル燃料製造プラントのデジタルトランスフォーメーションに関する研究に取り組んでいました。画像処理を用いた撹拌状態の定量評価や専門知識を必要としないプラントの運転システムの開発を行いました。この研究を通じて、設計から運用までの一連の流れも経験しました。\n\n筑波大学では、iGEM TSUKUBAというサークルに所属し、iGEMという国際的な合成生物学のコンテストに向けて、タンパク質の多目的最適化に関する研究に取り組んでいます。たんぱく質言語モデルを用いて、少数の実験データから高性能なタンパク質配列の設計することを目指しています。この研究を通じて、バイオインフォマティクスに強く関心を持っています。\n\n最近の趣味は、個人開発とアニメ鑑賞です。身近にある問題を解決するためのアプリケーションを開発しています。見た目にこだわって作ることを楽しんでいます。"
-      },
-      "skills": {
-        "title": "スキル",
-        "description": "私が普段使っているスキルを紹介します。"
-      },
-      "career": {
-        "title": "経歴",
-        "description": "私の今日までの経歴を紹介します。"
-      },
-      "hobby": {
-        "title": "趣味"
-      }
-    },
-    "works": {
-      "metadata": {
-        "title": "Works",
-        "description": "伊藤優心のポートフォリオへようこそ。このページでは、私の作品を掲載しています。"
-      },
-      "view_work": "作品を見る",
-      "back": "戻る",
-      "empty_placeholder": {
-        "title": "作品がありません",
-        "description": "現在準備中です。もうしばらくお待ちください。"
-      }
-    },
-    "blog": {
-      "metadata": {
-        "title": "Blog",
-        "description": "伊藤優心のポートフォリオへようこそ。このページでは、ブログを掲載しています。"
-      },
-      "view_post": "記事を見る",
-      "no_description": "本文がありません。",
-      "back": "戻る",
-      "empty_placeholder": {
-        "title": "記事がありません",
-        "description": "現在準備中です。もうしばらくお待ちください。"
-      }
-    },
-    "contact": {
-      "metadata": {
-        "title": "Contact",
-        "description": "伊藤優心のポートフォリオへようこそ。ご用の方はお気軽にお問い合わせください。"
-      },
-      "name": "お名前",
-      "name_placeholder": "山田 太郎",
-      "too_short_name": "お名前は3文字以上で入力してください。",
-      "too_long_name": "お名前は128文字以内で入力してください。",
-      "email": "メールアドレス",
-      "invalid_email": "無効なメールアドレスです。",
-      "subject": "件名",
-      "subject_placeholder": "件名",
-      "too_short_subject": "件名は3文字以上で入力してください。",
-      "too_long_subject": "件名は128文字以内で入力してください。",
-      "message": "本文",
-      "message_placeholder": "お問い合わせ内容",
-      "too_short_message": "本文は3文字以上で入力してください。",
-      "too_long_message": "本文は2048文字以内で入力してください。",
-      "submit": "送信する",
-      "success": {
-        "title": "お問い合わせいただきありがとうございます。",
-        "description": "お問い合わせは正常に送信されました。なるべく早くご返信いたします。"
-      },
-      "error": {
-        "title": "エラーが発生しました。",
-        "description": "送信に失敗しました。もう一度お試しください。"
-      }
-    }
-  },
-  "dashboard": {
-    "navigation": "ナビゲーション",
-    "untitled": "無題の記事",
-    "signout": "サインアウト",
-    "error": {
-      "title": "エラーが発生しました。",
-      "description": "記事の作成に失敗しました。もう一度お試しください。"
-    },
-    "posts": {
-      "metadata": {
-        "title": "記事",
-        "description": "自分の記事を管理しましょう。記事の編集・削除などができます。"
-      },
-      "new_post": "投稿する",
-      "status": "状態",
-      "published": "公開中",
-      "draft": "下書き",
-      "title": "タイトル",
-      "content": "内容",
-      "updated_at": "更新日",
-      "view": "閲覧数",
-      "like": "いいね数",
-      "select_all": "すべて選択",
-      "select_row": "行を選択",
-      "asc": "昇順",
-      "desc": "降順",
-      "hide": "非表示",
-      "field": "項目",
-      "search": "検索する",
-      "open_menu": "メニューを開く",
-      "edit": "編集",
-      "publish": "公開",
-      "unpublish": "非公開",
-      "error": {
-        "title": "エラーが発生しました。",
-        "description": "記事の更新に失敗しました。もう一度お試しください。"
-      },
-      "duplicate": "複製",
-      "delete": "削除",
-      "cancel": "キャンセル",
-      "continue": "続ける",
-      "dialog": {
-        "title": "削除してよろしいですか？",
-        "description": "この操作は元に戻せません。"
-      },
-      "selected": "{count}個を選択中",
-      "page": "{index}ページ目",
-      "go_to_prev_page": "前のページに戻る",
-      "go_to_next_page": "次のページに進む",
-      "no_post_found": "記事が見つかりません。",
-      "empty_placeholder": {
-        "title": "記事が作成されていません",
-        "description": "下のボタンから新しい記事を作成しましょう。"
-      }
-    },
-    "analytics": {
-      "metadata": {
-        "title": "分析",
-        "description": "自分の記事を分析しましょう。閲覧数やいいね数などが確認できます。"
-      },
-      "select_post": "記事を選択する",
-      "search_post": "記事を検索する",
-      "ctr": "クリック率",
-      "from_last_week": "{value}％（先週）",
-      "since_last_week": "{value}（先週比）",
-      "impression": "表示回数",
-      "view": "閲覧数",
-      "like": "いいね数",
-      "value": "値",
-      "new_post": "投稿する",
-      "no_post_found": "記事が見つかりません。",
-      "empty_placeholder": {
-        "title": "記事が選択されていません",
-        "description": "右上のボタンから記事を選択してください。"
-      },
-      "pick_a_date": "範囲を選択してください"
-    },
-    "settings": {
-      "metadata": {
-        "title": "設定",
-        "description": "自分の設定を管理しましょう。プロフィールなどを変更できます。"
-      },
-      "avatar": "アイコン",
-      "avatar_placeholder": "アイコンを選択してください",
-      "unknown_user": "不明なユーザー",
-      "file_format": "対応ファイル: PNG / JPG / GIF",
-      "file_size": "最大サイズ: 2MB",
-      "file_too_large": "ファイルサイズが大きすぎます。",
-      "name": "ユーザー名",
-      "name_too_short": "ユーザー名は3文字以上で入力してください。",
-      "name_too_long": "ユーザー名は24文字以内で入力してください。",
-      "name_placeholder": "ユーザー名を入力してください",
-      "danger_zone": "危険な操作",
-      "delete_account": "アカウントを削除",
-      "dialog": {
-        "unsaved": {
-          "title": "内容が保存されていません",
-          "description": "保存されていない変更が失われる可能性があります。"
-        },
-        "delete": {
-          "title": "アカウントを削除してよろしいですか",
-          "description": "この操作は元に戻せません。続行する場合は、十分に注意してください。"
-        }
-      },
-      "success": {
-        "save": {
-          "title": "変更を保存しました。",
-          "description": "変更した内容が正常に保存されました。"
-        },
-        "delete": {
-          "title": "アカウントを削除しました。",
-          "description": "アカウントが正常に削除されました。"
-        }
-      },
-      "error": {
-        "upload": {
-          "title": "エラーが発生しました。",
-          "description": "アイコンのアップロードに失敗しました。もう一度お試しください。"
-        },
-        "save": {
-          "title": "エラーが発生しました。",
-          "description": "アカウントの更新に失敗しました。もう一度お試しください。"
-        },
-        "delete": {
-          "title": "エラーが発生しました。",
-          "description": "アカウントの削除に失敗しました。もう一度お試しください。"
-        }
-      },
-      "cancel": "キャンセル",
-      "continue": "続ける",
-      "save": "保存する",
-      "back": "戻る"
-    }
-  },
-  "editor": {
-    "metadata": {
-      "title": "エディター",
-      "description": "新しい記事を作成してください"
-    },
-    "title_placeholder": "無題の記事",
-    "content_placeholder": "ここに入力してください...",
-    "draft": "下書き",
-    "publish": "公開する",
-    "char": "{count}文字",
-    "save": "保存する",
-    "back": "戻る",
-    "cancel": "キャンセル",
-    "continue": "続ける",
-    "other": "その他",
-    "inline_equation": {
-      "title": "インライン数式",
-      "description": "KaTeXを用いて数式を入力します。",
-      "empty_placeholder": "数式を入力してください...",
-      "done": "完了"
-    },
-    "dialog": {
-      "title": "内容が保存されていません",
-      "description": "保存されていない変更が失われる可能性があります。"
-    },
-    "success": {
-      "title": "記事を保存しました。",
-      "description": "変更した内容が正常に保存されました。"
-    },
-    "error": {
-      "upload": {
-        "title": "エラーが発生しました。",
-        "description": "画像のアップロードに失敗しました。もう一度お試しください。"
-      },
-      "save": {
-        "title": "エラーが発生しました。",
-        "description": "記事の保存に失敗しました。もう一度お試しください。"
-      }
-    }
-  },
-  "email": {
-    "support": "お問い合わせは <link>support@{domain}</link> までご連絡ください。",
-    "footer": "© {year} <link>{name}</link>",
-    "contact": {
-      "subject": "お問い合わせの通知",
-      "preview": "お問い合わせがありました。",
-      "title": "お問い合わせの通知",
-      "description": "お問い合わせを受け付けました。🎉\n\n{name}さまからお問い合わせが来ています。以下の内容を確認し、速やかに返信してください。",
-      "body": {
-        "from": "<span>差出人</span>: {email}",
-        "subject": "<span>件名</span>: {subject}",
-        "message": "<span>本文</span>\n{message}"
-      },
-      "reply": "返信する",
-      "warning": "このメールに心当たりがない場合は、誤って送信された可能性があります。何も操作せずにこのメールを削除してください。\n\nこのメールには重要な情報が含まれる可能性があります。他の方に転送しないでください。"
-    },
-    "verify": {
-      "subject": "メールアドレスの認証",
-      "preview": "メールアドレスの認証を完了してください",
-      "title": "メールアドレスの認証",
-      "description": "メールアドレスの認証を受け付けました。🎉\nこの度はご利用いただき、ありがとうございます。\n本サービスをご利用いただくためには、メールアドレスの認証が必要になります。",
-      "instruction": "以下のボタンをクリックすると、メールアドレスの認証が完了します。\n必ず <strong>24時間以内</strong> に認証を完了してください。",
-      "verify": "認証する",
-      "warning": "このメールに心当たりがない場合は、誤って送信された可能性があります。何も操作せずにこのメールを削除してください。\n\n認証リンクの有効期限は24時間です。期限切れの場合は、再度認証リクエストを送信してください。"
-    }
-  }
+	"$schema": "https://inlang.com/schema/inlang-message-format",
+	"component_language_toggle_aria_label": "言語を切り替える",
+	"component_mobile_nav_title": "ナビゲーションメニュー",
+	"component_mode_toggle_aria_label": "テーマを切り替える",
+	"component_table_of_contents_title": "目次",
+	"component_slideshow_page": "ページ {index}",
+	"component_slideshow_preview": "プレビュー {index}",
+	"component_slideshow_previous": "前のページへ",
+	"component_slideshow_next": "次のページへ",
+	"component_slideshow_zoom": "拡大および縮小",
+	"component_slideshow_fullscreen": "全画面表示",
+	"component_slideshow_exit_fullscreen": "全画面表示を終了",
+	"component_contact_form_email": "メールアドレス",
+	"component_contact_form_invalid_email": "無効なメールアドレスです。",
+	"component_contact_form_subject": "件名",
+	"component_contact_form_subject_placeholder": "件名",
+	"component_contact_form_too_short_subject": "件名は{min}文字以上で入力してください。",
+	"component_contact_form_too_long_subject": "件名は{max}文字以内で入力してください。",
+	"component_contact_form_message": "本文",
+	"component_contact_form_message_placeholder": "お問い合わせ内容",
+	"component_contact_form_too_short_message": "本文は{min}文字以上で入力してください。",
+	"component_contact_form_too_long_message": "本文は文字以内で入力してください。",
+	"component_contact_form_submit": "送信する",
+	"component_contact_form_toast_success_title": "お問い合わせいただきありがとうございます。",
+	"component_contact_form_toast_success_description": "お問い合わせは正常に送信されました。なるべく早くご返信いたします。",
+	"component_contact_form_toast_error_title": "エラーが発生しました。",
+	"component_contact_form_toast_error_description": "送信に失敗しました。もう一度お試しください。",
+	"page_404_metadata_title": "ご指定のページが見つかりません。",
+	"page_404_metadata_description": "URLが変更されたか、削除された可能性があります。",
+	"page_404_back_to_top": "トップページに戻る",
+	"page_500_metadata_title": "予期せぬエラーが発生しました。",
+	"page_500_metadata_description": "もう一度お試しいただくか、時間をおいてアクセスしてください。",
+	"page_500_back_to_top": "トップページに戻る",
+	"page_top_metadata_title": "Top",
+	"page_top_metadata_description": "伊藤優心のポートフォリオへようこそ。このページでは、私のプロフィールを掲載しています。",
+	"page_top_profile": "筑波大学 情報学群 情報科学類の3年生です。鈴鹿工業高等専門学校専 電子情報工学科から編入し、現在はソフトウェア開発を中心に、フロントエンド・バックエンドの両方を学んでいます。新しい技術を試すのが好きで、実践を通じてスキルを磨いています。ユーザー体験を意識した開発を心がけながら、より良いプロダクトを生み出すことを目指しています。",
+	"page_top_birthday": "2005年 1月 25日 生まれ",
+	"page_about_metadata_title": "About",
+	"page_about_metadata_description": "伊藤優心のポートフォリオへようこそ。このページでは、私の自己紹介を掲載しています。",
+	"page_about_introduction_title": "自己紹介",
+	"page_about_introduction_description": "筑波大学 情報学群 情報科学類の3年生です。鈴鹿工業高等専門学校 電子情報工学科から編入し、現在はソフトウェア開発を中心に、フロントエンド・バックエンドの両方を学んでいます。新しい技術に触れることが好きで、実践を通じてスキルを磨きながら、より良いプロダクトを生み出すことを目指しています。\n\nプログラミングをする上で、「シンプルさ」を追求することをモットーに活動しています。シンプルで読みやすいコードを心がけ、ユーザーにとって使いやすいサービスを提供することを意識しています。\n\n鈴鹿高専では、バイオディーゼル燃料製造プラントのデジタルトランスフォーメーションに関する研究に取り組んでいました。画像処理を用いた撹拌状態の定量評価や専門知識を必要としないプラントの運転システムの開発を行いました。この研究を通じて、設計から運用までの一連の流れも経験しました。\n\n筑波大学では、iGEM TSUKUBAというサークルに所属し、iGEMという国際的な合成生物学のコンテストに向けて、タンパク質の多目的最適化に関する研究に取り組んでいます。たんぱく質言語モデルを用いて、少数の実験データから高性能なタンパク質配列の設計することを目指しています。この研究を通じて、バイオインフォマティクスに強く関心を持っています。\n\n最近の趣味は、個人開発とアニメ鑑賞です。身近にある問題を解決するためのアプリケーションを開発しています。見た目にこだわって作ることを楽しんでいます。",
+	"page_about_skills_title": "スキル",
+	"page_about_skills_description": "私が普段使っているスキルを紹介します。",
+	"page_about_hobby_title": "趣味",
+	"page_works_metadata_title": "Works",
+	"page_works_metadata_description": "伊藤優心のポートフォリオへようこそ。このページでは、私の作品を掲載しています。",
+	"page_works_view_work": "作品を見る",
+	"page_works_back": "戻る",
+	"page_works_empty_title": "作品がありません",
+	"page_works_empty_description": "現在準備中です。もうしばらくお待ちください。",
+	"page_blog_metadata_title": "Blog",
+	"page_blog_metadata_description": "伊藤優心のポートフォリオへようこそ。このページでは、私のブログを掲載しています。",
+	"page_blog_view_post": "記事を見る",
+	"page_blog_back": "戻る",
+	"page_blog_empty_title": "記事がありません",
+	"page_blog_empty_description": "現在準備中です。もうしばらくお待ちください。",
+	"page_contact_metadata_title": "Contact",
+	"page_contact_metadata_description": "伊藤優心のポートフォリオへようこそ。ご用の方はお気軽にお問い合わせください。",
+	"component_slideshow_zoom_in": "ズームイン",
+	"component_slideshow_reset": "リセット",
+	"page_about_experiences_title": "経歴",
+	"page_about_experiences_description": "私の今日までの経歴を紹介します。"
 }

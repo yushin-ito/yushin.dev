@@ -1,0 +1,23 @@
+---
+import Icons from "@/components/Icons";
+import { buttonVariants } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
+import { m } from "@/paraglide/messages";
+import { deLocalizeHref, getLocale, localizeHref } from "@/paraglide/runtime";
+
+const pathname = Astro.url.pathname;
+
+const locale = getLocale();
+
+const baseHref = deLocalizeHref(pathname);
+const href = localizeHref(baseHref, { locale: locale === "en" ? "ja" : "en" });
+---
+
+<a
+	class={cn(buttonVariants({ variant: "ghost" }), "size-8")}
+	href={href}
+	data-astro-reload
+>
+	<Icons.languages/>
+	<span class="sr-only">{m.component_language_toggle_aria_label()}</span>
+</a>

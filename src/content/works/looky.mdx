@@ -1,0 +1,158 @@
+---
+title: Looky
+description: 好みの服を探せるバーチャル試着アプリ
+createdAt: "2025-12-30"
+updatedAt: "2025-12-30"
+---
+
+## Lookyとは
+
+Lookyは、**「好みの服を見つける」という体験をより手軽なものにするバーチャル試着アプリ**です。  
+全身を撮影すると、画像生成モデルが服を試着してる画像を生成し、「実際に試着したらどう見えるか」を簡単に確認できます。
+さらに、左右にスワイプしていいねすることで、好みを学習し、ぴったりの服を提案します。
+
+## 開発背景
+「好みの服を見つける」という体験は、いまでも多くの人にとって意外と手間がかかって、しかも失敗しやすい体験です。
+オンラインショッピンが普及してことによって、これまで出会えなかった服にも出会えるようになりました。
+しかし、出会いが増えたからといって、好みの服に出会えることにはつながっていません。
+むしろ、情報が多すぎることで迷いが増え、いつもと同じ服を買ったり、買ったのに着なくなったり、といったことが起きやすくなっているように感じます。
+この背景には、大きく3つの課題があると考えています。
+
+**1. 試着するのがめんどくさい** <br/>
+服を選ぶ上で、試着はとても重要です。
+しかし、試着するには、ほとんど店舗に行く必要があります。
+さらに、店舗に行ったとしても、1枚ずつ着替える必要があり、かなり手間がかかります。
+特に、時間がない人にとっては、大きな障壁となっています。
+
+**2. 好みの服がみつからない** <br/>
+服の好みは、人によって大きく異なります。
+しかし、その好みを言葉で正確に説明するのは簡単ではありません。
+そのため、絞り込みなどがうまく機能せず、好みの服を見つけるのが難しくなっています。
+さらに、さまざまなデザインが存在しており、好みの服にたどり着くのも大変です。
+
+**3. 組み合わせがむずかしい** <br/>
+服は、他の服と組み合わせたときに魅力が引き立ちます。
+そのため、気に入った服でも、実際に着たときに違和感を感じることがあります。
+しかし、組み合わせを考えるのは難しく、多くの人にとって負担となっています。
+また、試着するときに、他の服との組み合わせまでは確認できないことが多いです。
+
+そこで、Lookyでは、次の機能を実装することで、これらの課題を解決することを目指しました。
+
+## 主な機能
+
+<br />
+
+<div className="mx-auto box-content aspect-[9/19.5] w-[210px] overflow-hidden rounded-4xl border-8 border-zinc-800 shadow">
+  <video autoPlay muted loop playsInline width="100%" height="100%">
+    <source src="/videos/works/looky/demo1.mp4" type="video/mp4" />
+  </video>
+</div>
+
+<br />
+
+### 1. バーチャル試着
+
+この機能は、全身を撮影するだけで、画像生成モデルが服を試着してる画像を生成することで、「試着するのがめんどくさい」と「組み合わせがむずかしい」を解決します。
+
+以下の動画は、バーチャル試着を行っている様子です。
+
+<br />
+
+<div className="mx-auto box-content aspect-[9/19.5] w-[210px] overflow-hidden rounded-4xl border-8 border-zinc-800 shadow">
+  <video autoPlay muted loop playsInline width="100%" height="100%">
+    <source src="/videos/works/looky/demo2.mp4" type="video/mp4" />
+  </video>
+</div>
+
+<br />
+
+Lookyは、次のような流れでバーチャル試着を実現しています。
+
+**1. 姿勢の推定**<br />
+**DWPose** を用いて、人物画像からキーポイントを取得します。
+さらに、**Mask2Former** を用いて、セグメンテーションマップを取得します。
+
+**2. マスクの生成**<br />
+セグメンテーションマップとキーポイントをもとに、衣服のマスクを生成します。
+このマスクは、画像生成モデルが生成すべき領域を把握するために使用されます。
+
+**3. 衣服画像の埋め込み**<br />
+**CLIP**を用いて、衣服画像の埋め込みを取得します。
+この埋め込みは、画像生成モデルの条件として使用されます。
+
+**4. 試着画像の生成**<br />
+**拡散モデル**を用いて、試着画像を生成します。
+拡散モデルには、1~3で取得した情報が条件として与えられます。
+
+<br />
+
+### 2. レコメンド
+
+Lookyでは、試着した服に対して、左右にスワイプしていいねすることで、好みを学習します。
+これにより、好みの服を見つけやすくなります。
+
+以下の動画は、左右にスワイプして評価するまでの流れです。
+
+<br />
+
+<div className="mx-auto box-content aspect-[9/19.5] w-[210px] overflow-hidden rounded-4xl border-8 border-zinc-800 shadow">
+  <video autoPlay muted loop playsInline width="100%" height="100%">
+    <source src="/videos/works/looky/demo2.mp4" type="video/mp4" />
+  </video>
+</div>
+
+<br />
+
+Lookyは、次のような流れでレコメンドを実現しています。
+
+**1. 衣服画像の埋め込み**<br />
+**CLIP**を用いて、衣服画像の埋め込みを取得します。
+この埋め込みは、レコメンドのための特徴量として使用されます。
+
+**2. フィルタリング**<br />
+すでにレコメンドした衣服を除外します。
+また、衣服のカテゴリーやユーザーの属性によってフィルタリングを行います。
+
+**3.  嗜好の埋め込み**<br />
+ユーザーの評価をもとに、嗜好の埋め込みを取得します。
+具体的には、1で作成した埋め込みを、時間による加重平均で集約します。
+
+**4. レコメンドの算出**<br />
+**FAISS**を用いて、コサイン類似度に基づいて、衣服の埋め込みと嗜好の埋め込みを比較します。
+衣服は、類似度が高い順にレコメンドされます。
+
+<br />
+
+## 使用した技術
+
+<br />
+<br />
+
+<div className="grid grid-cols-3 gap-16 px-6 md:grid-cols-6 md:px-4">
+  <div className="flex flex-col items-center space-y-2">
+    <Icons.typescript className="size-16 dark:fill-white" />
+    <span className="font-semibold whitespace-nowrap">TypeScript</span>
+  </div>
+  <div className="flex flex-col items-center space-y-2">
+    <Icons.reactnative className="size-16 dark:fill-white" />
+    <span className="font-semibold whitespace-nowrap">React Native</span>
+  </div>
+  <div className="flex flex-col items-center space-y-2">
+    <Icons.expo className="size-16 dark:fill-white" />
+    <span className="font-semibold whitespace-nowrap">Expo</span>
+  </div>
+  <div className="flex flex-col items-center space-y-2">
+    <Icons.tamagui className="size-16 dark:fill-white" />
+    <span className="font-semibold whitespace-nowrap">Tamagui</span>
+  </div>
+  <div className="flex flex-col items-center space-y-2">
+    <Icons.reactquery className="size-16 dark:fill-white" />
+    <span className="font-semibold whitespace-nowrap">React Query</span>
+  </div>
+  <div className="flex flex-col items-center space-y-2">
+    <Icons.supabase className="size-16 dark:fill-white" />
+    <span className="font-semibold whitespace-nowrap">Supabase</span>
+  </div>
+</div>
+
+<br />

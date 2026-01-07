@@ -1,0 +1,41 @@
+---
+import Icons from "@/components/Icons";
+import { Button } from "@/components/ui/button";
+import { m } from "@/paraglide/messages";
+---
+
+<theme-toggle>
+	<Button variant="ghost" className="size-8">
+		<Icons.sun className="hidden dark:block"/>
+		<Icons.moon className="dark:hidden"/>
+		<span class="sr-only">{m.component_mode_toggle_aria_label()}</span>
+	</Button>
+</theme-toggle>
+
+<script>
+class ThemeToggle extends HTMLElement {
+	constructor() {
+		super();
+
+		const button = this.querySelector("button");
+
+		if (!button) {
+			return;
+		}
+
+		const setTheme = (dark: boolean) => {
+			document.documentElement.classList[dark ? "add" : "remove"]("dark");
+			button.setAttribute("aria-pressed", String(dark));
+		};
+
+		button.addEventListener("click", () => setTheme(!this.isDark()));
+
+		setTheme(this.isDark());
+	}
+
+	isDark() {
+		return document.documentElement.classList.contains("dark");
+	}
+}
+customElements.define("theme-toggle", ThemeToggle);
+</script>

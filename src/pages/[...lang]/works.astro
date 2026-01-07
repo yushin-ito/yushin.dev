@@ -1,0 +1,96 @@
+---
+import { Image } from "astro:assets";
+import { getCollection } from "astro:content";
+import { formatDistanceToNow } from "date-fns";
+import Icons from "@/components/Icons";
+import SiteHeader from "@/components/SiteHeader.astro";
+import { getLocale } from "@/paraglide/runtime";
+import {
+	Empty,
+	EmptyDescription,
+	EmptyHeader,
+	EmptyMedia,
+	EmptyTitle,
+} from "@/components/ui/empty";
+import Layout from "@/layouts/Layout.astro";
+import { m } from "@/paraglide/messages";
+import { enUS, ja } from "date-fns/locale";
+
+export const getStaticPaths = () => {
+	return [{ params: { lang: undefined } }, { params: { lang: "en" } }];
+};
+
+const entries = await getCollection("works");
+const works = entries
+	.sort((a, b) => b.data.updatedAt.valueOf() - a.data.updatedAt.valueOf())
+	.map((entry) => ({ id: entry.id, ...entry.data }));
+
+const locale = getLocale();
+---
+
+<Layout
+	title={`${m.page_works_metadata_title()} | yushin.dev`}
+	description={m.page_works_metadata_description()}
+>
+	<SiteHeader slot="header"/>
+	<section class="container py-6 md:py-10">
+		<div class="space-y-2">
+			<h1 class="text-2xl font-bold md:text-3xl">
+				{m.page_works_metadata_title()}
+			</h1>
+			<p class="text-sm text-muted-foreground">
+				{m.page_works_metadata_description()}
+			</p>
+		</div>
+		<hr class="mb-8 mt-4 w-full">
+		{works.length ? (
+			<div class="grid gap-10 px-2 sm:grid-cols-2">
+				{works.map((work) => (
+					<article class="relative flex flex-col space-y-2.5 overflow-hidden">
+						<div class="aspect-video overflow-hidden rounded-lg border bg-muted transition-colors">
+							<Image
+								src={`/images/works/${work.id}/thumbnail.png`}
+								alt={work.title}
+								width={1920}
+								height={1080}
+							/>
+						</div>
+						<div class="space-y-0.5 px-2">
+							<div class="flex items-center justify-between space-x-4">
+							<h2 class="truncate whitespace-nowrap text-2xl font-bold">
+								{work.title}
+							</h2>
+							<p class="whitespace-nowrap text-xs text-muted-foreground">
+								{formatDistanceToNow(new Date(work.updatedAt), {
+									addSuffix: true,
+									locale: locale === "en" ? enUS : ja,
+								})}
+							</p>
+							</div>
+							<p class="text-sm text-muted-foreground">
+							{work.description}
+							</p>
+						</div>
+						<a href={`/works/${work.id}`} class="absolute inset-0">
+							<span class="sr-only">{m.page_works_view_work}</span>
+						</a>
+					</article>
+				))}
+			</div>
+		) : (
+			<Empty>
+				<EmptyHeader>
+					<EmptyMedia variant="icon" className="size-24 rounded-full">
+						<Icons.book className="size-10"/>
+					</EmptyMedia>
+					<EmptyTitle>
+						{m.page_works_empty_title()}
+					</EmptyTitle>
+					<EmptyDescription>
+						{m.page_works_empty_description()}
+					</EmptyDescription>
+				</EmptyHeader>
+			</Empty>
+		)}
+	</section>
+</Layout>

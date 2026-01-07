@@ -1,0 +1,29 @@
+---
+import Icons from "@/components/Icons";
+import LanguageToggle from "@/components/LanguageToggle.astro";
+import MainNav from "@/components/MainNav.astro";
+import MobileNav from "@/components/MobileNav";
+import { buttonVariants } from "@/components/ui/button";
+import { siteConfig } from "@/lib/config";
+import { cn } from "@/lib/utils";
+import ThemeToggle from "@/components/ThemeToggle.astro";
+
+const pathname = Astro.url.pathname;
+---
+
+<div class="flex h-12 items-center justify-between px-4 md:h-16 md:px-10">
+	<MainNav items={siteConfig.navItems}/>
+	<MobileNav client:load pathname={pathname} items={siteConfig.navItems}/>
+	<div class="flex gap-2">
+		<a
+			href={siteConfig.links.github}
+			target="_blank"
+			rel="noreferrer"
+			class={cn(buttonVariants({ variant: "ghost" }), "size-8")}
+		>
+			<Icons.github className="dark:fill-white"/>
+		</a>
+		<ThemeToggle/>
+		<LanguageToggle/>
+	</div>
+</div>

@@ -1,0 +1,157 @@
+---
+title: iGEM TSUKUBA Editor
+description: iGEM TSUKUBAのためのエディタ
+createdAt: "2025-06-30"
+updatedAt: "2025-07-01"
+---
+import Mockup from "@/components/Mockup.astro";
+
+## iGEM TSUKUBA Editorとは
+
+iGEM TSUKUBA Editorは、筑波大学の一般学生団体であるiGEM TSUKUBAが作成したWikiに使用する**エディタ**です。
+リッチテキストエディターによる記事の編集とOpen AI APIを用いた記事の翻訳を行うことができます。
+iGEM TSUKUBAのメンバーは、このツールを用いて、Wikiの記事を簡単に作成・編集し、国際大会での発表に向けた準備を行うことができます。
+
+## 開発背景
+
+iGEM TSUKUBAは、筑波大学の学生団体であり、国際的な合成生物学の競技会であるiGEMに参加しています。
+iGEMでは、各チームが独自のプロジェクトを提案し、Wikiにその内容をまとめて発表します。
+
+しかし、このWikiの管理は3つの問題点を抱えていました。
+
+**1. Wikiの編集の難しさ** <br/>
+Wikiの編集は、Markdown形式で行う必要があり、初心者には**敷居が高い**ものでした。
+そのため、iGEM TSUKUBAのメンバーは、Wikiの編集に苦労していました。
+
+**2. 記事の翻訳の手間** <br/>
+Wikiの記事は、英語で書かれる必要があり、**翻訳の手間**がかかっていました。
+特に、専門的な内容を正確に翻訳することは難しく、時間がかかる作業でした。
+
+**3. Wikiの提出の複雑さ** <br/>
+Wikiの記事を提出には、GitHubを使用する必要があり、**手順が複雑**になっていました。
+特に、普段からGitHubを使用していないメンバーにとっては、操作が難しいという声もありました。
+
+これらの課題は、iGEM TSUKUBAの活動において大きな障害となっていました。
+そこで、iGEM Tsukuba Editorでは、次の3つの機能を実装することで、これらの課題を解決することを目指しました。
+
+## 主な機能
+
+### 1. リッチテキストエディターを用いた記事の編集
+
+この機能は、リッチテキストエディターを使用し、Markdownを介さないで記事を編集することで、「Wikiの編集の難しさ」を解決します。
+リッチテキストエディターには、[BlockNote](https://www.blocknotejs.org)を使用しました。
+[BlockNote](https://www.blocknotejs.org)は、WYSIWYG（What You See Is What You Get）形式で、直感的に記事を編集することができます。
+コラボレーション機能には、[PartyKit](https://www.partykit.io)を使用しました。
+
+以下の画像は、実際のエディターの画面です。
+
+<br />
+
+<Mockup alt="igem-tsukuba-editor.com" src="/images/works/igem-tsukuba-editor/editor.png" width={1920} height={1080} />
+
+<br />
+
+これにより、Markdownの知識がなくても、簡単に記事を作成・編集することができます。
+
+### 2. Open AI APIを用いた記事の翻訳
+
+この機能は、Open AI APIを使用して、記事の翻訳を行うことで、「記事の翻訳の手間」を解決します。
+[BlockNote](https://www.blocknotejs.org)のカスタムブロックからMarkdown形式に変換し、Open AI APIを使用して翻訳を行います。
+Markdownを解析し、翻訳すべきコンテンツのみを対象に翻訳を行いました。
+
+以下の画像は、実際の翻訳の画面です。
+
+<br />
+
+<Mockup alt="igem-tsukuba-editor.com" src="/images/works/igem-tsukuba-editor/translator.png" width={1920} height={1080} />
+
+<br />
+
+これにより、専門的な内容を正確に翻訳することができ、時間を大幅に短縮することができます。
+
+### 3. GitHub Actionsを用いたWikiの提出
+
+この機能は、GitHub Actionsを使用して、Wikiの記事を自動的に提出することで、「Wikiの提出の複雑さ」を解決します。
+GitHub Actionsを使用することで、手動での操作を減らし、提出の手間を大幅に削減しました。
+
+この機能の実装は、別のメンバーが担当しました。
+
+<br />
+
+### 4. ユーザー体験を高めるインターフェース
+
+実際にユーザーからのフィードバックを受けて、以下の機能も追加しました。
+
+- **ダッシュボード** <br/>
+  記事の一覧を表示し、編集や削除ができる機能を追加しました。
+
+  <br />
+
+  <Mockup
+    alt="igem-tsukuba-editor.com"
+    src="/images/works/igem-tsukuba-editor/dashboard.png"
+    width={1920} 
+    height={1080} 
+  />
+
+  <br />
+
+  - **プロフィール設定** <br/>
+    自分のプロフィールを変更できる機能を追加しました。
+
+  <br />
+
+  <Mockup
+    alt="igem-tsukuba-editor.com"
+    src="/images/works/igem-tsukuba-editor/profile.png"
+    width={1920} 
+    height={1080} 
+  />
+
+  <br />
+
+- **通知設定** <br/>
+  編集した記事をリアルタイムでプレビューできる機能を追加しました。
+
+  <br />
+
+  <Mockup
+    alt="igem-tsukuba-editor.com"
+    src="/images/works/igem-tsukuba-editor/notifications.png"    
+    width={1920} 
+    height={1080} 
+  />
+
+  <br />
+
+## 使用した技術
+
+<br />
+<br />
+
+<div className="grid grid-cols-3 gap-16 px-6 md:grid-cols-6 md:px-4">
+  <div className="flex flex-col items-center space-y-2">
+    <Icons.typescript className="size-16 dark:fill-white" />
+    <span className="font-semibold whitespace-nowrap">TypeScript</span>
+  </div>
+  <div className="flex flex-col items-center space-y-2">
+    <Icons.nextdotjs className="size-16 dark:fill-white" />
+    <span className="font-semibold whitespace-nowrap">Next.js</span>
+  </div>
+  <div className="flex flex-col items-center space-y-2">
+    <Icons.prisma className="size-16 dark:fill-white" />
+    <span className="font-semibold whitespace-nowrap">Prisma</span>
+  </div>
+  <div className="flex flex-col items-center space-y-2">
+    <Icons.shadcnui className="size-16 dark:fill-white" />
+    <span className="font-semibold whitespace-nowrap">shadcn/ui</span>
+  </div>
+  <div className="flex flex-col items-center space-y-2">
+    <Icons.tailwindcss className="size-16 dark:fill-white" />
+    <span className="font-semibold whitespace-nowrap">Tailwind CSS</span>
+  </div>
+  <div className="flex flex-col items-center space-y-2">
+    <Icons.vercel className="size-16 dark:fill-white" />
+    <span className="font-semibold whitespace-nowrap">Vercel</span>
+  </div>
+</div>

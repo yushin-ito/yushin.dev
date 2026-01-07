@@ -1,0 +1,108 @@
+---
+import Icons from "@/components/Icons";
+import SiteFooter from "@/components/SiteFooter.astro";
+import SiteHeader from "@/components/SiteHeader.astro";
+import TableOfContents from "@/components/TableOfContents";
+import Timeline from "@/components/Timeline.astro";
+import Layout from "@/layouts/Layout.astro";
+import { m } from "@/paraglide/messages";
+
+export const getStaticPaths = () => {
+	return [{ params: { lang: undefined } }, { params: { lang: "en" } }];
+};
+---
+
+<Layout
+	title={`${m.page_about_metadata_title()} | yushin.dev`}
+	description={m.page_about_metadata_description()}
+>
+	<SiteHeader slot="header"/>
+	<section class="container py-6 md:py-10">
+		<div class="space-y-2">
+			<h1 class="text-2xl font-bold md:text-3xl">
+				{m.page_about_metadata_title()}
+			</h1>
+			<p class="text-sm text-muted-foreground">
+				{m.page_about_metadata_description()}
+			</p>
+		</div>
+		<hr class="mb-8 mt-4">
+		<div class="relative lg:grid lg:grid-cols-[1fr_140px] lg:gap-20">
+			<div class="space-y-16">
+				<div class="space-y-4">
+					<h2 id="introduction" class="font-bold md:text-xl">
+						{m.page_about_introduction_title()}
+					</h2>
+					<p class="whitespace-pre-line leading-relaxed">
+						{m.page_about_introduction_description()}
+					</p>
+				</div>
+
+				<div class="space-y-8">
+					<div class="space-y-0.5">
+						<h2 id="skills" class="font-bold md:text-xl">
+							{m.page_about_skills_title()}
+						</h2>
+						<p class="text-muted-foreground">
+							{m.page_about_skills_description()}
+						</p>
+					</div>
+
+					<div
+						class="grid grid-cols-4 place-items-center gap-8 px-4 sm:grid-cols-8 sm:gap-12"
+					>
+						<Icons.python className="size-12 dark:fill-white"/>
+						<Icons.cplusplus className="size-12 dark:fill-white"/>
+						<Icons.html5 className="size-12 dark:fill-white"/>
+						<Icons.css3 className="size-12 dark:fill-white"/>
+						<Icons.javascript className="size-12 dark:fill-white"/>
+						<Icons.typescript className="size-12 dark:fill-white"/>
+						<Icons.ruby className="size-12 dark:fill-white"/>
+						<Icons.go className="size-12 dark:fill-white"/>
+						<Icons.react className="size-12 dark:fill-white"/>
+						<Icons.nextdotjs className="size-12 dark:fill-white"/>
+						<Icons.tailwindcss className="size-12 dark:fill-white"/>
+						<Icons.expo className="size-12 dark:fill-white"/>
+						<Icons.supabase className="size-12 dark:fill-white"/>
+						<Icons.prisma className="size-12 dark:fill-white"/>
+						<Icons.github className="size-12 dark:fill-white"/>
+						<Icons.figma className="size-12 dark:fill-white"/>
+					</div>
+				</div>
+				<div class="space-y-8">
+					<div class="space-y-0.5">
+						<h2 id="experiences" class="font-bold md:text-xl">
+							{m.page_about_experiences_title()}
+						</h2>
+						<p class="text-muted-foreground">
+							{m.page_about_experiences_description()}
+						</p>
+					</div>
+					<Timeline/>
+				</div>
+			</div>
+			<div class="hidden lg:block">
+				<div class="sticky top-12 overflow-y-auto pt-12">
+					<TableOfContents
+						client:load
+						items={[
+							{
+								id: "introduction",
+								title: m.page_about_introduction_title(),
+							},
+							{
+								id: "skills",
+								title: m.page_about_skills_title(),
+							},
+							{
+								id: "experiences",
+								title: m.page_about_experiences_title(),
+							},
+						]}
+					/>
+				</div>
+			</div>
+		</div>
+	</section>
+	<SiteFooter slot="footer"/>
+</Layout>

@@ -1,0 +1,31 @@
+---
+import { cn } from "@/lib/utils";
+import { deLocalizeHref, getLocale, localizeHref } from "@/paraglide/runtime";
+
+interface Props {
+	items: { href: string; label: string }[];
+}
+
+const { items } = Astro.props;
+
+const pathname = Astro.url.pathname;
+
+const locale = getLocale();
+const baseHref = deLocalizeHref(pathname);
+---
+
+<nav class="hidden gap-6 md:flex">
+	{items.map((item) => (
+		<a
+			href={localizeHref(item.href, { locale })}
+			class={cn(
+				"flex items-center text-sm font-medium transition-colors hover:text-foreground/80",
+				baseHref === item.href ||  baseHref.startsWith(`${item.href}/`)
+					? "text-foreground"
+					: "text-foreground/60",
+			)}
+		>
+			{item.label}
+		</a>
+	))}
+</nav>

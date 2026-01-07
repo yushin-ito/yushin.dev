@@ -1,0 +1,56 @@
+---
+import Head from "@/components/Head.astro";
+import { Toaster } from "@/components/ui/sonner";
+import { getLocale } from "@/paraglide/runtime";
+import "@/styles/global.css";
+
+interface Props {
+	title: string;
+	description: string;
+	image?: string;
+}
+
+const { title, description, image } = Astro.props;
+
+const locale = getLocale();
+---
+
+<script is:inline>
+const getThemePreference = () => {
+	if (typeof localStorage !== "undefined" && localStorage.getItem("theme")) {
+		return localStorage.getItem("theme");
+	}
+	return window.matchMedia("(prefers-color-scheme: dark)").matches
+		? "dark"
+		: "light";
+};
+const isDark = getThemePreference() === "dark";
+document.documentElement.classList[isDark ? "add" : "remove"]("dark");
+
+if (typeof localStorage !== "undefined") {
+	const observer = new MutationObserver(() => {
+		const isDark = document.documentElement.classList.contains("dark");
+		localStorage.setItem("theme", isDark ? "dark" : "light");
+	});
+	observer.observe(document.documentElement, {
+		attributes: true,
+		attributeFilter: ["class"],
+	});
+}
+</script>
+
+<html lang={locale}>
+	<Head title={title} description={description} image={image}/>
+	<body
+		class="bg-background text-foreground overscroll-none font-sans antialiased"
+	>
+		<header>
+			<slot name="header"/>
+		</header>
+		<slot/>
+		<footer>
+			<slot name="footer"/>
+		</footer>
+		<Toaster client:load/>
+	</body>
+</html>

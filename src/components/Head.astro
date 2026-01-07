@@ -1,0 +1,65 @@
+---
+import { siteConfig } from "@/lib/config";
+import { Font } from "astro:assets";
+
+interface Props {
+	title: string;
+	description: string;
+	image?: string;
+}
+
+const { title, description, image } = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+---
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<link rel="icon" href="/favicon.ico">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+	<link rel="sitemap" href="/sitemap-index.xml">
+	<link
+		rel="alternate"
+		type="application/rss+xml"
+		title={siteConfig.name}
+		href={new URL("rss.xml", Astro.site)}
+	>
+	<meta name="generator" content={Astro.generator}>
+
+	<link rel="canonical" href={canonicalURL}>
+
+	<title>{title}</title>
+	<meta name="description" content={description}>
+
+	<meta property="og:type" content="website">
+	<meta property="og:url" content={canonicalURL}>
+	<meta property="og:title" content={title}>
+	<meta property="og:description" content={description}>
+	<meta property="og:image" content={image ?? "/og.png"}>
+
+	<meta property="twitter:card" content="summary_large_image">
+	<meta property="twitter:url" content={canonicalURL}>
+	<meta property="twitter:title" content={title}>
+	<meta property="twitter:description" content={description}>
+	<meta property="twitter:image" content={image ?? "/og.png"}>
+
+	<link rel="manifest" href="/site.webmanifest">
+
+	<Font cssVariable="--font-roboto" preload/>
+	<Font cssVariable="--font-noto-sans-jp" preload/>
+
+	<script>
+	import {
+		baseLocale,
+		overwriteGetLocale,
+		type Locale,
+	} from "@/paraglide/runtime";
+
+	overwriteGetLocale(
+		() => (document.documentElement.lang as Locale | undefined) ?? baseLocale,
+	);
+	</script>
+</head>

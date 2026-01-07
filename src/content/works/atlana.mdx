@@ -1,0 +1,211 @@
+---
+title: ATLANA
+description: 次世代型BDF製造プラント運転システム
+createdAt: "2025-04-02"
+updatedAt: "2025-04-02"
+---
+import { Image } from "astro:assets";
+import Callout from "@/components/Callout.astro";
+import Mockup from "@/components/Mockup.astro";
+
+## ATLANAとは
+
+ATLANAは、BDF製造プラントのデジタルトランスフォーメーションを実現する**次世代型BDF製造プラント運転システム**です。
+バイオディーゼル燃料製造プラントにおける技術的課題を解決するとともに、専門知識を必要としないユーザーフレンドリーな運転システムを構築します。
+
+## 開発背景
+
+観光地として知られる鳥羽市では、多くのホテルや飲食店が立地しています。そのため、日常的に多くの植物性廃油が排出されており、再利用されることなく廃棄されているのが現状です。
+また、海に面している鳥羽市では、漁業が盛んであるため、養殖業で多くの牡蠣殻も同様に廃棄されていました。
+そこで、鳥羽商船では植物性油と牡蠣殻を有効活用できる**バイオディーゼル燃料製造プラント**が提案された。
+
+バイオディーゼル燃料（BDF）は植物性油を原料とする再生可能エネルギーであり、ディーゼルエンジンの燃料としての活用も可能です。
+化石燃料への依存から脱却することができるエネルギーとして注目されています。
+
+しかし、このBDF製造プラントは3つの問題点を抱えていました。
+
+**1. プラント運転の属人化** <br/>
+廃油とメタノールを攪拌する工程において、その攪拌状態を適切に評価する手法が確立されておらず、その後の工程に悪影響を及ぼすリスクというものです。
+つまり、ほとんどが**暗黙知**すなわち**直感**によって運転されているのです。
+
+**2. プラント運転の最適化** <br/>
+運転するために必要になる温度などのパラメーターの最適な値が判明していないというものです。
+つまり、ほとんどが**手探り**で運転されているのです。
+
+**3. プラント運転の高度化** <br/>
+運転するためには高度な専門知識が要求さていて複雑になってきているというものです。
+つまり、限られた人しかプラントを運転することができません。
+
+これらの課題は、現在のプラント産業にも共通した課題であり、早急に解決する必要がありました。
+そこで、ATLANAでは、次の3つの機能を実装することで、これらの課題を解決することを目指しました。
+
+## 主な機能
+
+### 1. 画像解析を用いた定量評価
+
+この機能は、撹拌中の画像を解析して撹拌状態を定量評価することで、暗黙知を排除した運転を実現し、「プラント運転の属人化」を解決します。
+
+以下の動画は、実際の攪拌した直後から分離していく様子を撮影したものです。
+
+<br />
+
+<div className="mx-auto aspect-square w-[300px]">
+  <video autoPlay muted loop playsInline width="100%" height="100%">
+    <source src="/videos/works/atlana/demo.mp4" type="video/mp4" />
+  </video>
+</div>
+
+<br />
+
+3つの領域に分かれており、上から空気領域、メタノール領域、廃油領域となっています。
+攪拌した直後は、メタノールが廃油に液泡として溶け込んでいるため、時間が経過するにつれて、メタノール領域は減少し、廃油領域は増加しいきます。
+そこで、画像中のメタノール領域の面積に注目し、攪拌状態を定量評価することにしました。
+
+以下の画像は、領域成長法を用いてメタノール領域を抽出したものです。
+
+<br />
+
+<Image
+  src="/images/works/atlana/annotation.png"
+  alt="annotation"
+  width={300}
+  height={300}
+  className="mx-auto"
+/>
+
+<br />
+
+しかし、領域成長法は、計算量が多いため、今回のようにリアルタイムでの評価が重要な場面では適していません。
+そこで、画像解析の手法として、**U-Net**を用いてメタノール領域を抽出することにしました。
+U-Netは、セグメンテーションに特化したCNNの1つであり、画像の特徴を抽出するためのエンコーダと、抽出した特徴を元に画像を復元するためのデコーダから構成されています。
+
+以下の画像は、U-Netを用いてメタノール領域を抽出したものです。
+
+<br />
+
+<Image
+  src="/images/works/atlana/segmentation.png"
+  alt="segmentation"
+  width={300}
+  height={300}
+  className="mx-auto"
+/>
+
+<br />
+
+これにより、より高速に画像におけるメタノール領域の面積を計算することができました。
+
+以下のグラフは、画像におけるメタノールの面積と溶け込んでいるメタノールの体積を推定したものです。
+
+<br />
+
+<div className="grid gap-10 px-2 sm:grid-cols-2">
+  <div className="w-full aspect-8/5 relative">
+    <Image
+      src="/images/works/atlana/area.png"
+      alt="area"
+      width={800}
+      height={500}
+    />
+  </div>
+  <div className="w-full aspect-8/5 relative">
+    <Image
+      src="/images/works/atlana/volume.png"
+      alt="volume"
+      width={800}
+      height={500}
+    />
+  </div>
+</div>
+
+<br />
+
+このグラフからも分かるように、時間が進むにつれて分離は緩やかに進行していることが確認できます。
+ATLANAでは、この関数を用いて攪拌率を定義しました。
+
+### 2. 強化学習を用いたチューニング
+
+この機能は、**強化学習**を用いてヒーターの温度やポンプの圧力などのパラメーターを最適化することで、利益を最大化する運転を実現し、「プラント運転の最適化」を解決します。
+
+バイディーゼル燃料の転化率を報酬関数として、プラントの運転する際に必要なパラメーターを最適化します。
+
+<Callout variant="destructive">
+  <Icons.triangleAlert />
+  この機能は開発中であり、具体的な仕様は未定です。
+</Callout>
+
+### 3. 専門知識が必要ないダッシュボード
+
+この機能は、ユーザーフレンドリーなインターフェースを提供することで、専門知識がなくてもプラントを運転できるようにし、「プラント運転の高度化」を解決します。
+
+- **フロー画面** <br/>
+  プラントの運転状況をリアルタイムで確認できる画面です。[React Flow](https://reactflow.dev)を用いて、フロー図を実装しました。
+
+  <br />
+
+  <Mockup alt="atlana.com" src="/images/works/atlana/flow.png" width={1920} height={1250} />
+
+  <br />
+  <br />
+
+- **分析画面** <br/>
+  プラントの運転状況を分析できる画面です。[Recharts](https://recharts.org)を用いて、チャートを実装しました。
+
+  <br />
+
+  <Mockup alt="atlana.com" src="/images/works/atlana/analytics.png" width={1920} height={1250} />
+
+  <br />
+  <br />
+
+- **ログ画面** <br/>
+  プラントの運転のログを確認できる画面です。[React Table](https://tanstack.com/table)を用いて、テーブルを実装しました。
+
+  <br />
+
+  <Mockup alt="atlana.com" src="/images/works/atlana/log.png" width={1920} height={1250} />
+
+  <br />
+  <br />
+
+- **コントロール画面** <br/>
+  プラントの運転を制御できる画面です。[dnd kit](https://dndkit.com)を用いて、ドラッグ&ドロップを実装しました。
+
+  <br />
+
+  <Mockup alt="atlana.com" src="/images/works/atlana/control.png" width={1920} height={1250} />
+
+  <br />
+  <br />
+
+## 使用した技術
+
+<br />
+<br />
+
+<div className="grid grid-cols-3 gap-16 px-6 md:grid-cols-6 md:px-4">
+  <div className="flex flex-col items-center space-y-2">
+    <Icons.python className="size-16 dark:fill-white" />
+    <span className="font-semibold whitespace-nowrap">Python</span>
+  </div>
+  <div className="flex flex-col items-center space-y-2">
+    <Icons.typescript className="size-16 dark:fill-white" />
+    <span className="font-semibold whitespace-nowrap">TypeScript</span>
+  </div>
+  <div className="flex flex-col items-center space-y-2">
+    <Icons.nextdotjs className="size-16 dark:fill-white" />
+    <span className="font-semibold whitespace-nowrap">Next.js</span>
+  </div>
+  <div className="flex flex-col items-center space-y-2">
+    <Icons.supabase className="size-16 dark:fill-white" />
+    <span className="font-semibold whitespace-nowrap">Supabase</span>
+  </div>
+  <div className="flex flex-col items-center space-y-2">
+    <Icons.shadcnui className="size-16 dark:fill-white" />
+    <span className="font-semibold whitespace-nowrap">shadcn/ui</span>
+  </div>
+  <div className="flex flex-col items-center space-y-2">
+    <Icons.tailwindcss className="size-16 dark:fill-white" />
+    <span className="font-semibold whitespace-nowrap">Tailwind CSS</span>
+  </div>
+</div>

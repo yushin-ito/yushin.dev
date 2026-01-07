@@ -119,25 +119,13 @@ yushin.dev/
 2. パッケージのインストール
 
    ```bash
-   pnpm install
+   bun install
    ```
 
-3. 環境変数の設定
+3. 開発サーバーの起動
 
    ```bash
-   touch .env
-   ```
-
-4. データベースのマイグレーション
-
-   ```bash
-   pnpm prisma migrate dev
-   ```
-
-5. 開発サーバーの起動
-
-   ```bash
-   pnpm dev
+   bun dev
    ```
 
 6. ブラウザで [http://localhost:3000](http://localhost:3000) にアクセス

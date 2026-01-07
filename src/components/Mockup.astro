@@ -1,0 +1,28 @@
+---
+import Icons from "@/components/Icons";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { Image, type LocalImageProps } from "astro:assets";
+
+type Props = LocalImageProps;
+---
+
+<div class="mx-auto w-full overflow-hidden rounded-xl border shadow">
+	<div
+		class="relative hidden h-10 items-center justify-center border-b bg-muted sm:flex"
+	>
+		<div class="absolute left-4 flex space-x-2">
+			<div class="size-2.5 rounded-full bg-red-500"/>
+			<div class="size-2.5 rounded-full bg-yellow-500"/>
+			<div class="size-2.5 rounded-full bg-green-500"/>
+		</div>
+		<div
+			class="relative flex w-1/2 items-center justify-center rounded-md border bg-background py-0.5 text-center text-muted-foreground"
+		>
+			<Icons.search className="absolute left-2 size-3"/>
+			<p class="text-xs">{Astro.props.alt}</p>
+		</div>
+	</div>
+	<ScrollArea className="aspect-video w-full" client:load>
+		<Image {...Astro.props}/>
+	</ScrollArea>
+</div>

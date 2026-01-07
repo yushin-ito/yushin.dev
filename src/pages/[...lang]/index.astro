@@ -1,0 +1,55 @@
+---
+import { Image } from "astro:assets";
+import SiteFooter from "@/components/SiteFooter.astro";
+import SiteHeader from "@/components/SiteHeader.astro";
+import Typewriter from "@/components/Typewriter";
+import Layout from "@/layouts/Layout.astro";
+import { m } from "@/paraglide/messages";
+
+export const getStaticPaths = () => {
+	return [{ params: { lang: undefined } }, { params: { lang: "en" } }];
+};
+---
+
+<Layout
+	title={`${m.page_top_metadata_title()} | yushin.dev`}
+	description={m.page_top_metadata_description()}
+>
+	<SiteHeader slot="header"/>
+	<section
+		class="container flex flex-col items-center justify-center space-y-8 py-16 md:h-[calc(100vh-6rem)] md:flex-row md:space-x-12"
+	>
+		<div
+			class="size-60 rounded-full md:size-72 overflow-hidden border bg-muted transition-colors"
+		>
+			<Image src="/images/icon.png" alt="avatar" width={512} height={512}/>
+		</div>
+		<div class="hidden space-y-4 md:block">
+			<div class="space-y-2">
+				<div class="flex items-center justify-start space-x-6">
+					<div class="space-y-0.5 text-center tracking-widest">
+						<p class="text-lg font-semibold">ITO</p>
+						<h1 class="text-4xl font-bold">伊藤</h1>
+					</div>
+					<div class="space-y-0.5 text-center tracking-widest">
+						<p class="text-lg font-semibold">YUSHIN</p>
+						<h1 class="text-4xl font-bold">優心</h1>
+					</div>
+				</div>
+				<p class="text-start text-muted-foreground">{m.page_top_birthday ()}</p>
+			</div>
+			<p class="max-w-md text-start leading-relaxed">{m.page_top_profile()}</p>
+		</div>
+		<div class="space-y-2 text-center md:hidden">
+			<Typewriter
+				client:load
+				text="Hi, I'm Yushin Ito"
+				cursor="|"
+				duration={100}
+				className="text-3xl font-bold"
+			/>
+			<p class="text-muted-foreground">CS Student</p>
+		</div>
+	</section>
+	<SiteFooter slot="footer"/>
+</Layout>

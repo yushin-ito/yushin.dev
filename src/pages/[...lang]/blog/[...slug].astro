@@ -1,0 +1,109 @@
+---
+import fs from "node:fs";
+import path from "node:path";
+import { Image } from "astro:assets";
+import { type CollectionEntry, getCollection, render } from "astro:content";
+import Icons from "@/components/Icons";
+import SiteFooter from "@/components/SiteFooter.astro";
+import SiteHeader from "@/components/SiteHeader.astro";
+import TableOfContents from "@/components/TableOfContents";
+import { buttonVariants } from "@/components/ui/button";
+import Layout from "@/layouts/Layout.astro";
+import { cn } from "@/lib/utils";
+import { mdxComponents } from "@/mdx-components";
+import Slideshow from "@/components/Slideshow";
+import { m } from "@/paraglide/messages";
+
+interface Props {
+	entry: CollectionEntry<"posts">;
+}
+
+export const getStaticPaths = async () => {
+	const posts = await getCollection("posts");
+	return posts.flatMap((entry) => [
+		{
+			params: { lang: undefined, slug: entry.id },
+			props: { entry },
+		},
+		{
+			params: { lang: "en", slug: entry.id },
+			props: { entry },
+		},
+	]);
+};
+
+const { entry } = Astro.props;
+const { Content, headings } = await render(entry);
+
+const dir = path.join(
+	process.cwd(),
+	"public",
+	"images",
+	"posts",
+	entry.id,
+	"slides",
+);
+const pages = fs.existsSync(dir)
+	? fs
+			.readdirSync(dir)
+			.filter((file) => file.endsWith(".png"))
+			.sort((a, b) => parseInt(a, 10) - parseInt(b, 10))
+			.map((file) => `/images/posts/${entry.id}/slides/${file}`)
+	: [];
+
+const toc = headings
+	.filter((heading) => heading.depth === 2)
+	.map((heading) => ({ id: heading.slug, title: heading.text }));
+---
+
+<Layout
+	title={entry.data.title}
+	description={entry.data.description}
+	image={`/images/posts/${entry.id}/thumbnail.png`}
+>
+	<SiteHeader slot="header"/>
+	<article class="container py-6 md:py-10">
+		<div class="flex items-center justify-between">
+			<div class="space-y-2">
+				<h1 class="text-2xl font-bold md:text-3xl">{entry.data.title}</h1>
+				<p class="text-sm text-muted-foreground">{entry.data.description}</p>
+			</div>
+		</div>
+		<hr class="mb-8 mt-4">
+		<div class="relative lg:grid lg:grid-cols-[1fr_140px] lg:gap-20">
+			<div>
+				<div
+					class="aspect-video overflow-hidden rounded-xl border bg-muted transition-colors"
+				>
+					{pages.length > 0 ? (
+						<Slideshow pages={pages} client:load />
+					) : (
+						<Image
+							src={`/images/posts/${entry.id}/thumbnail.png`}
+							alt={entry.data.title}
+							width={1920}
+							height={1080}
+						/>
+					)}
+				</div>
+				<Content components={mdxComponents}/>
+				<hr class="mt-12">
+				<div class="flex justify-center py-6 md:py-10">
+					<a
+						href="/blog"
+						class={cn(buttonVariants({ variant: "ghost" }), "pl-2 flex items-center")}
+					>
+						<Icons.chevronLeft/>
+						<span class="text-sm"> {m.page_blog_back}</span>
+					</a>
+				</div>
+			</div>
+			<div class="hidden lg:block">
+				<div class="sticky top-12 overflow-y-auto pt-12">
+					<TableOfContents items={toc} client:load/>
+				</div>
+			</div>
+		</div>
+	</article>
+	<SiteFooter slot="footer"/>
+</Layout>
