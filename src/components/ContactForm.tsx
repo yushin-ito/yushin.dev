@@ -1,4 +1,3 @@
-import { actions } from "astro:actions";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Controller, useForm } from "react-hook-form";
 import { toast } from "sonner";
@@ -44,7 +43,7 @@ const ContactForm = () => {
 	});
 
 	const onSubmit = async (data: FormData) => {
-		const { error } = await actions.contact(data);
+		const error = "";
 
 		if (error) {
 			toast.error(m.component_contact_form_toast_error_title(), {

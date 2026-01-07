@@ -13,6 +13,7 @@ import { siteConfig } from "./src/lib/config";
 // https://astro.build/config
 export default defineConfig({
 	site: siteConfig.url,
+	output: "static",
 	i18n: {
 		locales: ["en", "ja"],
 		defaultLocale: "ja",

@@ -8,6 +8,8 @@ import sanitize from "sanitize-html";
 import { mdxComponents } from "@/mdx-components";
 import { m } from "@/paraglide/messages";
 
+export const prerender = true;
+
 export const GET = async (context: APIContext) => {
 	const renderers = await loadRenderers([mdxContainerRenderer()]);
 	const container = await AstroContainer.create({ renderers });
