@@ -1,3 +1,4 @@
+import type { GetImageResult } from "astro";
 import {
 	type ComponentProps,
 	useCallback,
@@ -27,14 +28,14 @@ import { cn } from "@/lib/utils";
 import { m } from "@/paraglide/messages";
 
 interface SlideshowProps extends ComponentProps<"div"> {
-	pages: string[];
+	pages: GetImageResult[];
 }
 
 const Slideshow = ({ pages, className, ...props }: SlideshowProps) => {
+	const containerRef = useRef<HTMLDivElement>(null);
 	const [isOpen, setIsOpen] = useState(true);
 	const [pageIndex, setPageIndex] = useState(0);
 	const [scale, setScale] = useState(1);
-	const containerRef = useRef<HTMLDivElement>(null);
 
 	const [clearTimer, setTimer] = useTimer(() => {
 		setIsOpen(false);
@@ -80,7 +81,7 @@ const Slideshow = ({ pages, className, ...props }: SlideshowProps) => {
 			{({ zoomIn, zoomOut, resetTransform }) => (
 				<div
 					ref={containerRef}
-					className={cn("relative w-full", className)}
+					className={cn("relative w-full transition-colors", className)}
 					onPointerEnter={() => setTimer()}
 					{...props}
 				>
@@ -112,8 +113,10 @@ const Slideshow = ({ pages, className, ...props }: SlideshowProps) => {
 							onClick={nextPage}
 						/>
 						<img
-							src={pages[pageIndex]}
+							src={pages[pageIndex].src}
 							alt={m.component_slideshow_page({ index: pageIndex + 1 })}
+							{...pages[pageIndex].attributes}
+							decoding="auto"
 						/>
 					</TransformComponent>
 					<button
@@ -137,7 +140,7 @@ const Slideshow = ({ pages, className, ...props }: SlideshowProps) => {
 					>
 						<div className="space-y-1 bg-linear-to-t from-black/90 to-transparent p-2 sm:p-4">
 							<div className="no-scrollbar hidden items-center space-x-1 overflow-x-auto sm:flex">
-								{pages.map((slide, index) => (
+								{pages.map((_, index) => (
 									<Tooltip key={index.toString()}>
 										<TooltipTrigger asChild>
 											<button
@@ -165,10 +168,11 @@ const Slideshow = ({ pages, className, ...props }: SlideshowProps) => {
 										>
 											<div className="aspect-video w-60 overflow-hidden rounded-sm">
 												<img
-													src={slide}
+													src={pages[index].src}
 													alt={m.component_slideshow_preview({
 														index: index + 1,
 													})}
+													{...pages[index].attributes}
 												/>
 											</div>
 											<div className="absolute inset-x-0 bottom-0 bg-linear-to-t from-black/80 to-transparent p-4">

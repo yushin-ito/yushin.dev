@@ -1,7 +1,7 @@
 ---
 import fs from "node:fs";
 import path from "node:path";
-import { Image } from "astro:assets";
+import { getImage, Image } from "astro:assets";
 import { type CollectionEntry, getCollection, render } from "astro:content";
 import Icons from "@/components/Icons";
 import SiteFooter from "@/components/SiteFooter.astro";
@@ -35,21 +35,30 @@ export const getStaticPaths = async () => {
 const { entry } = Astro.props;
 const { Content, headings } = await render(entry);
 
-const dir = path.join(
-	process.cwd(),
-	"public",
-	"images",
-	"works",
-	entry.id,
-	"slides",
+const images = Object.values(
+	import.meta.glob<ImageMetadata>("/src/assets/works/**/*.png", {
+		eager: true,
+		import: "default",
+	}),
 );
-const pages = fs.existsSync(dir)
-	? fs
-			.readdirSync(dir)
-			.filter((file) => file.endsWith(".png"))
-			.sort((a, b) => parseInt(a, 10) - parseInt(b, 10))
-			.map((file) => `/images/works/${entry.id}/slides/${file}`)
-	: [];
+
+const pages = await Promise.all(
+	images
+		.filter(({ src }) => src.includes(entry.id))
+		.sort(
+			(a, b) => Number(path.parse(a.src).name) - Number(path.parse(b.src).name),
+		)
+		.map(async (image) => {
+			const page = await getImage({
+				src: image,
+				width: image.width,
+				height: image.height,
+				format: "webp",
+			});
+
+			return page;
+		}),
+);
 
 const toc = headings
 	.filter((heading) => heading.depth === 2)

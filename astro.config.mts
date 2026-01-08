@@ -13,13 +13,9 @@ import { siteConfig } from "./src/lib/config";
 // https://astro.build/config
 export default defineConfig({
 	site: siteConfig.url,
-	output: "static",
 	i18n: {
 		locales: ["en", "ja"],
 		defaultLocale: "ja",
-		routing: {
-			prefixDefaultLocale: false,
-		},
 	},
 	vite: {
 		plugins: [
@@ -64,14 +60,14 @@ export default defineConfig({
 				provider: fontProviders.google(),
 				name: "Roboto",
 				cssVariable: "--font-roboto",
-				weights: [300, 400, 500, 600, 700],
+				weights: [400, 500, 600, 700],
 				fallbacks: [],
 			},
 			{
 				provider: fontProviders.google(),
 				name: "Noto Sans JP",
 				cssVariable: "--font-noto-sans-jp",
-				weights: [300, 400, 500, 600, 700],
+				weights: [400, 500, 600, 700],
 				fallbacks: [],
 			},
 		],
