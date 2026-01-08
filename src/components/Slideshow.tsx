@@ -28,10 +28,10 @@ import { cn } from "@/lib/utils";
 import { m } from "@/paraglide/messages";
 
 interface SlideshowProps extends ComponentProps<"div"> {
-	pages: GetImageResult[];
+	images: GetImageResult[];
 }
 
-const Slideshow = ({ pages, className, ...props }: SlideshowProps) => {
+const Slideshow = ({ images, className, ...props }: SlideshowProps) => {
 	const containerRef = useRef<HTMLDivElement>(null);
 	const [isOpen, setIsOpen] = useState(true);
 	const [pageIndex, setPageIndex] = useState(0);
@@ -44,8 +44,8 @@ const Slideshow = ({ pages, className, ...props }: SlideshowProps) => {
 	const { isFullscreen, toggleFullscreen } = useFullscreen(containerRef);
 
 	const nextPage = useCallback(() => {
-		setPageIndex((prev) => Math.min(prev + 1, pages.length - 1));
-	}, [pages.length]);
+		setPageIndex((prev) => Math.min(prev + 1, images.length - 1));
+	}, [images.length]);
 
 	const previousPage = useCallback(() => {
 		setPageIndex((prev) => Math.max(prev - 1, 0));
@@ -106,16 +106,16 @@ const Slideshow = ({ pages, className, ...props }: SlideshowProps) => {
 							className={cn(
 								"absolute inset-y-0 right-0 w-3/4",
 								scale > 1 && "pointer-events-none",
-								pageIndex === pages.length - 1
+								pageIndex === images.length - 1
 									? "cursor-arrow-left"
 									: "cursor-arrow-right",
 							)}
 							onClick={nextPage}
 						/>
 						<img
-							src={pages[pageIndex].src}
+							src={images[pageIndex].src}
 							alt={m.component_slideshow_page({ index: pageIndex + 1 })}
-							{...pages[pageIndex].attributes}
+							{...images[pageIndex].attributes}
 							decoding="auto"
 						/>
 					</TransformComponent>
@@ -140,7 +140,7 @@ const Slideshow = ({ pages, className, ...props }: SlideshowProps) => {
 					>
 						<div className="space-y-1 bg-linear-to-t from-black/90 to-transparent p-2 sm:p-4">
 							<div className="no-scrollbar hidden items-center space-x-1 overflow-x-auto sm:flex">
-								{pages.map((_, index) => (
+								{images.map((_, index) => (
 									<Tooltip key={index.toString()}>
 										<TooltipTrigger asChild>
 											<button
@@ -168,11 +168,11 @@ const Slideshow = ({ pages, className, ...props }: SlideshowProps) => {
 										>
 											<div className="aspect-video w-60 overflow-hidden rounded-sm">
 												<img
-													src={pages[index].src}
+													src={images[index].src}
 													alt={m.component_slideshow_preview({
 														index: index + 1,
 													})}
-													{...pages[index].attributes}
+													{...images[index].attributes}
 												/>
 											</div>
 											<div className="absolute inset-x-0 bottom-0 bg-linear-to-t from-black/80 to-transparent p-4">
@@ -211,13 +211,13 @@ const Slideshow = ({ pages, className, ...props }: SlideshowProps) => {
 										</TooltipContent>
 									</Tooltip>
 									<p className="hidden font-semibold text-sm text-white sm:flex">
-										{pageIndex + 1} / {pages.length}
+										{pageIndex + 1} / {images.length}
 									</p>
 									<Tooltip>
 										<TooltipTrigger asChild>
 											<Button
 												size="icon"
-												disabled={pageIndex === pages.length - 1}
+												disabled={pageIndex === images.length - 1}
 												onClick={() => nextPage()}
 												className="bg-transparent hover:bg-white/10"
 											>

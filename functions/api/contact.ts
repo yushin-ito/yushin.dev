@@ -31,13 +31,11 @@ export const onRequestPost: PagesFunction<Env> = async ({ request, env }) => {
 		});
 
 		if (!response.ok) {
-			console.error("Resend failed:", response.status, await response.text());
 			return new Response(null, { status: 500 });
 		}
 
 		return new Response(null, { status: 204 });
 	} catch {
-		console.log("Unexpected error occurred in contact API");
 		return new Response(null, { status: 500 });
 	}
 };

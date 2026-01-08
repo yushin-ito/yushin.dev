@@ -35,28 +35,24 @@ export const getStaticPaths = async () => {
 const { entry } = Astro.props;
 const { Content, headings } = await render(entry);
 
-const images = Object.values(
-	import.meta.glob<ImageMetadata>("/src/assets/works/**/*.png", {
-		eager: true,
-		import: "default",
-	}),
-);
+const modules = import.meta.glob<ImageMetadata>("/src/assets/works/**/*.png", {
+	eager: true,
+	import: "default",
+});
 
-const pages = await Promise.all(
-	images
-		.filter(({ src }) => src.includes(entry.id))
-		.sort(
-			(a, b) => Number(path.parse(a.src).name) - Number(path.parse(b.src).name),
-		)
-		.map(async (image) => {
-			const page = await getImage({
-				src: image,
-				width: image.width,
-				height: image.height,
+const images = await Promise.all(
+	Object.entries(modules)
+		.filter(([path]) => path.includes(entry.id.split("/").pop()!))
+		.sort(([a], [b]) => Number(path.parse(a).name) - Number(path.parse(b).name))
+		.map(async ([_, module]) => {
+			const image = await getImage({
+				src: module,
+				width: module.width,
+				height: module.height,
 				format: "webp",
 			});
 
-			return page;
+			return image;
 		}),
 );
 
@@ -84,8 +80,8 @@ const toc = headings
 				<div
 					class="aspect-video overflow-hidden rounded-xl border bg-muted transition-colors"
 				>
-					{pages.length > 0 ? (
-						<Slideshow pages={pages} client:load />
+					{images.length > 0 ? (
+						<Slideshow images={images} client:load />
 					) : (
 						<Image
 							src={`/images/works/${entry.id}/thumbnail.png`}
